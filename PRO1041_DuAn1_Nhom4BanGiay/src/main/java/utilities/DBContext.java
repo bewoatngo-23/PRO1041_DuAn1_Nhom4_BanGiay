@@ -21,6 +21,7 @@ public class DBContext {
     public static final String PASSWORD = "123456";
     //jkhkjh
 
+    
     /**
      * Get connection to MSSQL Server
      *
@@ -44,5 +45,6 @@ public class DBContext {
 
     public static void main(String[] args) {
         System.out.println(getConnection());
+        
     }
 }
