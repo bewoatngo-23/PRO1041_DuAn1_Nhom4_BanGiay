@@ -101,7 +101,7 @@ public class NhaCungCapRepository implements IInterface<NhaCungCap>{
                 + "      \n"
                 + " WHERE Ma = ?";
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setObject(3, ma);
+            ps.setObject(2, ma);
             ps.setObject(1, ncc.getHoTen());
 
             if (ps.executeUpdate() > 0) {
