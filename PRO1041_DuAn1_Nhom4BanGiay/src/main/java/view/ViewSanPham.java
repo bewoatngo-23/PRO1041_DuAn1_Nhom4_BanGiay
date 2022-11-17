@@ -75,9 +75,9 @@ public class ViewSanPham extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(255,255,255));
 
-        btnTimKiem.setBackground(new java.awt.Color(102, 255, 255));
+        btnTimKiem.setBackground(new java.awt.Color(255,255,255));
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +89,7 @@ public class ViewSanPham extends javax.swing.JFrame {
 
         jLabel2.setText("Tên");
 
-        btnUpdate.setBackground(new java.awt.Color(102, 255, 255));
+        btnUpdate.setBackground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Sửa");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +97,7 @@ public class ViewSanPham extends javax.swing.JFrame {
             }
         });
 
-        btnAdd.setBackground(new java.awt.Color(102, 255, 255));
+        btnAdd.setBackground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("Thêm ");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class ViewSanPham extends javax.swing.JFrame {
             }
         });
 
-        btnDelete.setBackground(new java.awt.Color(102, 255, 255));
+        btnDelete.setBackground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Xóa");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,8 +113,8 @@ public class ViewSanPham extends javax.swing.JFrame {
             }
         });
 
-        tblSanPham.setBackground(new java.awt.Color(153, 255, 153));
-        tblSanPham.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tblSanPham.setBackground(new java.awt.Color(255, 255, 255));
+        tblSanPham.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255,255,255)));
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -133,7 +133,7 @@ public class ViewSanPham extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblSanPham);
 
-        btnClear.setBackground(new java.awt.Color(102, 255, 255));
+        btnClear.setBackground(new java.awt.Color(255, 255, 255));
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
