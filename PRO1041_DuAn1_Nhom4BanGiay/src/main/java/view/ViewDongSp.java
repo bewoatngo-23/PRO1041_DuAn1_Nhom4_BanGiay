@@ -78,7 +78,7 @@ public class ViewDongSp extends javax.swing.JFrame {
         txtMaDSP = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(64, 117, 159));
+        setBackground(new java.awt.Color(255, 255, 255));
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
 
         btnUpdate.setText("Sửa");
