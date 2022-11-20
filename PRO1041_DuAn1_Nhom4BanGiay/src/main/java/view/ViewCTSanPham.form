@@ -84,14 +84,12 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="date_chooser" min="-2" pref="205" max="-2" attributes="0"/>
                                   <Component id="cbo_trangThai" min="-2" pref="205" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cbo_dongSanPham" pref="205" max="32767" attributes="0"/>
-                                      <Component id="cbo_deGiay" pref="205" max="32767" attributes="0"/>
-                                      <Component id="cbo_nhaCungCap" pref="205" max="32767" attributes="0"/>
-                                      <Component id="txt_kichCo" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="cbo_dongSanPham" min="-2" pref="205" max="-2" attributes="0"/>
+                                  <Component id="cbo_deGiay" min="-2" pref="205" max="-2" attributes="0"/>
+                                  <Component id="cbo_nhaCungCap" min="-2" pref="205" max="-2" attributes="0"/>
+                                  <Component id="txt_kichCo" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                                  <Component id="txt_ngayNhapHang" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -135,7 +133,7 @@
                   <Component id="lbl_ngayNhapHang" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="txt_giaBan" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="lbl_giaBan" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="date_chooser" max="32767" attributes="0"/>
+                  <Component id="txt_ngayNhapHang" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -451,7 +449,11 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="date_chooser">
+    <Component class="javax.swing.JTextField" name="txt_ngayNhapHang">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ngayNhapHangFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ngayNhapHangFocusLost"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
