@@ -5,6 +5,7 @@
 package domainModel;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,31 +25,41 @@ import org.hibernate.annotations.GenericGenerator;
  *
  * @author admin
  */
- @Entity
+  @Entity
  @Table(name = "DeGiay")
  @Getter
  @Setter
- @ToString
-public class DeGiay implements Serializable{
+public class DeGiayHiber implements Serializable{
    @Id
    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
    @GeneratedValue(generator = "generator")
    @Column(name = "Id", nullable = true)
    private String id;
    
-   @Column(name = "Ma", length = 20, nullable = false)
+   @Column(name = "Ma", length = 20, nullable = false, unique = true)
    private String ma;
    
    @Column(name = "Ten", length = 30, nullable = false)
    private String ten;
-
-    public DeGiay() {
+   
+   @OneToMany(mappedBy = "idDeGiay", fetch = FetchType.LAZY)
+   List<ChiTietSanPhamHiber> ChiTietSP;
+   
+    public DeGiayHiber() {
     }
 
-    public DeGiay(String id, String ma, String ten) {
+    public DeGiayHiber(String id, String ma, String ten) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
+    }
+
+    
+    public DeGiayHiber(String id, String ma, String ten, List<ChiTietSanPhamHiber> ChiTietSP) {
+        this.id = id;
+        this.ma = ma;
+        this.ten = ten;
+        this.ChiTietSP = ChiTietSP;
     }
    
    

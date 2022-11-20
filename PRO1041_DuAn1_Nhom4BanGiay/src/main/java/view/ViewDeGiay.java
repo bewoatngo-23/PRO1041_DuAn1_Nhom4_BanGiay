@@ -4,7 +4,8 @@
  */
 package view;
 
-import domainModel.DeGiay;
+import customModel.DeGiayCustomModel;
+import domainModel.DeGiayHiber;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import service.IDeGiayService;
@@ -43,8 +44,8 @@ public class ViewDeGiay extends javax.swing.JFrame {
         }
     }
     
-    public DeGiay getForm(){
-        return new DeGiay(null, txt_ma.getText(), txt_ten.getText());
+    public DeGiayHiber getForm(){
+        return new DeGiayHiber(null, txt_ma.getText(), txt_ten.getText());
     }
     
     public boolean CheckDL(){
@@ -58,6 +59,16 @@ public class ViewDeGiay extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tên không được để trống");
             txt_ten.requestFocus();
             txt_ten.setText("");
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean CheckTrung(){
+        if (deGiayService.CheckTrungMa(txt_ma.getText())) {
+            JOptionPane.showMessageDialog(this, "Trùng mã");
+            txt_ma.requestFocus();
+            txt_ma.setText("");
             return true;
         }
         return false;
@@ -218,7 +229,7 @@ public class ViewDeGiay extends javax.swing.JFrame {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
-        if (CheckDL()==false) {
+        if (CheckDL()==false && CheckTrung()==false) {
             var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thêm mới");
         if (temp == 0) {
             JOptionPane.showMessageDialog(this, deGiayService.add(getForm()));
@@ -240,7 +251,7 @@ public class ViewDeGiay extends javax.swing.JFrame {
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         // TODO add your handling code here:
-        if (CheckDL()==false) {
+        if (CheckDL()==false && CheckTrung()==false) {
             var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn sửa thông tin không ?");
         if (temp == 0) {
             var deGiay = getForm();       
@@ -256,7 +267,7 @@ public class ViewDeGiay extends javax.swing.JFrame {
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
         // TODO add your handling code here:
-        var deGiay = new DeGiay();
+        var deGiay = new DeGiayHiber();
         deGiay.setId(click);
         JOptionPane.showMessageDialog(this, deGiayService.delete(deGiay));
         loadTable(null);
