@@ -5,7 +5,7 @@
 package service;
 
 import customModel.DeGiayCustomModel;
-import domainModel.DeGiay;
+import domainModel.DeGiayHiber;
 import java.util.List;
 
 /**
@@ -17,9 +17,13 @@ public interface IDeGiayService {
     
     String getIdbyIndex (int input);
     
-    String add(DeGiay obj);
+    boolean CheckTrungMa(String input);
     
-    String update(DeGiay obj);
+    DeGiayHiber getDeGiayHiberbyIndex (int input);
     
-    String delete(DeGiay obj);
+    String add(DeGiayHiber obj);
+    
+    String update(DeGiayHiber obj);
+    
+    String delete(DeGiayHiber obj);
 }

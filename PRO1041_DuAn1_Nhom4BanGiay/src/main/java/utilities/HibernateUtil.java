@@ -4,7 +4,12 @@
  */
 package utilities;
 
-import domainModel.DeGiay;
+import domainModel.ChiTietSanPhamHiber;
+import domainModel.DeGiayHiber;
+import domainModel.DongSPHiber;
+import domainModel.MauSacHiber;
+import domainModel.NhaCungCapHiber;
+import domainModel.SanPhamHiber;
 import java.util.Properties;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -33,7 +38,13 @@ public class HibernateUtil {
         //properties.put(Environment.HBM2DDL_AUTO, "create");
 
         conf.setProperties(properties);
-        conf.addAnnotatedClass(DeGiay.class);
+        conf.addAnnotatedClass(DeGiayHiber.class);
+        conf.addAnnotatedClass(ChiTietSanPhamHiber.class);
+        conf.addAnnotatedClass(SanPhamHiber.class);
+        conf.addAnnotatedClass(DongSPHiber.class);
+        conf.addAnnotatedClass(MauSacHiber.class);
+        conf.addAnnotatedClass(NhaCungCapHiber.class);
+        
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);

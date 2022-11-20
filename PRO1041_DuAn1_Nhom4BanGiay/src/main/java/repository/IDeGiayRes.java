@@ -5,7 +5,7 @@
 package repository;
 
 import customModel.DeGiayCustomModel;
-import domainModel.DeGiay;
+import domainModel.DeGiayHiber;
 import java.util.List;
 
 /**
@@ -14,12 +14,14 @@ import java.util.List;
  * 
  */
 public interface IDeGiayRes {
-    List<DeGiayCustomModel> getAll();
+    List<DeGiayHiber> getAll();
     
-    boolean add(DeGiay obj);
+    List<DeGiayCustomModel> getAllCustoms();
     
-    boolean update(DeGiay obj);
+    boolean add(DeGiayHiber obj);
     
-    boolean delete(DeGiay obj);
+    boolean update(DeGiayHiber obj);
+    
+    boolean delete(DeGiayHiber obj);
             
 }

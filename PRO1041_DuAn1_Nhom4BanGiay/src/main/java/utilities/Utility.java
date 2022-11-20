@@ -125,6 +125,15 @@ public class Utility {
         return false;
     }
     
+    // Check số thập phân
+    public boolean CheckSoThapPhan(String input){
+        String p_soThapPhan ="[+-]?([0-9]*[.])?[0-9]+";
+        if (!input.matches(p_soThapPhan)) {
+            return true;
+        }
+        return false;
+    }
+    
     // check dữ liệu số
     public boolean CheckSo(String input) {
         String p_so = "[0-9]+";
