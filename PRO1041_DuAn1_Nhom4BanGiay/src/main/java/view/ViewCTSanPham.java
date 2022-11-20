@@ -61,7 +61,7 @@ public class ViewCTSanPham extends javax.swing.JFrame {
     public ViewCTSanPham() {
         initComponents();
         setLocationRelativeTo(null);
-        date_chooser.setDate(new Date());
+        txt_ngayNhapHang.setText(java.time.LocalDate.now()+"");
         loadCBB();
         loadTable(null);
     }
@@ -105,7 +105,7 @@ public class ViewCTSanPham extends javax.swing.JFrame {
         btn_clear = new javax.swing.JButton();
         txt_timKiem = new javax.swing.JTextField();
         cbo_trangThai = new javax.swing.JComboBox<>();
-        date_chooser = new com.toedter.calendar.JDateChooser();
+        txt_ngayNhapHang = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -191,6 +191,15 @@ public class ViewCTSanPham extends javax.swing.JFrame {
             }
         });
 
+        txt_ngayNhapHang.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_ngayNhapHangFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_ngayNhapHangFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -245,13 +254,12 @@ public class ViewCTSanPham extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(date_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbo_trangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cbo_dongSanPham, 0, 205, Short.MAX_VALUE)
-                                        .addComponent(cbo_deGiay, 0, 205, Short.MAX_VALUE)
-                                        .addComponent(cbo_nhaCungCap, 0, 205, Short.MAX_VALUE)
-                                        .addComponent(txt_kichCo)))))
+                                    .addComponent(cbo_dongSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbo_deGiay, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbo_nhaCungCap, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_kichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,7 +292,7 @@ public class ViewCTSanPham extends javax.swing.JFrame {
                     .addComponent(lbl_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_giaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_giaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(date_chooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_soLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,11 +360,7 @@ public class ViewCTSanPham extends javax.swing.JFrame {
         cbo_deGiay.setSelectedItem(temp.getTenDeGiay());
         cbo_dongSanPham.setSelectedItem(temp.getTenDongSP());
         cbo_nhaCungCap.setSelectedItem(temp.getTenNhaCC());
-        try {
-            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(temp.getNgayNhapHang());
-            date_chooser.setDate(date);
-        } catch (Exception e) {
-        }
+        txt_ngayNhapHang.setText(temp.getNgayNhapHang());
         txt_giaNhap.setText(String.valueOf(temp.getGiaNhap()));
         txt_giaBan.setText(String.valueOf(temp.getGiaBan()));
         txt_soLuong.setText(String.valueOf(temp.getSoLuong()));
@@ -399,7 +403,7 @@ public class ViewCTSanPham extends javax.swing.JFrame {
         cbo_deGiay.setSelectedIndex(0);
         cbo_dongSanPham.setSelectedIndex(0);
         cbo_nhaCungCap.setSelectedIndex(0);
-        date_chooser.setDate(new Date());
+        txt_ngayNhapHang.setText(null);
         txt_giaNhap.setText(null);
         txt_giaBan.setText(null);
         txt_soLuong.setText(null);
@@ -407,6 +411,16 @@ public class ViewCTSanPham extends javax.swing.JFrame {
         txt_xuatXu.setText(null);
         cbo_trangThai.setSelectedIndex(0);
     }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void txt_ngayNhapHangFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ngayNhapHangFocusGained
+        // TODO add your handling code here:
+        txt_ngayNhapHang.setText("");
+    }//GEN-LAST:event_txt_ngayNhapHangFocusGained
+
+    private void txt_ngayNhapHangFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ngayNhapHangFocusLost
+        // TODO add your handling code here:
+        txt_ngayNhapHang.setText(java.time.LocalDate.now()+"");
+    }//GEN-LAST:event_txt_ngayNhapHangFocusLost
 
     /**
      * @param args the command line arguments
@@ -524,16 +538,13 @@ public class ViewCTSanPham extends javax.swing.JFrame {
     }
 
     public ChiTietSanPhamHiber getForm() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String ngayNhapHang = sdf.format(date_chooser.getDate());
-
         return new ChiTietSanPhamHiber(null,
                 sanPhamHiberService.getByIndex(cbo_sanPham.getSelectedIndex()),
                 dongSPHiberService.getByIndex(cbo_dongSanPham.getSelectedIndex()),
                 deGiayService.getDeGiayHiberbyIndex(cbo_deGiay.getSelectedIndex()),
                 mauSacHiberService.getByIndex(cbo_mauSac.getSelectedIndex()),
                 nhaCungCapHiberService.getByIndex(cbo_nhaCungCap.getSelectedIndex()),
-                ngayNhapHang,
+                txt_ngayNhapHang.getText(),
                 Double.parseDouble(txt_giaNhap.getText()),
                 Double.parseDouble(txt_giaBan.getText()),
                 Integer.parseInt(txt_soLuong.getText()),
@@ -603,6 +614,15 @@ public class ViewCTSanPham extends javax.swing.JFrame {
             return true;
         }
         
+        // check ngày nhập hàng
+        
+        if (uti.CheckNgayThang(txt_ngayNhapHang.getText())) {
+            JOptionPane.showMessageDialog(this, "Ngày nhập hàng không đúng kiểu dữ liệu");
+            txt_ngayNhapHang.requestFocus();
+            txt_ngayNhapHang.setText("");
+            return true;
+        }
+        
         // check kích cỡ
         if (uti.CheckRong(txt_kichCo.getText())) {
             JOptionPane.showMessageDialog(this, "Kích cỡ không được bỏ trống");
@@ -631,7 +651,6 @@ public class ViewCTSanPham extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbo_nhaCungCap;
     private javax.swing.JComboBox<String> cbo_sanPham;
     private javax.swing.JComboBox<String> cbo_trangThai;
-    private com.toedter.calendar.JDateChooser date_chooser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_deGiay;
     private javax.swing.JLabel lbl_dongSP;
@@ -649,6 +668,7 @@ public class ViewCTSanPham extends javax.swing.JFrame {
     private javax.swing.JTextField txt_giaBan;
     private javax.swing.JTextField txt_giaNhap;
     private javax.swing.JTextField txt_kichCo;
+    private javax.swing.JTextField txt_ngayNhapHang;
     private javax.swing.JTextField txt_soLuong;
     private javax.swing.JTextField txt_timKiem;
     private javax.swing.JTextField txt_xuatXu;
