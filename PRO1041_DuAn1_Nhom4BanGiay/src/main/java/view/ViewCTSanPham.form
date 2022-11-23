@@ -32,7 +32,6 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lbl_sanPham" min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="lbl_mauSac" min="-2" pref="61" max="-2" attributes="0"/>
-                          <Component id="lbl_giaNhap" min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="lbl_giaBan" min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="lbl_soLuong" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="lbl_xuatXu" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
@@ -41,17 +40,22 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="cbo_sanPham" min="-2" pref="205" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btn_themSP" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="lbl_deGiay" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="txt_xuatXu" max="32767" attributes="0"/>
-                                      <Component id="txt_soLuong" max="32767" attributes="0"/>
-                                      <Component id="txt_giaBan" max="32767" attributes="0"/>
-                                      <Component id="txt_giaNhap" max="32767" attributes="0"/>
-                                      <Component id="cbo_mauSac" pref="205" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="txt_xuatXu" max="32767" attributes="0"/>
+                                          <Component id="txt_soLuong" max="32767" attributes="0"/>
+                                          <Component id="txt_giaBan" max="32767" attributes="0"/>
+                                          <Component id="cbo_mauSac" pref="205" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btn_themMS" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -60,7 +64,7 @@
                                       <Component id="btn_sua" min="-2" pref="65" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="53" max="32767" attributes="0"/>
+                              <EmptySpace pref="23" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btn_xoa" min="-2" pref="63" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -68,7 +72,6 @@
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="lbl_ngayNhapHang" min="-2" max="-2" attributes="0"/>
                                           <Component id="lbl_dongSP" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbl_nhaCC" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="lbl_kichCo" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="lbl_trangThai" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -84,16 +87,27 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cbo_trangThai" min="-2" pref="205" max="-2" attributes="0"/>
-                                  <Component id="cbo_dongSanPham" min="-2" pref="205" max="-2" attributes="0"/>
-                                  <Component id="cbo_deGiay" min="-2" pref="205" max="-2" attributes="0"/>
-                                  <Component id="cbo_nhaCungCap" min="-2" pref="205" max="-2" attributes="0"/>
-                                  <Component id="txt_kichCo" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                                  <Component id="txt_ngayNhapHang" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="cbo_dongSanPham" min="-2" pref="205" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btn_themDSP" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="cbo_deGiay" min="-2" pref="205" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btn_themDG" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cbo_trangThai" min="-2" pref="205" max="-2" attributes="0"/>
+                                          <Component id="txt_kichCo" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                                          <Component id="txt_ngayNhapHang" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="txt_timKiem" min="-2" pref="347" max="-2" attributes="0"/>
@@ -113,6 +127,8 @@
                   <Component id="cbo_sanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbl_deGiay" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="cbo_deGiay" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_themSP" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_themDG" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -120,36 +136,31 @@
                   <Component id="cbo_mauSac" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbl_mauSac" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="lbl_dongSP" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="btn_themMS" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_themDSP" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbl_nhaCC" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="cbo_nhaCungCap" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_giaNhap" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="lbl_giaNhap" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbl_ngayNhapHang" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="txt_giaBan" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="lbl_giaBan" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="txt_giaBan" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="txt_ngayNhapHang" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="lbl_ngayNhapHang" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbl_soLuong" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="lbl_kichCo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="txt_soLuong" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="txt_kichCo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="lbl_kichCo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbl_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="lbl_trangThai" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="txt_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="cbo_trangThai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_trangThai" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_them" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="btn_sua" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -176,16 +187,14 @@
         <Component class="javax.swing.JTable" name="tbl_CTSanPham">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="14" rowCount="0">
+              <Table columnCount="12" rowCount="0">
                 <Column editable="true" title="STT" type="java.lang.Object"/>
-                <Column editable="true" title="ID" type="java.lang.Object"/>
+                <Column editable="true" title="M&#xe3; SP" type="java.lang.Object"/>
                 <Column editable="true" title="S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.Object"/>
                 <Column editable="true" title="M&#xe0;u S&#x1eaf;c" type="java.lang.Object"/>
                 <Column editable="true" title="&#x110;&#x1ebf; Gi&#xe0;y" type="java.lang.Object"/>
                 <Column editable="true" title="D&#xf2;ng S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.Object"/>
-                <Column editable="true" title="Nh&#xe0; Cung C&#x1ea5;p" type="java.lang.Object"/>
                 <Column editable="true" title="Ng&#xe0;y Nh&#x1ead;p H&#xe0;ng" type="java.lang.Object"/>
-                <Column editable="true" title="Gi&#xe1; Nh&#x1ead;p" type="java.lang.Object"/>
                 <Column editable="true" title="Gi&#xe1; B&#xe1;n" type="java.lang.Object"/>
                 <Column editable="true" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
                 <Column editable="true" title="K&#xed;ch C&#x1ee1;" type="java.lang.Object"/>
@@ -195,16 +204,6 @@
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -327,24 +326,9 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbo_nhaCungCap">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="lbl_mauSac">
       <Properties>
         <Property name="text" type="java.lang.String" value="M&#xe0;u s&#x1eaf;c"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_nhaCC">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nh&#xe0; cung c&#x1ea5;p"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbl_dongSP">
@@ -357,14 +341,7 @@
         <Property name="text" type="java.lang.String" value="Ng&#xe0;y nh&#x1ead;p h&#xe0;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_giaNhap">
-    </Component>
     <Component class="javax.swing.JTextField" name="txt_giaBan">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_giaNhap">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Gi&#xe1; nh&#x1ead;p "/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbl_giaBan">
       <Properties>
@@ -453,6 +430,38 @@
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ngayNhapHangFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ngayNhapHangFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_themSP">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themSPActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_themMS">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themMSActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_themDG">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themDGActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_themDSP">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themDSPActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

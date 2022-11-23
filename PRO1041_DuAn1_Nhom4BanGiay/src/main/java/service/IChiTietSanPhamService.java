@@ -19,6 +19,8 @@ public interface IChiTietSanPhamService {
     
     ChiTietSPCustomModel getById(String input);
     
+    String getIdByIndex(int input);
+    
     String add(ChiTietSanPhamHiber obj);
     
     String update(ChiTietSanPhamHiber obj);

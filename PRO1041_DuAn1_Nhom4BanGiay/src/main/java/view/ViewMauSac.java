@@ -25,6 +25,7 @@ public class ViewMauSac extends javax.swing.JFrame {
     private List<MauSac> listMS = new ArrayList<>();
     private List<MauSacCustomModel> listMSCM = new ArrayList<>();
     private IMauSacService khs = new MauSacServiceImpl();
+    private ViewCTSanPham viewCTSanPham = new ViewCTSanPham();
 
     public ViewMauSac() {
         initComponents();
@@ -272,6 +273,7 @@ public class ViewMauSac extends javax.swing.JFrame {
             MauSac ms = new MauSac(ma, ten);
             JOptionPane.showMessageDialog(this, khs.update(ms, ma));
             showData(listMSCM = khs.getAllCustom());
+             viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -295,6 +297,7 @@ public class ViewMauSac extends javax.swing.JFrame {
             MauSac ms = new MauSac(ma, ten);
             JOptionPane.showMessageDialog(this, khs.add(ms));
             showData(listMSCM = khs.getAllCustom());
+            viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -305,6 +308,7 @@ public class ViewMauSac extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, khs.delete(ma));
             showData(listMSCM = khs.getAllCustom());
+             viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

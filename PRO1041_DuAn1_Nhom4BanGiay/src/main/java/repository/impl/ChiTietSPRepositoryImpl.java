@@ -32,12 +32,11 @@ public class ChiTietSPRepositoryImpl implements IChiTietSanPhamRes {
 
     @Override
     public List<ChiTietSPCustomModel> getAllCustomModels() {
-        String hql = "SELECT new customModel.ChiTietSPCustomModel(A.id, F.ten, C.ten, B.ten , D.ten , E.ten , A.ngayNhapHang, A.giaNhap, A.giaBan, A.soLuong, A.xuatXu, A.kichCo, A.trangThai)\n"
+        String hql = "SELECT new customModel.ChiTietSPCustomModel(A.id, F.ma, F.ten, C.ten, B.ten , D.ten  , A.ngayNhapHang, A.donGia, A.soLuong, A.xuatXu, A.kichCo, A.trangThai)\n"
                 + "                      FROM ChiTietSanPhamHiber A INNER JOIN\n"
                 + "                      DeGiayHiber B ON A.idDeGiay = B.id INNER JOIN\n"
                 + "                      DongSPHiber C ON A.idDongSP = C.id INNER JOIN\n"
                 + "                      MauSacHiber D ON A.idMauSac = D.id INNER JOIN\n"
-                + "                      NhaCungCapHiber E ON A.idNhaCC = E.id INNER JOIN\n"
                 + "                      SanPhamHiber F ON A.idSP = F.id ";
         Query query = session.createQuery(hql);
         List<ChiTietSPCustomModel> list_ctspCustomModels = query.getResultList();
@@ -70,15 +69,13 @@ public class ChiTietSPRepositoryImpl implements IChiTietSanPhamRes {
             Transaction trans = session.getTransaction();
             trans.begin();
             try {
-                Query query = session.createQuery("UPDATE ChiTietSanPhamHiber set IdSP = :idSP, IdDongSP = :idDongSP, IdDeGiay = :idDeGiay, IdMauSac = :idMauSac, IdNhaCC = :idNhaCC, NgayNhapHang = :ngayNhapHang, GiaNhap = :giaNhap, GiaBan = :giaBan, SoLuong = :soLuong, XuatXu = :xuatXu, KichCo = :kichCo, TrangThai = :trangThai where Id = :id");
+                Query query = session.createQuery("UPDATE ChiTietSanPhamHiber set IdSP = :idSP, IdDongSP = :idDongSP, IdDeGiay = :idDeGiay, IdMauSac = :idMauSac, NgayNhapHang = :ngayNhapHang, DonGia = :giaBan, SoLuong = :soLuong, XuatXu = :xuatXu, KichCo = :kichCo, TrangThai = :trangThai where Id = :id");
                 query.setParameter("idSP", obj.getIdSP().getId());
                 query.setParameter("idDongSP",obj.getIdDongSP().getId());
                 query.setParameter("idDeGiay", obj.getIdDeGiay().getId());
                 query.setParameter("idMauSac", obj.getIdMauSac().getId());
-                query.setParameter("idNhaCC", obj.getIdNhaCC().getId());
                 query.setParameter("ngayNhapHang",obj.getNgayNhapHang());
-                query.setParameter("giaNhap",obj.getGiaNhap());
-                query.setParameter("giaBan", obj.getGiaBan());
+                query.setParameter("giaBan", obj.getDonGia());
                 query.setParameter("soLuong", obj.getSoLuong());
                 query.setParameter("xuatXu", obj.getXuatXu());
                 query.setParameter("kichCo", obj.getKichCo());

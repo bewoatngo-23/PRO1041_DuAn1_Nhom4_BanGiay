@@ -23,6 +23,7 @@ public class ViewSanPham extends javax.swing.JFrame {
     private List<SanPham> listMS = new ArrayList<>();
     private List<SanPhamCustomModel> listSP = new ArrayList<>();
     private ISanPhamService khs = new SanPhamServiceImpl();
+    private ViewCTSanPham viewCTSanPham = new ViewCTSanPham();
 
     public ViewSanPham() {
         initComponents();
@@ -258,6 +259,7 @@ public class ViewSanPham extends javax.swing.JFrame {
             SanPham ms = new SanPham(ma, ten);
             JOptionPane.showMessageDialog(this, khs.update(ms, ma));
             showData(listSP = khs.getAllCustom());
+            viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -281,6 +283,7 @@ public class ViewSanPham extends javax.swing.JFrame {
             SanPham ms = new SanPham(ma, ten);
             JOptionPane.showMessageDialog(this, khs.add(ms));
             showData(listSP= khs.getAllCustom());
+            viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -291,6 +294,7 @@ public class ViewSanPham extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, khs.delete(ma));
             showData(listSP = khs.getAllCustom());
+            viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

@@ -10,14 +10,13 @@ package customModel;
  */
 public class ChiTietSPCustomModel {
     private String id;
+    private String maSP;
     private String tenSP;
     private String tenDongSP;
     private String tenDeGiay;
     private String tenMauSac;
-    private String tenNhaCC;
     private String ngayNhapHang;
-    private double giaNhap;
-    private double giaBan;
+    private double donGia;
     private int soLuong;
     private String xuatXu;
     private String kichCo;
@@ -26,21 +25,22 @@ public class ChiTietSPCustomModel {
     public ChiTietSPCustomModel() {
     }
 
-    public ChiTietSPCustomModel(String id, String tenSP, String tenDongSP, String tenDeGiay, String tenMauSac, String tenNhaCC, String ngayNhapHang, double giaNhap, double giaBan, int soLuong, String xuatXu, String kichCo, int trangThai) {
+    public ChiTietSPCustomModel(String id, String maSP, String tenSP, String tenDongSP, String tenDeGiay, String tenMauSac, String ngayNhapHang, double donGia, int soLuong, String xuatXu, String kichCo, int trangThai) {
         this.id = id;
+        this.maSP = maSP;
         this.tenSP = tenSP;
         this.tenDongSP = tenDongSP;
         this.tenDeGiay = tenDeGiay;
         this.tenMauSac = tenMauSac;
-        this.tenNhaCC = tenNhaCC;
         this.ngayNhapHang = ngayNhapHang;
-        this.giaNhap = giaNhap;
-        this.giaBan = giaBan;
+        this.donGia = donGia;
         this.soLuong = soLuong;
         this.xuatXu = xuatXu;
         this.kichCo = kichCo;
         this.trangThai = trangThai;
     }
+
+   
 
     public String getId() {
         return id;
@@ -48,6 +48,14 @@ public class ChiTietSPCustomModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMaSP() {
+        return maSP;
+    }
+
+    public void setMaSP(String maSP) {
+        this.maSP = maSP;
     }
 
     public String getTenSP() {
@@ -82,14 +90,6 @@ public class ChiTietSPCustomModel {
         this.tenMauSac = tenMauSac;
     }
 
-    public String getTenNhaCC() {
-        return tenNhaCC;
-    }
-
-    public void setTenNhaCC(String tenNhaCC) {
-        this.tenNhaCC = tenNhaCC;
-    }
-
     public String getNgayNhapHang() {
         return ngayNhapHang;
     }
@@ -98,21 +98,15 @@ public class ChiTietSPCustomModel {
         this.ngayNhapHang = ngayNhapHang;
     }
 
-    public double getGiaNhap() {
-        return giaNhap;
+    public double getDonGia() {
+        return donGia;
     }
 
-    public void setGiaNhap(double giaNhap) {
-        this.giaNhap = giaNhap;
+    public void setDonGia(double donGia) {
+        this.donGia = donGia;
     }
 
-    public double getGiaBan() {
-        return giaBan;
-    }
-
-    public void setGiaBan(double giaBan) {
-        this.giaBan = giaBan;
-    }
+ 
 
     public int getSoLuong() {
         return soLuong;
@@ -146,6 +140,7 @@ public class ChiTietSPCustomModel {
         this.trangThai = trangThai;
     }
 
+    
     
 
     
