@@ -74,8 +74,10 @@ public class ViewMauSac extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         lblID = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnQuayLai1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -210,11 +212,21 @@ public class ViewMauSac extends javax.swing.JFrame {
                 .addGap(60, 60, 60))
         );
 
+        btnQuayLai1.setText("Quay lại");
+        btnQuayLai1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLai1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(630, Short.MAX_VALUE)
+                .addComponent(btnQuayLai1)
+                .addGap(20, 20, 20))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -223,7 +235,10 @@ public class ViewMauSac extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 586, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnQuayLai1)
+                .addContainerGap(548, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 5, Short.MAX_VALUE)
@@ -306,6 +321,11 @@ public class ViewMauSac extends javax.swing.JFrame {
         lblID.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai1ActionPerformed
+
+        this.dispose();
+    }//GEN-LAST:event_btnQuayLai1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -345,6 +365,8 @@ public class ViewMauSac extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnQuayLai;
+    private javax.swing.JButton btnQuayLai1;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
