@@ -944,10 +944,12 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 
         txtSdtNV.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
 
+        buttonGroup1.add(radioNam);
         radioNam.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         radioNam.setSelected(true);
         radioNam.setText("Nam");
 
+        buttonGroup1.add(radioNu);
         radioNu.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         radioNu.setText("Nữ");
 
@@ -1383,7 +1385,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+
                 .addContainerGap())
         );
 
