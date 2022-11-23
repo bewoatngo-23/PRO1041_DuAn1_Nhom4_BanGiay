@@ -98,6 +98,9 @@ public class Utility {
 
     // Lấy năm trong chuỗi ngày tháng
     public String getNam(String input) {
+        if (input == null) {
+            return 0+"";
+        }
         String[] arrNam = input.trim().split("-");
         String Nam = arrNam[0];
         return Nam;
@@ -160,8 +163,8 @@ public class Utility {
         return false;
     }
 
-    // check dữ liệu password
-    public int Checkpass(String input) {
+    // Đếm chuỗi
+    public int DemChuoi(String input) {
         String[] arrPass = input.trim().split("");
         int count = 0;
         for (int i = 0; i < arrPass.length; i++) {

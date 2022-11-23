@@ -45,6 +45,18 @@ public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService{
         return list_chiCustomModels;
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+     @Override
+    public List<ChiTietSPCustomModel> getAllBetWeen(String batDau, String ketThuc) {
+         List<ChiTietSPCustomModel> list_between = new ArrayList<>();
+        for (var x : ChiTietSanPham.getAllBetWeen(batDau, ketThuc)) {
+              list_between.add(x);
+       }
+        return list_between;
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+  
+   
 
     @Override
     public String add(ChiTietSanPhamHiber obj) {
@@ -89,6 +101,9 @@ public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService{
         return ChiTietSanPham.getAllCustomModels().get(input).getId();
        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+   
+    
 
     
     
