@@ -388,9 +388,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnKhachhang = new javax.swing.JButton();
         btnNhanVien = new javax.swing.JButton();
-
         btnSanPham = new javax.swing.JButton();
-
         btnThongKe = new javax.swing.JButton();
         btnBanHang = new javax.swing.JButton();
         btnDoiTra = new javax.swing.JButton();
@@ -421,9 +419,8 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKhachHang = new javax.swing.JTable();
         btnClear = new javax.swing.JButton();
-
+        jLabel21 = new javax.swing.JLabel();
         pnlNhanVien = new javax.swing.JPanel();
-
         btnUpdateNV = new javax.swing.JButton();
         btnDeleteNV = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -549,7 +546,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         btnBanHang.setForeground(new java.awt.Color(0, 51, 51));
         btnBanHang.setText("Bán hàng");
         btnBanHang.addActionListener(new java.awt.event.ActionListener() {
-
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBanHangActionPerformed(evt);
             }
@@ -568,10 +564,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         btnKetThuc.setBackground(new java.awt.Color(215, 215, 207));
         btnKetThuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnKetThuc.setForeground(new java.awt.Color(0, 51, 51));
+        btnKetThuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/No.png"))); // NOI18N
         btnKetThuc.setText("Kết thúc");
         btnKetThuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-
                 btnKetThucActionPerformed(evt);
             }
         });
@@ -604,9 +600,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnKhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                             .addComponent(btnSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                             .addComponent(btnBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDoiTra, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -618,7 +612,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-
                 .addComponent(lblTitle)
                 .addGap(41, 41, 41)
                 .addComponent(btnKhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -637,7 +630,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(74, Short.MAX_VALUE))
-
         );
 
         jPanel1.add(jPanel2);
@@ -722,12 +714,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 
         pnlcards.add(pnlMain, "card8");
 
-
         pnlKhachHang.setBackground(new java.awt.Color(0, 153, 153));
         pnlKhachHang.setForeground(new java.awt.Color(255, 255, 255));
 
         jPanel11.setBackground(new java.awt.Color(255, 204, 0));
-
 
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
@@ -789,8 +779,8 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
-        jLabel17.setText("Khách hàng");
+        jLabel21.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
+        jLabel21.setText("Khách hàng");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -814,17 +804,34 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                                 .addGap(98, 98, 98)
                                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-
-                        .addGap(58, 58, 58)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(114, 114, 114)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)))
+                        .addGap(123, 123, 123)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(443, 443, 443)
+                        .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(325, 325, 325)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(258, Short.MAX_VALUE))
-
+            .addComponent(jScrollPane1)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17)
+                .addComponent(jLabel21)
                 .addGap(19, 19, 19)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -855,11 +862,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
             pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
         pnlKhachHangLayout.setVerticalGroup(
             pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-
         );
 
         pnlcards.add(pnlKhachHang, "cardKH");
@@ -1085,10 +1090,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlNhanVienLayout.createSequentialGroup()
                         .addGap(74, 74, 74)
-
                         .addGroup(pnlNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                             .addComponent(btnAddNV)
                             .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1153,10 +1155,8 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                 .addGap(68, 68, 68))
-
         );
 
         pnlcards.add(pnlNhanVien, "cardNV");
@@ -1357,12 +1357,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCTSPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbl_sanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbo_sanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbl_deGiay, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbo_deGiay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnThemSP))
+                    .addGroup(pnlCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnThemSP, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnlCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_sanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbo_sanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_deGiay, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbo_deGiay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnThemDG))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlCTSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1406,15 +1407,14 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pnlcards.add(pnlCTSP, "cardCTSP");
 
-
         pnlBanHang.setBackground(new java.awt.Color(255, 204, 0));
+        pnlBanHang.setPreferredSize(new java.awt.Dimension(830, 700));
 
         javax.swing.GroupLayout pnlBanHangLayout = new javax.swing.GroupLayout(pnlBanHang);
         pnlBanHang.setLayout(pnlBanHangLayout);
@@ -1425,7 +1425,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 724, Short.MAX_VALUE)
-
         );
 
         pnlcards.add(pnlBanHang, "cardBH");
@@ -1438,11 +1437,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
             pnlDoiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 931, Short.MAX_VALUE)
         );
-
         pnlDoiTraLayout.setVerticalGroup(
             pnlDoiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 724, Short.MAX_VALUE)
-
         );
 
         pnlcards.add(pnlDoiTra, "cardDoiTra");
@@ -1455,11 +1452,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
             pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 931, Short.MAX_VALUE)
         );
-
         pnlThongKeLayout.setVerticalGroup(
             pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 724, Short.MAX_VALUE)
-
         );
 
         pnlcards.add(pnlThongKe, "cardTK");
@@ -1474,12 +1469,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
-
         );
 
         pack();
@@ -1904,19 +1897,16 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDeleteNV;
     private javax.swing.JButton btnDoiTra;
-
     private javax.swing.JButton btnKetThuc;
     private javax.swing.JButton btnKhachhang;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnNhanVien;
-
     private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnThemCV;
     private javax.swing.JButton btnThemDG;
     private javax.swing.JButton btnThemDSP;
     private javax.swing.JButton btnThemMS;
     private javax.swing.JButton btnThemSP;
-
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnUpdate;
@@ -1941,12 +1931,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
