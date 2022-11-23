@@ -23,6 +23,7 @@ public class ViewDongSp extends javax.swing.JFrame {
     private List<DongSP> listDSP = new ArrayList<>();
     private List<DongSanPhamCustomModel> listDSPCM = new ArrayList<>();
     private IDongSPService nccs = new DongSPServiceImpl();
+    private ViewCTSanPham viewCTSanPham = new ViewCTSanPham();
 
     /**
      * Creates new form ViewNCC
@@ -35,6 +36,7 @@ public class ViewDongSp extends javax.swing.JFrame {
         showData(listDSPCM = nccs.getAllCustom());
         setTitle("Hệ thống quản lý bán giày");
         setLocationRelativeTo(null);
+        viewCTSanPham.loadCBB();
     }
 
     private void showData(List<DongSanPhamCustomModel> lists) {
@@ -240,6 +242,7 @@ public class ViewDongSp extends javax.swing.JFrame {
             DongSP dsp = new DongSP("", ma, ten);
             JOptionPane.showMessageDialog(this, nccs.update(dsp, ma));
             showData(listDSPCM = nccs.getAllCustom());
+            viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -263,6 +266,7 @@ public class ViewDongSp extends javax.swing.JFrame {
             DongSP dsp = new DongSP("", ma, ten);
             JOptionPane.showMessageDialog(this, nccs.add(dsp));
             showData(listDSPCM = nccs.getAllCustom());
+            viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -273,6 +277,7 @@ public class ViewDongSp extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, nccs.delete(ma));
             showData(listDSPCM = nccs.getAllCustom());
+            viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
