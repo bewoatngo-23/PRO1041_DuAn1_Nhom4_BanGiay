@@ -38,7 +38,7 @@ public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService{
            return ChiTietSanPham.getAllCustomModels();
        }
         for (ChiTietSPCustomModel x : ChiTietSanPham.getAllCustomModels()) {
-            if (x.getTenSP().contains(input)|| x.getTenDongSP().contains(input)|| x.getTenDeGiay().contains(input)|| x.getTenMauSac().contains(input)|| x.getTenNhaCC().contains(input)||x.getXuatXu().contains(input)) {
+            if (x.getMaSP().contains(input) || x.getTenSP().contains(input)|| x.getTenDongSP().contains(input)|| x.getTenDeGiay().contains(input)|| x.getTenMauSac().contains(input)||x.getXuatXu().contains(input)) {
                 list_chiCustomModels.add(x);
             }
        }
@@ -82,6 +82,12 @@ public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService{
         }
         return null;
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getIdByIndex(int input) {
+        return ChiTietSanPham.getAllCustomModels().get(input).getId();
+       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     

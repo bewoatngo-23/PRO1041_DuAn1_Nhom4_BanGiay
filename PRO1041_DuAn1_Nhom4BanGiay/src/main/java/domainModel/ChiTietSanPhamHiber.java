@@ -51,18 +51,12 @@ public class ChiTietSanPhamHiber {
     @JoinColumn(name = "IdMauSac", referencedColumnName = "Id")
     private MauSacHiber idMauSac;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdNhaCC", referencedColumnName = "Id")
-    private NhaCungCapHiber idNhaCC;
     
     @Column(name = "NgayNhapHang")
     private String ngayNhapHang;
     
-    @Column(name = "GiaNhap")
-    private double giaNhap;
-    
-    @Column(name = "GiaBan")
-    private double giaBan;
+    @Column(name = "DonGia")
+    private double donGia;
     
     @Column(name = "SoLuong")
     private int soLuong;
@@ -79,21 +73,25 @@ public class ChiTietSanPhamHiber {
     public ChiTietSanPhamHiber() {
     }
 
-    public ChiTietSanPhamHiber(String id, SanPhamHiber idSP, DongSPHiber idDongSP, DeGiayHiber idDeGiay, MauSacHiber idMauSac, NhaCungCapHiber idNhaCC, String ngayNhapHang, double giaNhap, double giaBan, int soLuong, String xuatXu, String kichCo, int trangThai) {
+    public ChiTietSanPhamHiber(String id, SanPhamHiber idSP, DongSPHiber idDongSP, DeGiayHiber idDeGiay, MauSacHiber idMauSac, String ngayNhapHang, double donGia, int soLuong, String xuatXu, String kichCo, int trangThai) {
         this.id = id;
         this.idSP = idSP;
         this.idDongSP = idDongSP;
         this.idDeGiay = idDeGiay;
         this.idMauSac = idMauSac;
-        this.idNhaCC = idNhaCC;
         this.ngayNhapHang = ngayNhapHang;
-        this.giaNhap = giaNhap;
-        this.giaBan = giaBan;
+        this.donGia = donGia;
         this.soLuong = soLuong;
         this.xuatXu = xuatXu;
         this.kichCo = kichCo;
         this.trangThai = trangThai;
     }
+
+    
+
+   
+
+
 
     
 

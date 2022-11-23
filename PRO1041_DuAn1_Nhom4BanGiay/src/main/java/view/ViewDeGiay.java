@@ -23,10 +23,12 @@ public class ViewDeGiay extends javax.swing.JFrame {
      */
     private IDeGiayService deGiayService= new DeGiayServiecImpl();
     private utilities.Utility uti = new Utility();
+    private ViewCTSanPham viewCTSanPham = new ViewCTSanPham();
     public ViewDeGiay() {
         initComponents();
         setLocationRelativeTo(null);
         loadTable(null);
+        
     }
 
     private String click;
@@ -250,6 +252,7 @@ public class ViewDeGiay extends javax.swing.JFrame {
         if (temp == 0) {
             JOptionPane.showMessageDialog(this, deGiayService.add(getForm()));
         loadTable(null);
+        viewCTSanPham.loadCBB();
         }else{
             loadTable(null);
         }
@@ -274,6 +277,7 @@ public class ViewDeGiay extends javax.swing.JFrame {
         deGiay.setId(click);
         JOptionPane.showMessageDialog(this, deGiayService.update(deGiay));
         loadTable(null);
+        viewCTSanPham.loadCBB();
         }
         else{
             loadTable(null);
@@ -283,9 +287,14 @@ public class ViewDeGiay extends javax.swing.JFrame {
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
         // TODO add your handling code here:
-        var deGiay = new DeGiayHiber();
+        var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa không ?");
+        if (temp == 0) {
+            var deGiay = new DeGiayHiber();
         deGiay.setId(click);
         JOptionPane.showMessageDialog(this, deGiayService.delete(deGiay));
+        loadTable(null);
+        viewCTSanPham.loadCBB();
+        }
         loadTable(null);
     }//GEN-LAST:event_btn_xoaActionPerformed
 
