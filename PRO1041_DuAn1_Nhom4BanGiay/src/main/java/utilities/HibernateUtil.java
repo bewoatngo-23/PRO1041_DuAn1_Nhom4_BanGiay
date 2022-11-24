@@ -5,10 +5,12 @@
 package utilities;
 
 import domainModel.ChiTietSanPhamHiber;
+import domainModel.ChucVu;
 import domainModel.DeGiayHiber;
 import domainModel.DongSPHiber;
 import domainModel.MauSacHiber;
 import domainModel.NhaCungCapHiber;
+import domainModel.NhanVien;
 import domainModel.SanPhamHiber;
 import java.util.Properties;
 import org.hibernate.SessionFactory;
@@ -30,7 +32,7 @@ public class HibernateUtil {
         Properties properties = new Properties();
         properties.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
         properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QuanLyBanGiay");
+        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QuanLyBanGiay_DA1");
         properties.put(Environment.USER, "vu");
         properties.put(Environment.PASS, "123456");
         properties.put(Environment.SHOW_SQL, "true");
@@ -43,7 +45,8 @@ public class HibernateUtil {
         conf.addAnnotatedClass(SanPhamHiber.class);
         conf.addAnnotatedClass(DongSPHiber.class);
         conf.addAnnotatedClass(MauSacHiber.class);
-        conf.addAnnotatedClass(NhaCungCapHiber.class);
+        conf.addAnnotatedClass(ChucVu.class);
+        conf.addAnnotatedClass(NhanVien.class);
         
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();

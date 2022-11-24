@@ -18,6 +18,8 @@ public interface IChiTietSanPhamRes {
     
     List<ChiTietSPCustomModel> getAllCustomModels();
     
+    List<ChiTietSPCustomModel> getAllBetWeen(String batDau, String ketThuc);
+    
     boolean add(ChiTietSanPhamHiber obj);
     
     boolean update(ChiTietSanPhamHiber obj);

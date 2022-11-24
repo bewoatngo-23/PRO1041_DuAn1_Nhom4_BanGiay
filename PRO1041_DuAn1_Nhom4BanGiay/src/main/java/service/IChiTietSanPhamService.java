@@ -19,6 +19,8 @@ public interface IChiTietSanPhamService {
     
     ChiTietSPCustomModel getById(String input);
     
+    List<ChiTietSPCustomModel> getAllBetWeen(String batDau, String ketThuc);
+    
     String getIdByIndex(int input);
     
     String add(ChiTietSanPhamHiber obj);

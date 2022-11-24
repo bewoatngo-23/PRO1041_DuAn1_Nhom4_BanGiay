@@ -43,6 +43,22 @@ public class ChiTietSPRepositoryImpl implements IChiTietSanPhamRes {
         return list_ctspCustomModels;
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+     @Override
+    public List<ChiTietSPCustomModel> getAllBetWeen(String batDau, String ketThuc) {
+                String hql = "SELECT new customModel.ChiTietSPCustomModel(A.id, F.ma, F.ten, C.ten, B.ten , D.ten  , A.ngayNhapHang, A.donGia, A.soLuong, A.xuatXu, A.kichCo, A.trangThai)\n"
+                + "                      FROM ChiTietSanPhamHiber A INNER JOIN\n"
+                + "                      DeGiayHiber B ON A.idDeGiay = B.id INNER JOIN\n"
+                + "                      DongSPHiber C ON A.idDongSP = C.id INNER JOIN\n"
+                + "                      MauSacHiber D ON A.idMauSac = D.id INNER JOIN\n"
+                + "                      SanPhamHiber F ON A.idSP = F.id \n"
+                + "                      where A.donGia between "+batDau +" and "+ketThuc ;
+        Query query = session.createQuery(hql);
+        List<ChiTietSPCustomModel> list_ctspCustomModels = query.getResultList();
+        return list_ctspCustomModels;
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+   
 
     @Override
     public boolean add(ChiTietSanPhamHiber obj) {
@@ -112,5 +128,7 @@ public class ChiTietSPRepositoryImpl implements IChiTietSanPhamRes {
         return false;
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+   
 
 }
