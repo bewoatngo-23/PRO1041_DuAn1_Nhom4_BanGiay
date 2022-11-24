@@ -4,8 +4,10 @@
  */
 package service.impl;
 
+import customModel.ChiTietSPCustomModel;
 import customModel.KhachHangCustomModel;
 import domainModel.KhachHang;
+import java.util.ArrayList;
 import java.util.List;
 import repository.impl.KhachHangRepository;
 import service.IKhachHangService;
@@ -51,6 +53,19 @@ public class KhachHangServiceImpl implements IKhachHangService {
     @Override
     public List<KhachHangCustomModel> Search(String ten) {
         return khr.search(ten);
+    }
+
+    public List<KhachHangCustomModel> SearchKH(String input) {
+        List<KhachHangCustomModel> listKH = new ArrayList<>();
+        if (input == null) {
+            return khr.getAllCustom();
+        }
+        for (KhachHangCustomModel x : khr.getAllCustom()) {
+            if (x.getMa().contains(input) || x.getHoTen().contains(input) || x.getSdt().contains(input)) {
+                listKH.add(x);
+            }
+        }
+        return listKH;
     }
 
 }

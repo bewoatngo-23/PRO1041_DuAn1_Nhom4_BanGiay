@@ -128,7 +128,7 @@ public class NhanVienRepository implements INhanVienRes<NhanVien> {
         String sql = "SELECT dbo.NhanVien.Id, dbo.ChucVu.Ten, dbo.NhanVien.Ma, dbo.NhanVien.HoTen, dbo.NhanVien.TaiKhoan, dbo.NhanVien.MatKhau, dbo.NhanVien.Sdt, dbo.NhanVien.Email, dbo.NhanVien.GioiTinh, dbo.NhanVien.NgaySinh\n"
                 + "FROM     dbo.ChucVu INNER JOIN\n"
                 + "                  dbo.NhanVien ON dbo.ChucVu.Id = dbo.NhanVien.IdCV"
-                + "where Ten like ?";
+                + "where HoTen like ?";
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, "%" + ten + "%");
             ResultSet rs = ps.executeQuery();
