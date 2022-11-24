@@ -22,7 +22,7 @@ public class ViewKhachHang extends javax.swing.JFrame {
     private DefaultTableModel tblmodel = new DefaultTableModel();
     private List<KhachHang> listKH = new ArrayList<>();
     private List<KhachHangCustomModel> listKHCM = new ArrayList<>();
-    private IKhachHangService khs = new KhachHangServiceImpl();
+    private KhachHangServiceImpl khs = new KhachHangServiceImpl();
 
     public ViewKhachHang() {
         initComponents();
@@ -77,6 +77,12 @@ public class ViewKhachHang extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiemCaretUpdate(evt);
+            }
+        });
 
         btnTimKiem.setText("Tìm Kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
@@ -286,6 +292,11 @@ public class ViewKhachHang extends javax.swing.JFrame {
         fillData(row);
         //
     }//GEN-LAST:event_tblKhachHangMouseClicked
+
+    private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
+       listKHCM = khs.SearchKH(txtTimKiem.getText());
+        showData(listKHCM);
+    }//GEN-LAST:event_txtTimKiemCaretUpdate
 
     /**
      * @param args the command line arguments
