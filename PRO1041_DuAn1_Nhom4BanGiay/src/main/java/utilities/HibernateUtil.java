@@ -8,6 +8,7 @@ import domainModel.ChiTietSanPhamHiber;
 import domainModel.ChucVu;
 import domainModel.DeGiayHiber;
 import domainModel.DongSPHiber;
+import domainModel.KhachHang;
 import domainModel.MauSacHiber;
 import domainModel.NhaCungCapHiber;
 import domainModel.NhanVien;
@@ -24,6 +25,7 @@ import org.hibernate.service.ServiceRegistry;
  * @author admin
  */
 public class HibernateUtil {
+
     private static final SessionFactory FACTORY;
 
     static {
@@ -33,7 +35,7 @@ public class HibernateUtil {
         properties.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
         properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QuanLyBanGiay_DA1");
-        properties.put(Environment.USER, "vu");
+        properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "123456");
         properties.put(Environment.SHOW_SQL, "true");
         //gen DB tự động
@@ -47,7 +49,8 @@ public class HibernateUtil {
         conf.addAnnotatedClass(MauSacHiber.class);
         conf.addAnnotatedClass(ChucVu.class);
         conf.addAnnotatedClass(NhanVien.class);
-        
+        conf.addAnnotatedClass(KhachHang.class);
+
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);

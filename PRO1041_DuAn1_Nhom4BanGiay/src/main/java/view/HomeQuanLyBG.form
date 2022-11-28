@@ -128,7 +128,7 @@
                 <Component class="javax.swing.JButton" name="btnKhachhang">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cf" green="d7" red="d7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="1"/>
@@ -145,7 +145,7 @@
                 <Component class="javax.swing.JButton" name="btnNhanVien">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cf" green="d7" red="d7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="1"/>
@@ -162,7 +162,7 @@
                 <Component class="javax.swing.JButton" name="btnSanPham">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cf" green="d7" red="d7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="1"/>
@@ -179,7 +179,7 @@
                 <Component class="javax.swing.JButton" name="btnThongKe">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cf" green="d7" red="d7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="1"/>
@@ -196,7 +196,7 @@
                 <Component class="javax.swing.JButton" name="btnBanHang">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cf" green="d7" red="d7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="1"/>
@@ -213,7 +213,7 @@
                 <Component class="javax.swing.JButton" name="btnDoiTra">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cf" green="d7" red="d7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="1"/>
@@ -230,7 +230,7 @@
                 <Component class="javax.swing.JButton" name="btnKetThuc">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cf" green="d7" red="d7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="1"/>
@@ -247,7 +247,7 @@
                 <Component class="javax.swing.JButton" name="btnLogout">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cf" green="d7" red="d7" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="1"/>
@@ -710,17 +710,14 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
-                                                  <Component id="btnUpdateNV" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="btnUpdateNV" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
                                                   <Component id="cbbChucVu" min="-2" pref="87" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btnThemCV" min="-2" pref="40" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="btnThemCV" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                                   <Component id="lbTenChucVu" min="-2" pref="103" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
@@ -1162,6 +1159,15 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnThemCV">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="18" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="33" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemCVActionPerformed"/>
                   </Events>
@@ -1261,112 +1267,132 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lbl_sanPham" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
-                                      <Component id="lbl_mauSac" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
-                                      <Component id="lbl_giaBan" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
-                                      <Component id="lbl_soLuong" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
-                                      <Component id="lbl_xuatXu" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="cbo_sanPham" min="-2" pref="205" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="btn_themSP" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="lbl_deGiay" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="txt_xuatXu" alignment="1" max="32767" attributes="0"/>
-                                                      <Component id="txt_soLuong" alignment="1" max="32767" attributes="0"/>
-                                                      <Component id="txt_giaBan" alignment="1" max="32767" attributes="0"/>
-                                                      <Component id="cbo_mauSac" alignment="1" pref="205" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btn_themMS" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                                  <Component id="btn_them" min="-2" pref="74" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                                  <Component id="btn_sua" min="-2" pref="65" max="-2" attributes="0"/>
-                                              </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane4" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="lbl_sanPham" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
+                                              <Component id="lbl_mauSac" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
+                                              <Component id="lbl_giaBan" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
+                                              <Component id="lbl_soLuong" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
+                                              <Component id="lbl_xuatXu" alignment="1" min="-2" pref="61" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="162" max="32767" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="btn_xoa" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="cbo_sanPham" min="-2" pref="205" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="btn_themSP" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                              <Component id="txt_xuatXu" alignment="1" max="32767" attributes="0"/>
+                                                              <Component id="txt_soLuong" alignment="1" max="32767" attributes="0"/>
+                                                              <Component id="txt_giaBan" alignment="1" max="32767" attributes="0"/>
+                                                              <Component id="cbo_mauSac" alignment="1" pref="205" max="32767" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="btn_themMS" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                                          <Component id="btn_them" min="-2" pref="74" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                                                          <Component id="btn_sua" min="-2" pref="65" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="lbl_ngayNhapHang" alignment="1" min="-2" max="-2" attributes="0"/>
                                                       <Component id="lbl_dongSP" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lbl_deGiay" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lbl_ngayNhapHang" alignment="1" min="-2" max="-2" attributes="0"/>
                                                       <Component id="lbl_kichCo" alignment="1" min="-2" max="-2" attributes="0"/>
                                                       <Component id="lbl_trangThai" alignment="1" min="-2" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="cbo_deGiay" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                                                      <Component id="cbo_dongSanPham" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                                                      <Component id="txt_ngayNhapHang" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                                                      <Component id="txt_kichCo" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                                                      <Component id="cbo_trangThai" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="btn_themDG1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="btn_themDSP1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="212" max="-2" attributes="0"/>
+                                                  <Component id="jLabel22" min="-2" pref="170" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="btn_clear" min="-2" pref="67" max="-2" attributes="0"/>
+                                          <Component id="txt_timKiem" min="-2" pref="347" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="502" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="btn_xoa" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="lbl_locMauSac" min="-2" pref="61" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cbo_locMauSac" min="-2" pref="125" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="lbl_locDeGiay" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cbo_locDeGiay" min="-2" pref="125" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="lbl_locDongSP" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="cbo_dongSanPham" min="-2" pref="205" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="btn_themDSP" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cbo_locDongSP" min="-2" pref="125" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="lbl_locGiaBan" min="-2" pref="26" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cbo_locGia" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="cbo_deGiay" min="-2" pref="205" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="btn_themDG" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="cbo_trangThai" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                                                      <Component id="txt_kichCo" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                                                      <Component id="txt_ngayNhapHang" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                                                  <Component id="btn_clear" min="-2" pref="67" max="-2" attributes="0"/>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txt_timKiem" min="-2" pref="347" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbl_sanPham" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="cbo_sanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lbl_deGiay" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="cbo_deGiay" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_themSP" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_themDG" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_themDG1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1375,7 +1401,7 @@
                               <Component id="lbl_mauSac" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="lbl_dongSP" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="btn_themMS" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_themDSP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_themDSP1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1385,18 +1411,24 @@
                               <Component id="lbl_ngayNhapHang" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_soLuong" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="txt_soLuong" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="txt_kichCo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="lbl_kichCo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_soLuong" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="txt_soLuong" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="txt_kichCo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="lbl_kichCo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="txt_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="cbo_trangThai" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_trangThai" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cbo_trangThai" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="txt_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="lbl_trangThai" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1407,32 +1439,39 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="txt_timKiem" min="-2" pref="29" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" pref="377" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="cbo_locMauSac" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_locMauSac" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="lbl_locDeGiay" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="cbo_locDeGiay" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_locDongSP" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="cbo_locDongSP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_locGiaBan" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="cbo_locGia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" min="-2" pref="277" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="lbl_trangThai">
+                <Component class="javax.swing.JLabel" name="lbl_ngayNhapHang">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
+                    <Property name="text" type="java.lang.String" value="Ng&#xe0;y nh&#x1ead;p h&#xe0;ng"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbl_kichCo">
+                <Component class="javax.swing.JLabel" name="lbl_locMauSac">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="K&#xed;ch c&#x1ee1;"/>
+                    <Property name="text" type="java.lang.String" value="M&#xe0;u s&#x1eaf;c"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbl_xuatXu">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t x&#x1ee9;"/>
-                  </Properties>
+                <Component class="javax.swing.JTextField" name="txt_giaBan">
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbl_soLuong">
+                <Component class="javax.swing.JLabel" name="lbl_locDeGiay">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng"/>
+                    <Property name="text" type="java.lang.String" value="&#x110;&#x1ebf; gi&#xe0;y"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl_giaBan">
@@ -1440,140 +1479,98 @@
                     <Property name="text" type="java.lang.String" value="Gi&#xe1; b&#xe1;n"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_giaBan">
-                </Component>
-                <Component class="javax.swing.JLabel" name="lbl_ngayNhapHang">
+                <Component class="javax.swing.JComboBox" name="cbo_locDeGiay">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ng&#xe0;y nh&#x1ead;p h&#xe0;ng"/>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbo_locDeGiayItemStateChanged"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_soLuong">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbl_dongSP">
+                <Component class="javax.swing.JLabel" name="lbl_locDongSP">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="D&#xf2;ng s&#x1ea3;n ph&#x1ea9;m"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbl_mauSac">
+                <Component class="javax.swing.JLabel" name="lbl_xuatXu">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="M&#xe0;u s&#x1eaf;c"/>
+                    <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t x&#x1ee9;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_themDSP">
+                <Component class="javax.swing.JLabel" name="lbl_kichCo">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="text" type="java.lang.String" value="K&#xed;ch c&#x1ee1;"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themDSPActionPerformed"/>
-                  </Events>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cbo_mauSac">
+                <Component class="javax.swing.JComboBox" name="cbo_locDongSP">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbo_locDongSPItemStateChanged"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_themDG">
+                <Component class="javax.swing.JLabel" name="lbl_locGiaBan">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="text" type="java.lang.String" value="Gi&#xe1;"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themDGActionPerformed"/>
-                  </Events>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cbo_dongSanPham">
+                <Component class="javax.swing.JLabel" name="lbl_trangThai">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbo_locGia">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbo_locGiaItemStateChanged"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_themMS">
+                <Component class="javax.swing.JTextField" name="txt_soLuong">
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_xuatXu">
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_kichCo">
+                </Component>
+                <Component class="javax.swing.JButton" name="btn_them">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themMSActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cbo_deGiay">
+                <Component class="javax.swing.JButton" name="btn_sua">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="0"/>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JButton" name="btn_themSP">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themSPActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_suaActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbl_deGiay">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x110;&#x1ebf; gi&#xe0;y"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="txt_ngayNhapHang">
-                  <Events>
-                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ngayNhapHangFocusGained"/>
-                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ngayNhapHangFocusLost"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="cbo_sanPham">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="0"/>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="cbo_trangThai">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="0"/>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JTextField" name="txt_timKiem">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m..."/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txt_timKiemCaretUpdate"/>
-                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_timKiemFocusGained"/>
-                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_timKiemFocusLost"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="btn_clear">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Clear"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_clearActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lbl_sanPham">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
-                  </Properties>
-                </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                <Container class="javax.swing.JScrollPane" name="jScrollPane4">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
@@ -1616,27 +1613,152 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_xoaActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_sua">
+                <Component class="javax.swing.JButton" name="btn_clear">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
+                    <Property name="text" type="java.lang.String" value="Clear"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_suaActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_clearActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_them">
+                <Component class="javax.swing.JLabel" name="lbl_sanPham">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+                    <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_timKiem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m..."/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themActionPerformed"/>
+                    <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txt_timKiemCaretUpdate"/>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_timKiemFocusGained"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_timKiemFocusLost"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_kichCo">
+                <Component class="javax.swing.JComboBox" name="cbo_sanPham">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_xuatXu">
+                <Component class="javax.swing.JComboBox" name="cbo_trangThai">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_soLuong">
+                <Component class="javax.swing.JLabel" name="lbl_deGiay">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x110;&#x1ebf; gi&#xe0;y"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbo_deGiay">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_ngayNhapHang">
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ngayNhapHangFocusGained"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ngayNhapHangFocusLost"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btn_themSP">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themSPActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbo_dongSanPham">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="btn_themMS">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themMSActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbo_mauSac">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="btn_themDG1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themDG1ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_mauSac">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="M&#xe0;u s&#x1eaf;c"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btn_themDSP1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themDSP1ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_dongSP">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="D&#xf2;ng s&#x1ea3;n ph&#x1ea9;m"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbo_locMauSac">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbo_locMauSacItemStateChanged"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel22">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI Semibold" size="18" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m chi ti&#x1ebf;t"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

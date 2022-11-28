@@ -27,6 +27,8 @@ public interface INhanVienService {
     List<NhanVienCustomModel> getAllCustom();
 
     List<NhanVienCustomModel> Search(String ten);
-    
+
     List<NhanVienCustomModel> SearchNV(String input);
+
+    List<NhanVienCustomModel> getAllCustomByMaNV();
 }

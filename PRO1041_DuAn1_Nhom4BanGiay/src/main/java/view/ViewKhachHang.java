@@ -210,7 +210,7 @@ public class ViewKhachHang extends javax.swing.JFrame {
                 .addGap(60, 60, 60))
         );
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
