@@ -169,6 +169,7 @@ public class ViewBanHangFull extends javax.swing.JFrame {
 
             tblModelGioHang.addRow(gh.todataRow());
         }
+        // show data giỏ hàng
 
     }
     // Fill data 
@@ -1087,12 +1088,75 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyHoaDonActionPerformed
 
     private void btnXoaSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSanPhamActionPerformed
+int indexHD = tblHoaDon.getSelectedRow();
+        int indexGH = tblGioHang.getSelectedRow();
+        if (indexGH < 0) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xóa");
 
+        } else {
+
+            GioHangViewModel gh = listGioHangS.get(indexGH);
+            HoaDonViewModel hd = listHoaDons.get(indexHD);
+            int soLuongGH = gh.getSoLuong();
+            String idHD = hd.getId();
+
+            String id = gh.getId();
+            String idCTSP = gh.getIdCtsp();
+            var tempTT = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa sản phẩm khỏi giỏ hàng không ?");
+            if (tempTT == 0) {
+
+                ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongGH);
+                bhs.capNhatSoLuong(ctsp, idCTSP);
+                JOptionPane.showMessageDialog(this, bhs.deleteGioHang(id));
+                listSanPhams = bhs.getSanPhamVM();
+                listGioHangS = bhs.getGioHang(idHD);
+
+                showDataGioHang(listGioHangS);
+                showDataSanPham(listSanPhams);
+
+            }
+        }
 
     }//GEN-LAST:event_btnXoaSanPhamActionPerformed
 
     private void btnCapNhatSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatSPActionPerformed
+int indexHD = tblHoaDon.getSelectedRow();
+        int indexGH = tblGioHang.getSelectedRow();
+        if (indexGH < 0) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần cập nhật số lượng");
 
+        } else {
+            String soLuongMoi = JOptionPane.showInputDialog("Mời nhập số lượng cần cập nhật: ");
+            if (soLuongMoi != null) {
+                if (!soLuongMoi.matches("[0-9]+")) {
+                    JOptionPane.showMessageDialog(this, "Nhập đúng định dạng");
+                } else {
+                    GioHangViewModel gh = listGioHangS.get(indexGH);
+                    HoaDonViewModel hd = listHoaDons.get(indexHD);
+                    String idCTSP = gh.getIdCtsp();
+                    String id = gh.getId();
+                    String idHD = hd.getId();
+                    int soLuongCu = gh.getSoLuong();
+                    int soLuongCapNhat = 0;
+                    if (Integer.valueOf(soLuongMoi) < soLuongCu) {
+                        soLuongCapNhat = soLuongCu - Integer.valueOf(soLuongMoi);
+                        ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongCapNhat);
+                        bhs.capNhatSoLuong(ctsp, idCTSP);
+                    } else {
+                        soLuongCapNhat = Integer.valueOf(soLuongMoi) - soLuongCu;
+                        ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongCapNhat);
+                        bhs.capNhatSoLuong2(ctsp, idCTSP);
+                    }
+                    gh.setSoLuong(Integer.valueOf(soLuongMoi));
+                    bhs.updateSoLuongHDCT(gh, id);
+                    listGioHangS = bhs.getGioHang(idHD);
+                    showDataGioHang(listGioHangS);
+                    listSanPhams = bhs.getSanPhamVM();
+                    showDataSanPham(listSanPhams);
+
+                }
+            }
+        }
     }//GEN-LAST:event_btnCapNhatSPActionPerformed
 
     private void cbbSoDienThoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSoDienThoaiActionPerformed
