@@ -167,11 +167,13 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbl_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="txt_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="cbo_trangThai" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_trangThai" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lbl_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="txt_xuatXu" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="lbl_trangThai" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

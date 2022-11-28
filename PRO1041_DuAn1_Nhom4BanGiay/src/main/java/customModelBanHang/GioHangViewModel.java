@@ -10,18 +10,20 @@ import java.math.BigDecimal;
  *
  * @author ADMIN
  */
-public class GioHangModel {
+public class GioHangViewModel {
 
+    private String id;
     private String idCtsp;
     private String maSP;
     private String tenSP;
     private int soLuong;
     private Double donGia;
 
-    public GioHangModel() {
+    public GioHangViewModel() {
     }
 
-    public GioHangModel(String idCtsp, String maSP, String tenSP, int soLuong, Double donGia) {
+    public GioHangViewModel(String id, String idCtsp, String maSP, String tenSP, int soLuong, Double donGia) {
+        this.id = id;
         this.idCtsp = idCtsp;
         this.maSP = maSP;
         this.tenSP = tenSP;
@@ -29,7 +31,15 @@ public class GioHangModel {
         this.donGia = donGia;
     }
 
-    public GioHangModel(String maSP, String tenSP, int soLuong, Double donGia) {
+    public GioHangViewModel(String idCtsp, String maSP, String tenSP, int soLuong, Double donGia) {
+        this.idCtsp = idCtsp;
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+    }
+
+    public GioHangViewModel(String maSP, String tenSP, int soLuong, Double donGia) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.soLuong = soLuong;
@@ -76,6 +86,14 @@ public class GioHangModel {
         this.donGia = donGia;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 //    public BigDecimal tongTien(int soLuong, BigDecimal donGia) {
 //        BigDecimal tongTien1 = BigDecimal.ZERO;
 //        BigDecimal tongTien2 = BigDecimal.ZERO;
@@ -92,6 +110,6 @@ public class GioHangModel {
 //        return new Object[]{i, maSP, tenSP, soLuong, donGia, tongTien(soLuong, donGia)};
 //    }
     public Object[] todataRow() {
-        return new Object[]{maSP, tenSP, soLuong, donGia,};
+        return new Object[]{maSP, tenSP, soLuong, String.format("%.2f", donGia)};
     }
 }

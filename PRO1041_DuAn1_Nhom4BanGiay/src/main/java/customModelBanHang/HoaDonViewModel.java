@@ -19,6 +19,10 @@ public class HoaDonViewModel {
     private String nv;
     private String kh;
     private int trangThai;
+    private Date ngayThanhToan;
+    private Double tongTien;
+    private int tongSanPham;
+    private String sdt;
 
     public HoaDonViewModel() {
     }
@@ -30,6 +34,28 @@ public class HoaDonViewModel {
         this.nv = nv;
         this.kh = kh;
         this.trangThai = trangThai;
+    }
+
+    public HoaDonViewModel(String id, String ma, Date ngayTao, String nv, String kh, int trangThai, String sdt) {
+        this.id = id;
+        this.ma = ma;
+        this.ngayTao = ngayTao;
+        this.nv = nv;
+        this.kh = kh;
+        this.trangThai = trangThai;
+        this.sdt = sdt;
+    }
+
+    public HoaDonViewModel(String id, String ma, Date ngayTao, String nv, String kh, int trangThai, Date ngayThanhToan, Double tongTien, int tongSanPham) {
+        this.id = id;
+        this.ma = ma;
+        this.ngayTao = ngayTao;
+        this.nv = nv;
+        this.kh = kh;
+        this.trangThai = trangThai;
+        this.ngayThanhToan = ngayThanhToan;
+        this.tongTien = tongTien;
+        this.tongSanPham = tongSanPham;
     }
 
     public String getId() {
@@ -80,6 +106,38 @@ public class HoaDonViewModel {
         this.trangThai = trangThai;
     }
 
+    public Date getNgayThanhToan() {
+        return ngayThanhToan;
+    }
+
+    public void setNgayThanhToan(Date ngayThanhToan) {
+        this.ngayThanhToan = ngayThanhToan;
+    }
+
+    public Double getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(Double tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    public int getTongSanPham() {
+        return tongSanPham;
+    }
+
+    public void setTongSanPham(int tongSanPham) {
+        this.tongSanPham = tongSanPham;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
     public String trangThai() {
         if (getTrangThai() == 0) {
             return "Đã hủy";
@@ -88,6 +146,11 @@ public class HoaDonViewModel {
         } else {
             return "Đã thanh toán";
         }
+    }
+
+    @Override
+    public String toString() {
+        return "HoaDonViewModel{" + "id=" + id + ", ma=" + ma + ", ngayTao=" + ngayTao + ", nv=" + nv + ", kh=" + kh + ", trangThai=" + trangThai + '}';
     }
 
     public Object[] toRowDataHD() {

@@ -17,11 +17,10 @@ public class DBContext {
     public static final String HOSTNAME = "localhost";
     public static final String PORT = "1433";
     public static final String DBNAME = "QuanLyBanGiay_DA1";
-    public static final String USERNAME = "vu";
+    public static final String USERNAME = "sa";
     public static final String PASSWORD = "123456";
     //jkhkjh
 
-    
     /**
      * Get connection to MSSQL Server
      *
@@ -45,6 +44,6 @@ public class DBContext {
 
     public static void main(String[] args) {
         System.out.println(getConnection());
-        
+
     }
 }

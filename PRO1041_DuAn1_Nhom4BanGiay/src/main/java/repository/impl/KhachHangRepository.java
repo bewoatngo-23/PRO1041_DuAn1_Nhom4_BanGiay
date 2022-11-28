@@ -37,7 +37,7 @@ public class KhachHangRepository implements IInterface<KhachHang> {
     }
 
     public List<KhachHangCustomModel> getAllCustom() {
-        String query = "Select * from KhachHang";
+        String query = "Select * from KhachHang Order by Ma desc";
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             List<KhachHangCustomModel> listKH = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
@@ -131,7 +131,6 @@ public class KhachHangRepository implements IInterface<KhachHang> {
         return "Xóa thất bại";
     }
 
-    
     public List<KhachHangCustomModel> search(String ten) {
         String sql = "SELECT Id, Ma, HoTen, Sdt\n"
                 + "FROM     KhachHang\n"
@@ -149,6 +148,7 @@ public class KhachHangRepository implements IInterface<KhachHang> {
         }
         return null;
     }
+
     public static void main(String[] args) {
         new KhachHangRepository().getAll().forEach((t) -> {
             System.out.println(t.toString());

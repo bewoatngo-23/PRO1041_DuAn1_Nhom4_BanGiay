@@ -44,6 +44,26 @@ public class NhanVienRepository implements INhanVienRes<NhanVien> {
         return listNhanViens;
     }
 
+    public List<NhanVienCustomModel> getAllCustomByMaNV() {
+        String query = "SELECT dbo.NhanVien.Id, dbo.ChucVu.Ten, dbo.NhanVien.Ma, dbo.NhanVien.HoTen, dbo.NhanVien.TaiKhoan, dbo.NhanVien.MatKhau, dbo.NhanVien.Sdt, dbo.NhanVien.Email, dbo.NhanVien.GioiTinh, dbo.NhanVien.NgaySinh, \n"
+                + "                  dbo.NhanVien.DiaChi\n"
+                + "FROM     dbo.ChucVu INNER JOIN\n"
+                + "                  dbo.NhanVien ON dbo.ChucVu.Id = dbo.NhanVien.IdCV\n"
+                + "Where dbo.NhanVien.Ma like '%NV%' Order by Ma desc";
+        try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+            List<NhanVienCustomModel> listNV = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                listNV.add(new NhanVienCustomModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getDate(10), rs.getString(11)));
+            }
+            return listNV;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public NhanVien getOne(String ma) {
         NhanVien nv;
@@ -145,7 +165,7 @@ public class NhanVienRepository implements INhanVienRes<NhanVien> {
     }
 
     public static void main(String[] args) {
-        new NhanVienRepository().getAllCustomModel().forEach((t) -> {
+        new NhanVienRepository().getAllCustomByMaNV().forEach((t) -> {
             System.out.println(t.toString());
         });
     }

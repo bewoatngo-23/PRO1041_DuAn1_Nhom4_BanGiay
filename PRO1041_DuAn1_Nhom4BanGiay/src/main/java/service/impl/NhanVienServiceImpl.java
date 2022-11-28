@@ -81,4 +81,9 @@ public class NhanVienServiceImpl implements INhanVienService {
         return listNV;
     }
 
+    @Override
+    public List<NhanVienCustomModel> getAllCustomByMaNV() {
+        return NhanVienRes.getAllCustomByMaNV();
+    }
+
 }
