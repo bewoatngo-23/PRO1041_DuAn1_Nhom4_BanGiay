@@ -1067,11 +1067,26 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnThemKHBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHBHActionPerformed
-
+        DailogKhachHangBH dkh = new DailogKhachHangBH(this, true);
+        dkh.setVisible(true);
     }//GEN-LAST:event_btnThemKHBHActionPerformed
 
     private void btnThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThayDoiActionPerformed
+        int indexNV = cbbNhanVienBH.getSelectedIndex();
+        NhanVienCustomModel nv = listNV.get(indexNV);
 
+        int indexKHSDT = cbbSoDienThoai.getSelectedIndex();
+        KhachHangCustomModel khSDT = listKH.get(indexKHSDT);
+
+        String ma = lblMaHD.getText();
+        if (ma.equals("HD___")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn muốn thay đổi");
+        } else {
+            HoaDonCustomModel hdUpdate2 = new HoaDonCustomModel(khSDT.getId(), nv.getId());
+            JOptionPane.showMessageDialog(this, bhs.updateNVKH(hdUpdate2, ma));
+            listHoaDons = bhs.getHoaDon();
+            loadDataHoaDon(listHoaDons);
+        }
 
     }//GEN-LAST:event_btnThayDoiActionPerformed
 
@@ -1157,7 +1172,14 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTimKiemDSSPCaretUpdate
 
     private void btnReloadBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadBHActionPerformed
-
+          listKH = khs.getAllCustom();
+        int itemCount3 = cbbSoDienThoai.getItemCount();
+        for (int i = 0; i < itemCount3; i++) {
+            cbbSoDienThoai.removeItemAt(0);
+        }
+        listKH.forEach((kh) -> {
+            cbbSoDienThoai.addItem(kh.getSdt());
+        });
 
     }//GEN-LAST:event_btnReloadBHActionPerformed
 
