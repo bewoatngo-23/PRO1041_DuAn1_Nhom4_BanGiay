@@ -51,7 +51,7 @@ import utilities.Utility;
  *
  * @author ADMIN
  */
-public class ViewBanHang extends javax.swing.JFrame {
+public class ViewBanHangFull extends javax.swing.JFrame {
 
     private DefaultTableModel tblModelHoaDon = new DefaultTableModel();
     private DefaultTableModel tblModelGioHang = new DefaultTableModel();
@@ -75,7 +75,7 @@ public class ViewBanHang extends javax.swing.JFrame {
     private IMauSacService mauSacService = new MauSacServiceImpl();
     private utilities.Utility uti = new Utility();
 
-    public ViewBanHang() {
+    public ViewBanHangFull() {
         initComponents();
         String headersss[] = {"Mã HĐ", "Ngày tạo", "Nhân viên tạo", "Khách hàng", "Tình trạng"};
         tblModelHoaDon.setColumnIdentifiers(headersss);
@@ -140,9 +140,9 @@ public class ViewBanHang extends javax.swing.JFrame {
             }
         };
         txtTienKhachDua.addActionListener(action);
+
     }
 
-    //Load Table
     private void loadDataHoaDon(List<HoaDonViewModel> listHoaDons) {
         tblModelHoaDon.setRowCount(0);
 
@@ -965,34 +965,11 @@ public class ViewBanHang extends javax.swing.JFrame {
                 }
             }
         }
+
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void btnTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonActionPerformed
-        // Tạo hóa đơn
-        if (demTrangThai() > 3) {
-            btnTaoHoaDon.setEnabled(false);
-        }
-        // Dùng cả random + listSize để không bị trùng
-        Random random = new Random();
-        int x = random.nextInt(10);
-        int i = listFullHD.size();
-        i++;
-        long millis = System.currentTimeMillis();
-        String maHD = "HD" + x + i;
-        HoaDonViewModel hd = new HoaDonViewModel();
-        hd.setKh("5e1b2703-d963-4aa4-b077-2cd04bcede6a");
-        hd.setNv("4a2c2774-fc4f-4969-96ba-ce76b3ffdb0e");
-        hd.setMa(maHD);
-        hd.setNgayTao(new Date(millis));
-        hd.setTrangThai(1);
-        //Lưu hóa đơn tạo vào bảng hóa đơn
-        bhs.saveHoaDon(hd);
-        //Hóa đơn chờ
-        listHoaDons = bhs.getHoaDon();
 
-        //lấy listSize HD dầy đủ
-        listFullHD = bhs.getHoaDonFull();
-        loadDataHoaDon(listHoaDons);
 
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
 
@@ -1001,87 +978,21 @@ public class ViewBanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
-        int index = tblHoaDon.getSelectedRow();
-        HoaDonViewModel hd = listHoaDons.get(index);
-        String idHD = hd.getId();
-        listGioHangS = bhs.getGioHang(idHD);
-        showDataGioHang(listGioHangS);
-//        if (hd.getTrangThai() == 1) {
-//            btnThanhToan.setEnabled(true);
-//        } else {
-//            btnThanhToan.setEnabled(false);
-//        }
-//        if (hd.getTrangThai() == 0 || hd.getTrangThai() == 3) {
-//            btnHuyHoaDon.setEnabled(false);
-//        } else {
-//            btnHuyHoaDon.setEnabled(true);
-//        }
-        double thanhTien = 0;
-        double thanhToan = 0;
-        double giamGia = 0;
-        String phanTram = "";
-        for (GioHangViewModel gh : listGioHangS) {
-            thanhTien += gh.getSoLuong() * gh.getDonGia();
-        }
-        if (thanhTien > 700000) {
-            giamGia = 0.95;
-            phanTram = " (5%)";
-            txtGiamGia.setEnabled(false);
-        } else if (thanhTien > 2000000) {
-            giamGia = 0.90;
-            phanTram = " (10%)";
-            txtGiamGia.setEnabled(false);
-        } else if (thanhTien > 4000000) {
-            txtGiamGia.setEnabled(true);
-        } else {
-            txtGiamGia.setEnabled(false);
-            giamGia = 1;
-            phanTram = " (0%)";
-        }
-        txtGiamGia.setText(String.valueOf(giamGia + phanTram));
-        lblThanhTien.setText(String.valueOf(thanhTien));
-        lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
-        fillDataHD(index);
-
-        txtTienKhachDua.setText("0");
-        lblTienThua.setText("0");
-        txtHoaDonPDF.setText("");
-        btnThanhToan.setEnabled(true);
-        btnHuyHoaDon.setEnabled(true);
-        btnLamMoi.setEnabled(true);
 
 
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
-        var tempTT = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn làm mới không ?");
-        if (tempTT == 0) {
-            txtTienKhachDua.setText("0");
-        }
+
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnThemKHBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHBHActionPerformed
-        DailogKhachHangBH dkh = new DailogKhachHangBH(this, true);
-        dkh.setVisible(true);
+
     }//GEN-LAST:event_btnThemKHBHActionPerformed
 
     private void btnThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThayDoiActionPerformed
 
-        int indexNV = cbbNhanVienBH.getSelectedIndex();
-        NhanVienCustomModel nv = listNV.get(indexNV);
 
-        int indexKHSDT = cbbSoDienThoai.getSelectedIndex();
-        KhachHangCustomModel khSDT = listKH.get(indexKHSDT);
-
-        String ma = lblMaHD.getText();
-        if (ma.equals("HD___")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn muốn thay đổi");
-        } else {
-            HoaDonCustomModel hdUpdate2 = new HoaDonCustomModel(khSDT.getId(), nv.getId());
-            JOptionPane.showMessageDialog(this, bhs.updateNVKH(hdUpdate2, ma));
-            listHoaDons = bhs.getHoaDon();
-            loadDataHoaDon(listHoaDons);
-        }
     }//GEN-LAST:event_btnThayDoiActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
@@ -1167,150 +1078,42 @@ public class ViewBanHang extends javax.swing.JFrame {
 
     private void btnReloadBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadBHActionPerformed
 
-        listKH = khs.getAllCustom();
-        int itemCount3 = cbbSoDienThoai.getItemCount();
-        for (int i = 0; i < itemCount3; i++) {
-            cbbSoDienThoai.removeItemAt(0);
-        }
-        listKH.forEach((kh) -> {
-            cbbSoDienThoai.addItem(kh.getSdt());
-        });
 
     }//GEN-LAST:event_btnReloadBHActionPerformed
 
     private void btnHuyHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyHoaDonActionPerformed
-        int index = tblHoaDon.getSelectedRow();
-        int sl = listGioHangS.size();
 
-        if (index < 0) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn muốn hủy");
-        } else {
-            var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn hủy hóa đơn không ?");
-            if (temp == 0) {
-                if (listHoaDons != null) {
-                    for (GioHangViewModel ghu : listGioHangS) {
-                        int soLuongGH = ghu.getSoLuong();
-                        String idCTSP = ghu.getIdCtsp();
-                        ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongGH);
-                        bhs.capNhatSoLuong(ctsp, idCTSP);
-
-                    }
-                    HoaDonViewModel hdid = listHoaDons.get(index);
-                    String idHD = hdid.getId();
-                    bhs.deleteHDCT(idHD);
-                    bhs.deleteHD(idHD);
-                    listSanPhams = bhs.getSanPhamVM();
-                    listHoaDons = bhs.getHoaDon();
-                    listGioHangS = bhs.getGioHang(idHD);
-                    loadDataHoaDon(listHoaDons);
-                    showDataSanPham(listSanPhams);
-                    showDataGioHang(listGioHangS);
-//                    btnThanhToan.setEnabled(false);
-                    if (demTrangThai() < 6) {
-                        btnTaoHoaDon.setEnabled(true);
-                    }
-                    lblMaHD.setText("Tạo");
-                    lblThanhTien.setText("0");
-                    txtGiamGia.setText("0");
-                    lblThanhToan.setText("0");
-                    txtTienKhachDua.setText("0");
-                    lblTienThua.setText("0");
-                }
-            }
-        }
 
     }//GEN-LAST:event_btnHuyHoaDonActionPerformed
 
     private void btnXoaSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSanPhamActionPerformed
 
-        int indexHD = tblHoaDon.getSelectedRow();
-        int indexGH = tblGioHang.getSelectedRow();
-        if (indexGH < 0) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xóa");
 
-        } else {
-
-            GioHangViewModel gh = listGioHangS.get(indexGH);
-            HoaDonViewModel hd = listHoaDons.get(indexHD);
-            int soLuongGH = gh.getSoLuong();
-            String idHD = hd.getId();
-
-            String id = gh.getId();
-            String idCTSP = gh.getIdCtsp();
-            var tempTT = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa sản phẩm khỏi giỏ hàng không ?");
-            if (tempTT == 0) {
-
-                ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongGH);
-                bhs.capNhatSoLuong(ctsp, idCTSP);
-                JOptionPane.showMessageDialog(this, bhs.deleteGioHang(id));
-                listSanPhams = bhs.getSanPhamVM();
-                listGioHangS = bhs.getGioHang(idHD);
-
-                showDataGioHang(listGioHangS);
-                showDataSanPham(listSanPhams);
-
-            }
-        }
     }//GEN-LAST:event_btnXoaSanPhamActionPerformed
 
     private void btnCapNhatSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatSPActionPerformed
-        int indexHD = tblHoaDon.getSelectedRow();
-        int indexGH = tblGioHang.getSelectedRow();
-        if (indexGH < 0) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần cập nhật số lượng");
 
-        } else {
-            String soLuongMoi = JOptionPane.showInputDialog("Mời nhập số lượng cần cập nhật: ");
-            if (soLuongMoi != null) {
-                if (!soLuongMoi.matches("[0-9]+")) {
-                    JOptionPane.showMessageDialog(this, "Nhập đúng định dạng");
-                } else {
-                    GioHangViewModel gh = listGioHangS.get(indexGH);
-                    HoaDonViewModel hd = listHoaDons.get(indexHD);
-                    String idCTSP = gh.getIdCtsp();
-                    String id = gh.getId();
-                    String idHD = hd.getId();
-                    int soLuongCu = gh.getSoLuong();
-                    int soLuongCapNhat = 0;
-                    if (Integer.valueOf(soLuongMoi) < soLuongCu) {
-                        soLuongCapNhat = soLuongCu - Integer.valueOf(soLuongMoi);
-                        ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongCapNhat);
-                        bhs.capNhatSoLuong(ctsp, idCTSP);
-                    } else {
-                        soLuongCapNhat = Integer.valueOf(soLuongMoi) - soLuongCu;
-                        ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongCapNhat);
-                        bhs.capNhatSoLuong2(ctsp, idCTSP);
-                    }
-                    gh.setSoLuong(Integer.valueOf(soLuongMoi));
-                    bhs.updateSoLuongHDCT(gh, id);
-                    listGioHangS = bhs.getGioHang(idHD);
-                    showDataGioHang(listGioHangS);
-                    listSanPhams = bhs.getSanPhamVM();
-                    showDataSanPham(listSanPhams);
-
-                }
-            }
-        }
     }//GEN-LAST:event_btnCapNhatSPActionPerformed
 
     private void cbbSoDienThoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSoDienThoaiActionPerformed
-        int index = cbbSoDienThoai.getSelectedIndex();
-        KhachHangCustomModel kh = listKH.get(index);
-        txtTenKhachHangBH.setText(kh.getHoTen());
+
 
     }//GEN-LAST:event_cbbSoDienThoaiActionPerformed
 
     private void cbbDSPBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbDSPBHActionPerformed
         listSanPhams = bhs.SearchSPBH(cbbDSPBH.getSelectedItem().toString());
-        showDataSanPham(listSanPhams);    }//GEN-LAST:event_cbbDSPBHActionPerformed
+        showDataSanPham(listSanPhams);
+    }//GEN-LAST:event_cbbDSPBHActionPerformed
 
     private void cbbDGBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbDGBHActionPerformed
         listSanPhams = bhs.SearchSPBH(cbbDGBH.getSelectedItem().toString());
-        showDataSanPham(listSanPhams);    }//GEN-LAST:event_cbbDGBHActionPerformed
+        showDataSanPham(listSanPhams);
+    }//GEN-LAST:event_cbbDGBHActionPerformed
 
     private void cbbMSBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbMSBHActionPerformed
         listSanPhams = bhs.SearchSPBH(cbbMSBH.getSelectedItem().toString());
-        showDataSanPham(listSanPhams);    }//GEN-LAST:event_cbbMSBHActionPerformed
+        showDataSanPham(listSanPhams);
+    }//GEN-LAST:event_cbbMSBHActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1329,20 +1132,21 @@ public class ViewBanHang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewBanHangFull.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewBanHangFull.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewBanHangFull.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewBanHangFull.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewBanHang().setVisible(true);
+                new ViewBanHangFull().setVisible(true);
             }
         });
     }
