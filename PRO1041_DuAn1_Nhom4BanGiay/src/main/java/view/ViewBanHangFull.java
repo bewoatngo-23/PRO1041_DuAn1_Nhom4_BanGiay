@@ -176,6 +176,7 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     // Fill data 
 
     private void fillDataHD(int index) {
+        //fill data hoa don
         HoaDonViewModel hd = listHoaDons.get(index);
         lblMaHD.setText(hd.getMa());
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
@@ -1059,7 +1060,10 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
-
+        var tempTT = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn làm mới không ?");
+        if (tempTT == 0) {
+            txtTienKhachDua.setText("0");
+        }
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnThemKHBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHBHActionPerformed
@@ -1158,7 +1162,45 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReloadBHActionPerformed
 
     private void btnHuyHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyHoaDonActionPerformed
+        int index = tblHoaDon.getSelectedRow();
+        int sl = listGioHangS.size();
 
+        if (index < 0) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn muốn hủy");
+        } else {
+            var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn hủy hóa đơn không ?");
+            if (temp == 0) {
+                if (listHoaDons != null) {
+                    for (GioHangViewModel ghu : listGioHangS) {
+                        int soLuongGH = ghu.getSoLuong();
+                        String idCTSP = ghu.getIdCtsp();
+                        ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongGH);
+                        bhs.capNhatSoLuong(ctsp, idCTSP);
+
+                    }
+                    HoaDonViewModel hdid = listHoaDons.get(index);
+                    String idHD = hdid.getId();
+                    bhs.deleteHDCT(idHD);
+                    bhs.deleteHD(idHD);
+                    listSanPhams = bhs.getSanPhamVM();
+                    listHoaDons = bhs.getHoaDon();
+                    listGioHangS = bhs.getGioHang(idHD);
+                    loadDataHoaDon(listHoaDons);
+                    showDataSanPham(listSanPhams);
+                    showDataGioHang(listGioHangS);
+//                    btnThanhToan.setEnabled(false);
+                    if (demTrangThai() < 6) {
+                        btnTaoHoaDon.setEnabled(true);
+                    }
+                    lblMaHD.setText("Tạo");
+                    lblThanhTien.setText("0");
+                    txtGiamGia.setText("0");
+                    lblThanhToan.setText("0");
+                    txtTienKhachDua.setText("0");
+                    lblTienThua.setText("0");
+                }
+            }
+        }
 
     }//GEN-LAST:event_btnHuyHoaDonActionPerformed
 
