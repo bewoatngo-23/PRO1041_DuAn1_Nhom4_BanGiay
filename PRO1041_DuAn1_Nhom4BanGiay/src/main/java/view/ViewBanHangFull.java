@@ -144,6 +144,7 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     }
 
     private void loadDataHoaDon(List<HoaDonViewModel> listHoaDons) {
+//        loaddata hóa đơn
         tblModelHoaDon.setRowCount(0);
 
         for (HoaDonViewModel listHoaDon : listHoaDons) {
@@ -970,6 +971,31 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void btnTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonActionPerformed
+        // Tạo hóa đơn
+        if (demTrangThai() > 3) {
+            btnTaoHoaDon.setEnabled(false);
+        }
+        // Dùng cả random + listSize để không bị trùng
+        Random random = new Random();
+        int x = random.nextInt(10);
+        int i = listFullHD.size();
+        i++;
+        long millis = System.currentTimeMillis();
+        String maHD = "HD" + x + i;
+        HoaDonViewModel hd = new HoaDonViewModel();
+        hd.setKh("5e1b2703-d963-4aa4-b077-2cd04bcede6a");
+        hd.setNv("4a2c2774-fc4f-4969-96ba-ce76b3ffdb0e");
+        hd.setMa(maHD);
+        hd.setNgayTao(new Date(millis));
+        hd.setTrangThai(1);
+        //Lưu hóa đơn tạo vào bảng hóa đơn
+        bhs.saveHoaDon(hd);
+        //Hóa đơn chờ
+        listHoaDons = bhs.getHoaDon();
+
+        //lấy listSize HD dầy đủ
+        listFullHD = bhs.getHoaDonFull();
+        loadDataHoaDon(listHoaDons);
 
 
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
@@ -979,6 +1005,55 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
+        int index = tblHoaDon.getSelectedRow();
+        HoaDonViewModel hd = listHoaDons.get(index);
+        String idHD = hd.getId();
+        listGioHangS = bhs.getGioHang(idHD);
+        showDataGioHang(listGioHangS);
+//        if (hd.getTrangThai() == 1) {
+//            btnThanhToan.setEnabled(true);
+//        } else {
+//            btnThanhToan.setEnabled(false);
+//        }
+//        if (hd.getTrangThai() == 0 || hd.getTrangThai() == 3) {
+//            btnHuyHoaDon.setEnabled(false);
+//        } else {
+//            btnHuyHoaDon.setEnabled(true);
+//        }
+        double thanhTien = 0;
+        double thanhToan = 0;
+        double giamGia = 0;
+        String phanTram = "";
+        for (GioHangViewModel gh : listGioHangS) {
+            thanhTien += gh.getSoLuong() * gh.getDonGia();
+        }
+        if (thanhTien > 700000) {
+            giamGia = 0.95;
+            phanTram = " (5%)";
+            txtGiamGia.setEnabled(false);
+        } else if (thanhTien > 2000000) {
+            giamGia = 0.90;
+            phanTram = " (10%)";
+            txtGiamGia.setEnabled(false);
+        } else if (thanhTien > 4000000) {
+            txtGiamGia.setEnabled(true);
+        } else {
+            txtGiamGia.setEnabled(false);
+            giamGia = 1;
+            phanTram = " (0%)";
+        }
+        txtGiamGia.setText(String.valueOf(giamGia + phanTram));
+        lblThanhTien.setText(String.valueOf(thanhTien));
+        lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+        fillDataHD(index);
+
+        txtTienKhachDua.setText("0");
+        lblTienThua.setText("0");
+        txtHoaDonPDF.setText("");
+        btnThanhToan.setEnabled(true);
+        btnHuyHoaDon.setEnabled(true);
+        btnLamMoi.setEnabled(true);
+
 
 
     }//GEN-LAST:event_tblHoaDonMouseClicked
