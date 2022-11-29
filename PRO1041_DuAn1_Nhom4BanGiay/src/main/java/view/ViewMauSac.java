@@ -273,7 +273,7 @@ public class ViewMauSac extends javax.swing.JFrame {
             MauSac ms = new MauSac(ma, ten);
             JOptionPane.showMessageDialog(this, khs.update(ms, ma));
             showData(listMSCM = khs.getAllCustom());
-             viewCTSanPham.loadCBB();
+            viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -282,7 +282,7 @@ public class ViewMauSac extends javax.swing.JFrame {
         String ten = txtTen.getText();
 
         boolean trung = false;
-        for (MauSac ms : listMS) {
+        for (MauSacCustomModel ms : listMSCM) {
             if (ms.getMa().contains(ma)) {
                 trung = true;
             }
@@ -308,7 +308,7 @@ public class ViewMauSac extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, khs.delete(ma));
             showData(listMSCM = khs.getAllCustom());
-             viewCTSanPham.loadCBB();
+            viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

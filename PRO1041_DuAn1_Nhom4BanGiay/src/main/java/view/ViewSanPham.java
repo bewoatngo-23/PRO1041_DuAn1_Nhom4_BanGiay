@@ -36,7 +36,7 @@ public class ViewSanPham extends javax.swing.JFrame {
         tblSanPham.setModel(tblmodel);
         String headers[] = {"STT", "ID", "Mã", "Tên"};
         tblmodel.setColumnIdentifiers(headers);
-        showData(listSP  = khs.getAllCustom());
+        showData(listSP = khs.getAllCustom());
         setTitle("Hệ thống quản lý bán giày");
         setLocationRelativeTo(null);
     }
@@ -52,7 +52,7 @@ public class ViewSanPham extends javax.swing.JFrame {
         }
     }
 
-     private void fillData(int index) {
+    private void fillData(int index) {
         SanPhamCustomModel ms = listSP.get(index);
         lblID.setText(ms.getMa());
         txtTen.setText(ms.getTen());
@@ -286,7 +286,7 @@ public class ViewSanPham extends javax.swing.JFrame {
         String ten = txtTen.getText();
 
         boolean trung = false;
-        for (SanPham ms : listMS) {
+        for (SanPhamCustomModel ms : listSP) {
             if (ms.getMa().contains(ma)) {
                 trung = true;
             }
@@ -300,13 +300,13 @@ public class ViewSanPham extends javax.swing.JFrame {
         } else {
             SanPham ms = new SanPham(ma, ten);
             JOptionPane.showMessageDialog(this, khs.add(ms));
-            showData(listSP= khs.getAllCustom());
+            showData(listSP = khs.getAllCustom());
             viewCTSanPham.loadCBB();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-       String ma = txtMa.getText();
+        String ma = txtMa.getText();
         if (ma.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Mã không được để trống");
         } else {
