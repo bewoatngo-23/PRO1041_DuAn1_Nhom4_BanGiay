@@ -1299,7 +1299,9 @@ int indexHD = tblHoaDon.getSelectedRow();
     }//GEN-LAST:event_btnCapNhatSPActionPerformed
 
     private void cbbSoDienThoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSoDienThoaiActionPerformed
-
+        int index = cbbSoDienThoai.getSelectedIndex();
+        KhachHangCustomModel kh = listKH.get(index);
+        txtTenKhachHangBH.setText(kh.getHoTen());
 
     }//GEN-LAST:event_cbbSoDienThoaiActionPerformed
 
