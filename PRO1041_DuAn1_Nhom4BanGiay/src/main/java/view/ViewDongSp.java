@@ -251,7 +251,7 @@ public class ViewDongSp extends javax.swing.JFrame {
         String ten = txtTenDSP.getText();
 
         boolean trung = false;
-        for (DongSP ds : listDSP) {
+        for (DongSanPhamCustomModel ds : listDSPCM) {
             if (ds.getMa().contains(ma)) {
                 trung = true;
             }

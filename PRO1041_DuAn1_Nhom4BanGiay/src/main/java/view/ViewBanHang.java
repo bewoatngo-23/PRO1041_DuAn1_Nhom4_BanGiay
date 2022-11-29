@@ -881,6 +881,8 @@ public class ViewBanHang extends javax.swing.JFrame {
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
         //Lấy row table --> Dữ liệu
+        String tenNV = cbbNhanVienBH.getSelectedItem().toString();
+        String tenKH = cbbSoDienThoai.getSelectedItem().toString();
         GioHangViewModel gh = new GioHangViewModel();
         int rowHD = tblHoaDon.getSelectedRow();
         int row = tblSanPham.getSelectedRow();
@@ -889,78 +891,81 @@ public class ViewBanHang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn muốn thêm sản phẩm");
         } else {
             String soLuong = JOptionPane.showInputDialog("Mời bạn nhập số lượng: ");
-
-            if (soLuong != null) {
-                if (!soLuong.matches("[0-9]+")) {
-                    JOptionPane.showMessageDialog(this, "Nhập đúng định dạng");
-                } else if (Integer.valueOf(soLuong) > sp.getSoLuong()) {
-                    JOptionPane.showMessageDialog(this, "Số lượng vượt quá -.-");
-                } else {
-                    // Thêm sản phẩm vào giỏ hàng
-                    HoaDonViewModel hd = listHoaDons.get(rowHD);
-                    gh.setSoLuong(Integer.valueOf(soLuong));
-                    gh.setMaSP(sp.getMaSP());
-                    gh.setTenSP(sp.getTenSP());
-                    gh.setDonGia(sp.getDonGia());
-                    boolean trung = false;
-                    for (GioHangViewModel x : listGioHangS) {
-                        if (x.getMaSP().contains(sp.getMaSP())) {
-                            trung = true;
-                        }
-                    }
-                    if (trung) {
-                        JOptionPane.showMessageDialog(this, "Sản phẩm đã có trong giỏ hàng, để thêm số lượng vui lòng chọn chức năng cập nhật");
+            if (tenNV.contains("Tên nhân viên") || tenKH.contains("84+")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng thay đổi tên nhân viên hoặc khách hàng");
+            } else {
+                if (soLuong != null) {
+                    if (!soLuong.matches("[0-9]+")) {
+                        JOptionPane.showMessageDialog(this, "Nhập đúng định dạng");
+                    } else if (Integer.valueOf(soLuong) > sp.getSoLuong()) {
+                        JOptionPane.showMessageDialog(this, "Số lượng vượt quá -.-");
                     } else {
-                        // Thêm sản phẩm vào list giỏ hàng
-                        listGioHangS.add(gh);
-
-                        sp.setSoLuong(sp.getSoLuong() - Integer.valueOf(soLuong));
-                        showDataSanPham(listSanPhams);
-
-                        String idHD = hd.getId();
-                        String idCtsp = sp.getId();
-                        int soLuong1 = Integer.valueOf(soLuong);
-                        Double donGia = sp.getDonGia();
-
-                        // add giỏ hàng vào HDCT
-                        HoaDonChiTietCustomModel hdct = new HoaDonChiTietCustomModel(idHD, idCtsp, soLuong1, donGia);
-                        JOptionPane.showMessageDialog(this, bhs.addHDCT(hdct));
-                        listGioHangS = bhs.getGioHang(idHD);
-                        showDataGioHang(listGioHangS);
-
-                        //Cập nhật số lượng trong bảng Sản phẩm CT
-                        ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(sp.getSoLuong());
-                        bhs.updateSoLuong(ctsp, idCtsp);
-
-                        //Fill thành tiền, thanh toán, giảm giá
-                        double thanhTien = 0;
-                        double thanhToan = 0;
-                        double giamGia = 0;
-                        String phanTram = "";
-                        for (GioHangViewModel gha : listGioHangS) {
-                            thanhTien += gha.getSoLuong() * gh.getDonGia();
-
+                        // Thêm sản phẩm vào giỏ hàng
+                        HoaDonViewModel hd = listHoaDons.get(rowHD);
+                        gh.setSoLuong(Integer.valueOf(soLuong));
+                        gh.setMaSP(sp.getMaSP());
+                        gh.setTenSP(sp.getTenSP());
+                        gh.setDonGia(sp.getDonGia());
+                        boolean trung = false;
+                        for (GioHangViewModel x : listGioHangS) {
+                            if (x.getMaSP().contains(sp.getMaSP())) {
+                                trung = true;
+                            }
                         }
-
-                        if (thanhTien > 700000) {
-                            giamGia = 0.95;
-                            phanTram = " (5%)";
-                            txtGiamGia.setEnabled(false);
-                        } else if (thanhTien > 2000000) {
-                            giamGia = 0.90;
-                            phanTram = " (10%)";
-                            txtGiamGia.setEnabled(false);
-                        } else if (thanhTien > 4000000) {
-                            txtGiamGia.setEnabled(true);
+                        if (trung) {
+                            JOptionPane.showMessageDialog(this, "Sản phẩm đã có trong giỏ hàng, để thêm số lượng vui lòng chọn chức năng cập nhật");
                         } else {
-                            txtGiamGia.setEnabled(false);
-                            giamGia = 1;
-                            phanTram = " (0%)";
-                        }
-                        txtGiamGia.setText(String.valueOf(giamGia + phanTram));
-                        lblThanhTien.setText(String.valueOf(thanhTien));
-                        lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+                            // Thêm sản phẩm vào list giỏ hàng
+                            listGioHangS.add(gh);
 
+                            sp.setSoLuong(sp.getSoLuong() - Integer.valueOf(soLuong));
+                            showDataSanPham(listSanPhams);
+
+                            String idHD = hd.getId();
+                            String idCtsp = sp.getId();
+                            int soLuong1 = Integer.valueOf(soLuong);
+                            Double donGia = sp.getDonGia();
+
+                            // add giỏ hàng vào HDCT
+                            HoaDonChiTietCustomModel hdct = new HoaDonChiTietCustomModel(idHD, idCtsp, soLuong1, donGia);
+                            JOptionPane.showMessageDialog(this, bhs.addHDCT(hdct));
+                            listGioHangS = bhs.getGioHang(idHD);
+                            showDataGioHang(listGioHangS);
+
+                            //Cập nhật số lượng trong bảng Sản phẩm CT
+                            ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(sp.getSoLuong());
+                            bhs.updateSoLuong(ctsp, idCtsp);
+
+                            //Fill thành tiền, thanh toán, giảm giá
+                            double thanhTien = 0;
+                            double thanhToan = 0;
+                            double giamGia = 0;
+                            String phanTram = "";
+                            for (GioHangViewModel gha : listGioHangS) {
+                                thanhTien += gha.getSoLuong() * gh.getDonGia();
+
+                            }
+
+                            if (thanhTien > 700000) {
+                                giamGia = 0.95;
+                                phanTram = " (5%)";
+                                txtGiamGia.setEnabled(false);
+                            } else if (thanhTien > 2000000) {
+                                giamGia = 0.90;
+                                phanTram = " (10%)";
+                                txtGiamGia.setEnabled(false);
+                            } else if (thanhTien > 4000000) {
+                                txtGiamGia.setEnabled(true);
+                            } else {
+                                txtGiamGia.setEnabled(false);
+                                giamGia = 1;
+                                phanTram = " (0%)";
+                            }
+                            txtGiamGia.setText(String.valueOf(giamGia + phanTram));
+                            lblThanhTien.setText(String.valueOf(thanhTien));
+                            lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+
+                        }
                     }
                 }
             }
@@ -1105,6 +1110,8 @@ public class ViewBanHang extends javax.swing.JFrame {
         } else if (txtTienKhachDua.getText().equals("0") || txtTienKhachDua.getText().matches("\\s+")) {
             JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin");
             txtTienKhachDua.setText("0");
+        } else if (Double.valueOf(tienKhachDua) < Double.valueOf(thanhToan)) {
+            JOptionPane.showMessageDialog(this, "Thiếu tiền, vui lòng nhập lại");
         } else {
             var tempTT = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn thanh toán không ?");
             if (tempTT == 0) {
@@ -1175,6 +1182,7 @@ public class ViewBanHang extends javax.swing.JFrame {
         listKH.forEach((kh) -> {
             cbbSoDienThoai.addItem(kh.getSdt());
         });
+        cbbSoDienThoai.setSelectedIndex(0);
 
     }//GEN-LAST:event_btnReloadBHActionPerformed
 

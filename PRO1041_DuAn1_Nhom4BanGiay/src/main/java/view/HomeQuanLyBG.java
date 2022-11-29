@@ -547,6 +547,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         lbl_dongSP = new javax.swing.JLabel();
         cbo_locMauSac = new javax.swing.JComboBox<>();
         jLabel22 = new javax.swing.JLabel();
+        btnReloadCTSP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1413,6 +1414,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel22.setText("Sản phẩm chi tiết");
 
+        btnReloadCTSP.setText("Reload");
+        btnReloadCTSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReloadCTSPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlSanPhamChiTietLayout = new javax.swing.GroupLayout(pnlSanPhamChiTiet);
         pnlSanPhamChiTiet.setLayout(pnlSanPhamChiTietLayout);
         pnlSanPhamChiTietLayout.setHorizontalGroup(
@@ -1434,6 +1442,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
+                                        .addGap(212, 212, 212)
+                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSanPhamChiTietLayout.createSequentialGroup()
                                         .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                                                 .addComponent(cbo_sanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1446,13 +1458,15 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                                                     .addComponent(txt_giaBan)
                                                     .addComponent(cbo_mauSac, 0, 205, Short.MAX_VALUE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btn_themMS))
+                                                .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(btn_themMS)
+                                                    .addComponent(btnReloadCTSP)))
                                             .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                                                 .addGap(32, 32, 32)
                                                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(73, 73, 73)
                                                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                                         .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lbl_dongSP)
                                             .addComponent(lbl_deGiay)
@@ -1470,11 +1484,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                                         .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btn_themDG1)
                                             .addComponent(btn_themDSP1))
-                                        .addGap(20, 20, 20))
-                                    .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
-                                        .addGap(212, 212, 212)
-                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(20, 20, 20))))
                             .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                                 .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 502, Short.MAX_VALUE))
@@ -1531,7 +1541,8 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                     .addComponent(lbl_giaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_giaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReloadCTSP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1986,6 +1997,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         loadTable((String) cbo_locMauSac.getSelectedItem());
     }//GEN-LAST:event_cbo_locMauSacItemStateChanged
 
+    private void btnReloadCTSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadCTSPActionPerformed
+        loadCBB();
+    }//GEN-LAST:event_btnReloadCTSPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2035,6 +2050,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     private javax.swing.JButton btnKhachhang;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnNhanVien;
+    private javax.swing.JButton btnReloadCTSP;
     private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnThemCV;
     private javax.swing.JButton btnThongKe;
