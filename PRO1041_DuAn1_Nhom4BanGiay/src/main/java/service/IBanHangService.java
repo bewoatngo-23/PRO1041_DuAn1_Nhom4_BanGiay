@@ -49,4 +49,6 @@ public interface IBanHangService {
     String deleteHDCT(String idHD);
 
     String deleteHD(String idHD);
+
+    int laySoLuong(String idSL);
 }

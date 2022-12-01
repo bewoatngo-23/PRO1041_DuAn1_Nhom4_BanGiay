@@ -60,6 +60,7 @@ public class ViewBanHang extends javax.swing.JFrame {
     private DefaultTableModel tblModelSanPham = new DefaultTableModel();
     private List<HoaDonViewModel> listHoaDons = new ArrayList<>();
     private List<SanPhamViewModel> listSanPhams = new ArrayList<>();
+    private List<SanPhamViewModel> listSoLuong = new ArrayList<>();
     private List<GioHangViewModel> listGioHangS = new ArrayList<>();
     private List<NhanVienCustomModel> listNV = new ArrayList<>();
     private List<KhachHangCustomModel> listKH = new ArrayList<>();
@@ -265,6 +266,7 @@ public class ViewBanHang extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtHoaDonPDF = new javax.swing.JTextArea();
+        btnViewHoaDon = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -802,6 +804,13 @@ public class ViewBanHang extends javax.swing.JFrame {
         txtHoaDonPDF.setRows(5);
         jScrollPane4.setViewportView(txtHoaDonPDF);
 
+        btnViewHoaDon.setText("Hóa đơn");
+        btnViewHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewHoaDonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -841,11 +850,13 @@ public class ViewBanHang extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnViewHoaDon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnQuayLai)
-                        .addGap(20, 20, 20))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -855,7 +866,9 @@ public class ViewBanHang extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jLabel5))
-                    .addComponent(btnQuayLai))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnQuayLai)
+                        .addComponent(btnViewHoaDon)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1257,6 +1270,34 @@ public class ViewBanHang extends javax.swing.JFrame {
                 showDataGioHang(listGioHangS);
                 showDataSanPham(listSanPhams);
 
+                double thanhTien = 0;
+                double thanhToan = 0;
+                double giamGia = 0;
+                String phanTram = "";
+                for (GioHangViewModel gha : listGioHangS) {
+                    thanhTien += gha.getSoLuong() * gh.getDonGia();
+
+                }
+
+                if (thanhTien > 700000) {
+                    giamGia = 0.95;
+                    phanTram = " (5%)";
+                    txtGiamGia.setEnabled(false);
+                } else if (thanhTien > 2000000) {
+                    giamGia = 0.90;
+                    phanTram = " (10%)";
+                    txtGiamGia.setEnabled(false);
+                } else if (thanhTien > 4000000) {
+                    txtGiamGia.setEnabled(true);
+                } else {
+                    txtGiamGia.setEnabled(false);
+                    giamGia = 1;
+                    phanTram = " (0%)";
+                }
+                txtGiamGia.setText(String.valueOf(giamGia + phanTram));
+                lblThanhTien.setText(String.valueOf(thanhTien));
+                lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+
             }
         }
     }//GEN-LAST:event_btnXoaSanPhamActionPerformed
@@ -1264,14 +1305,23 @@ public class ViewBanHang extends javax.swing.JFrame {
     private void btnCapNhatSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatSPActionPerformed
         int indexHD = tblHoaDon.getSelectedRow();
         int indexGH = tblGioHang.getSelectedRow();
+        SanPhamViewModel sp = new SanPhamViewModel();
+
         if (indexGH < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần cập nhật số lượng");
 
         } else {
+            GioHangViewModel ghsl = listGioHangS.get(indexGH);
+            String idSL = ghsl.getIdCtsp();
+            int sl = bhs.laySoLuong(idSL);
             String soLuongMoi = JOptionPane.showInputDialog("Mời nhập số lượng cần cập nhật: ");
             if (soLuongMoi != null) {
                 if (!soLuongMoi.matches("[0-9]+")) {
                     JOptionPane.showMessageDialog(this, "Nhập đúng định dạng");
+                } else if (Integer.valueOf(soLuongMoi) > sl) {
+                    JOptionPane.showMessageDialog(this, "Số lượng vượt quá");
+                } else if (Integer.valueOf(soLuongMoi) == 0) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng chọn chức năng xóa");
                 } else {
                     GioHangViewModel gh = listGioHangS.get(indexGH);
                     HoaDonViewModel hd = listHoaDons.get(indexHD);
@@ -1296,6 +1346,34 @@ public class ViewBanHang extends javax.swing.JFrame {
                     listSanPhams = bhs.getSanPhamVM();
                     showDataSanPham(listSanPhams);
 
+                    double thanhTien = 0;
+                    double thanhToan = 0;
+                    double giamGia = 0;
+                    String phanTram = "";
+                    for (GioHangViewModel gha : listGioHangS) {
+                        thanhTien += gha.getSoLuong() * gh.getDonGia();
+
+                    }
+
+                    if (thanhTien > 700000) {
+                        giamGia = 0.95;
+                        phanTram = " (5%)";
+                        txtGiamGia.setEnabled(false);
+                    } else if (thanhTien > 2000000) {
+                        giamGia = 0.90;
+                        phanTram = " (10%)";
+                        txtGiamGia.setEnabled(false);
+                    } else if (thanhTien > 4000000) {
+                        txtGiamGia.setEnabled(true);
+                    } else {
+                        txtGiamGia.setEnabled(false);
+                        giamGia = 1;
+                        phanTram = " (0%)";
+                    }
+                    txtGiamGia.setText(String.valueOf(giamGia + phanTram));
+                    lblThanhTien.setText(String.valueOf(thanhTien));
+                    lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+
                 }
             }
         }
@@ -1319,6 +1397,12 @@ public class ViewBanHang extends javax.swing.JFrame {
     private void cbbMSBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbMSBHActionPerformed
         listSanPhams = bhs.SearchSPBH(cbbMSBH.getSelectedItem().toString());
         showDataSanPham(listSanPhams);    }//GEN-LAST:event_cbbMSBHActionPerformed
+
+    private void btnViewHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHoaDonActionPerformed
+        ViewHoaDonBanHang vbh = new ViewHoaDonBanHang();
+        vbh.setVisible(true);
+
+    }//GEN-LAST:event_btnViewHoaDonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1365,6 +1449,7 @@ public class ViewBanHang extends javax.swing.JFrame {
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThayDoi;
     private javax.swing.JButton btnThemKHBH;
+    private javax.swing.JButton btnViewHoaDon;
     private javax.swing.JButton btnXoaSanPham;
     private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JComboBox<String> cbbDGBH;
