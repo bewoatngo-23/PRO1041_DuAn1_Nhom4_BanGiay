@@ -46,6 +46,10 @@ public class SanPhamViewModel {
         this.soLuong = soLuong;
     }
 
+    public SanPhamViewModel(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
     public String getId() {
         return id;
     }

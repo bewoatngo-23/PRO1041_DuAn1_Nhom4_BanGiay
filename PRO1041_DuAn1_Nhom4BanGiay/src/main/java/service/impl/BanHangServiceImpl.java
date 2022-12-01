@@ -115,4 +115,10 @@ public class BanHangServiceImpl implements IBanHangService {
     public String deleteHD(String idHD) {
         return banHangRes.deleteHD(idHD);
     }
+
+    @Override
+    public int laySoLuong(String idSL) {
+        return banHangRes.laySoLuong(idSL);
+    }
+
 }

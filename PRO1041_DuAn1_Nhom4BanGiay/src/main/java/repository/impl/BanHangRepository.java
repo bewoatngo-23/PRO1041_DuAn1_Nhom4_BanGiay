@@ -311,6 +311,25 @@ public class BanHangRepository {
         return "Ôi hỏng";
     }
 
+    public int laySoLuong(String idSL) {
+        String sql = "  select SoLuong from ChiTietSP where id like ?";
+
+        try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, idSL);
+            int sl = 0;
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                sl = rs.getInt(1);
+            }
+            return sl;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return 0;
+
+    }
+
     public static void main(String[] args) {
         new BanHangRepository().getHoaDonFull().forEach((t) -> {
             System.out.println(t.toString());

@@ -551,7 +551,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1187, 730));
+        setPreferredSize(new java.awt.Dimension(1387, 724));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -692,6 +692,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(jPanel1);
 
         pnlcards.setBackground(new java.awt.Color(51, 51, 51));
+        pnlcards.setPreferredSize(new java.awt.Dimension(1171, 724));
         pnlcards.setLayout(new java.awt.CardLayout());
 
         pnlMain.setBackground(new java.awt.Color(255, 204, 0));
@@ -732,22 +733,23 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                         .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
                             .addGroup(pnlMainLayout.createSequentialGroup()
+                                .addGap(101, 101, 101)
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(txtTenQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlMainLayout.createSequentialGroup()
                         .addGap(351, 351, 351)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(332, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(270, 270, 270))
+                        .addGap(454, 454, 454))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))))
+                        .addGap(178, 178, 178))))
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -760,11 +762,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addComponent(jLabel20)
                 .addGap(37, 37, 37)
                 .addComponent(jLabel17)
-                .addGap(35, 35, 35)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel18)
-                .addGap(36, 36, 36)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel19)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         pnlcards.add(pnlMain, "card8");
@@ -873,7 +875,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(507, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1108,7 +1110,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                                         .addGap(7, 7, 7)
                                         .addComponent(lbTenChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(5, 5, 5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel8)
@@ -1223,11 +1225,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         pnlBanHang.setLayout(pnlBanHangLayout);
         pnlBanHangLayout.setHorizontalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 931, Short.MAX_VALUE)
+            .addGap(0, 1171, Short.MAX_VALUE)
         );
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGap(0, 756, Short.MAX_VALUE)
         );
 
         pnlcards.add(pnlBanHang, "cardBH");
@@ -1238,11 +1240,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         pnlDoiTra.setLayout(pnlDoiTraLayout);
         pnlDoiTraLayout.setHorizontalGroup(
             pnlDoiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 931, Short.MAX_VALUE)
+            .addGap(0, 1171, Short.MAX_VALUE)
         );
         pnlDoiTraLayout.setVerticalGroup(
             pnlDoiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGap(0, 756, Short.MAX_VALUE)
         );
 
         pnlcards.add(pnlDoiTra, "cardDoiTra");
@@ -1253,11 +1255,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         pnlThongKe.setLayout(pnlThongKeLayout);
         pnlThongKeLayout.setHorizontalGroup(
             pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 931, Short.MAX_VALUE)
+            .addGap(0, 1171, Short.MAX_VALUE)
         );
         pnlThongKeLayout.setVerticalGroup(
             pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGap(0, 756, Short.MAX_VALUE)
         );
 
         pnlcards.add(pnlThongKe, "cardTK");
@@ -1466,7 +1468,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                                                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(73, 73, 73)
                                                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
                                         .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lbl_dongSP)
                                             .addComponent(lbl_deGiay)
@@ -1487,7 +1489,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                                         .addGap(20, 20, 20))))
                             .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                                 .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 502, Short.MAX_VALUE))
+                                .addGap(0, 742, Short.MAX_VALUE))
                             .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                                 .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1588,14 +1590,14 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1187, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1427, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(0, 0, 0))
         );
 
         pack();
