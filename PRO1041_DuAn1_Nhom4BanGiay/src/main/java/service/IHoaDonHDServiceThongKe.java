@@ -5,7 +5,9 @@
 package service;
 
 import customModel.HDCTCustoModelHD;
+import customModel.HDCTCustoModelHDThongKe;
 import customModel.HoaDonCustomModelHD;
+import customModel.HoaDonCustomModelHDThongKe;
 import java.util.List;
 
 /**
@@ -14,15 +16,15 @@ import java.util.List;
  */
 public interface IHoaDonHDServiceThongKe {
 
-    List<HDCTCustoModelHD> getHDCT(String id);
+    List<HDCTCustoModelHDThongKe> getHDCT(String id);
     
-    List<HDCTCustoModelHD> getAllHDCT();
+    List<HDCTCustoModelHDThongKe> getAllHDCT();
 
-    List<HoaDonCustomModelHD> getHoaDon();
+    List<HoaDonCustomModelHDThongKe> getHoaDon();
     
-    List<HoaDonCustomModelHD> getHoaDonBetWeen(String batDau,String ketThuc);
+    List<HoaDonCustomModelHDThongKe> getHoaDonBetWeen(String batDau,String ketThuc);
 
-    List<HoaDonCustomModelHD> SearchHD(String input);
+    List<HoaDonCustomModelHDThongKe> SearchHD(String input);
 
-    List<HoaDonCustomModelHD> SearchCBB(String input);
+    List<HoaDonCustomModelHDThongKe> SearchCBB(String input);
 }

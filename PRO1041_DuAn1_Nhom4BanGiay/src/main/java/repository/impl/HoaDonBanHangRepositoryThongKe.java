@@ -5,8 +5,10 @@
 package repository.impl;
 
 import customModel.HDCTCustoModelHD;
+import customModel.HDCTCustoModelHDThongKe;
 import customModel.HoaDonCustomModel;
 import customModel.HoaDonCustomModelHD;
+import customModel.HoaDonCustomModelHDThongKe;
 import customModelBanHang.GioHangViewModel;
 import customModelBanHang.HoaDonViewModel;
 import java.sql.Connection;
@@ -22,7 +24,7 @@ import utilities.DBContext;
  */
 public class HoaDonBanHangRepositoryThongKe {
 
-    public List<HDCTCustoModelHD> getHDCT(String id) {
+    public List<HDCTCustoModelHDThongKe> getHDCT(String id) {
         String sql = "				  SELECT dbo.SanPham.Ma, dbo.SanPham.Ten, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDonChiTiet.DonGia, dbo.HoaDonChiTiet.SoLuong * dbo.HoaDonChiTiet.DonGia as thanhTien\n"
                 + "FROM     dbo.ChiTietSP INNER JOIN\n"
                 + "                  dbo.HoaDonChiTiet ON dbo.ChiTietSP.Id = dbo.HoaDonChiTiet.IdChiTietSP INNER JOIN\n"
@@ -31,9 +33,9 @@ public class HoaDonBanHangRepositoryThongKe {
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
-            List<HDCTCustoModelHD> listHDCT = new ArrayList<>();
+            List<HDCTCustoModelHDThongKe> listHDCT = new ArrayList<>();
             while (rs.next()) {
-                listHDCT.add(new HDCTCustoModelHD(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5)));
+                listHDCT.add(new HDCTCustoModelHDThongKe(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5)));
             }
             return listHDCT;
         } catch (Exception e) {
@@ -42,7 +44,7 @@ public class HoaDonBanHangRepositoryThongKe {
         return null;
     }
     
-    public List<HDCTCustoModelHD> getALLHDCT() {
+    public List<HDCTCustoModelHDThongKe> getALLHDCT() {
         String sql = "				  SELECT dbo.SanPham.Ma, dbo.SanPham.Ten, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDonChiTiet.DonGia, dbo.HoaDonChiTiet.SoLuong * dbo.HoaDonChiTiet.DonGia as thanhTien\n"
                 + "FROM     dbo.ChiTietSP INNER JOIN\n"
                 + "                  dbo.HoaDonChiTiet ON dbo.ChiTietSP.Id = dbo.HoaDonChiTiet.IdChiTietSP INNER JOIN\n"
@@ -50,9 +52,9 @@ public class HoaDonBanHangRepositoryThongKe {
 
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            List<HDCTCustoModelHD> listHDCT = new ArrayList<>();
+            List<HDCTCustoModelHDThongKe> listHDCT = new ArrayList<>();
             while (rs.next()) {
-                listHDCT.add(new HDCTCustoModelHD(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5)));
+                listHDCT.add(new HDCTCustoModelHDThongKe(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5)));
             }
             return listHDCT;
         } catch (Exception e) {
@@ -63,7 +65,7 @@ public class HoaDonBanHangRepositoryThongKe {
     
 
 
-    public List<HoaDonCustomModelHD> getHoaDon() {
+    public List<HoaDonCustomModelHDThongKe> getHoaDon() {
         String sql = "SELECT dbo.HoaDon.Id, dbo.HoaDon.Ma, dbo.NhanVien.Ma AS Expr1, dbo.NhanVien.HoTen, dbo.KhachHang.Ma AS Expr2, dbo.KhachHang.HoTen AS Expr3, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HoaDon.TongSanPham,\n"
                 + "                  dbo.HoaDon.TrangThai\n"
                 + "FROM     dbo.HoaDon INNER JOIN\n"
@@ -72,9 +74,9 @@ public class HoaDonBanHangRepositoryThongKe {
 
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            List<HoaDonCustomModelHD> listHD = new ArrayList<>();
+            List<HoaDonCustomModelHDThongKe> listHD = new ArrayList<>();
             while (rs.next()) {
-                listHD.add(new HoaDonCustomModelHD(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7), rs.getDouble(8), rs.getInt(9), rs.getInt(10)));
+                listHD.add(new HoaDonCustomModelHDThongKe(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7), rs.getDouble(8), rs.getInt(9), rs.getInt(10)));
             }
             return listHD;
         } catch (Exception e) {
@@ -83,7 +85,7 @@ public class HoaDonBanHangRepositoryThongKe {
         return null;
     }
     
-    public List<HoaDonCustomModelHD> getHoaDonBetWeen(String batDau, String ketThuc) {
+    public List<HoaDonCustomModelHDThongKe> getHoaDonBetWeen(String batDau, String ketThuc) {
          String sql = "SELECT dbo.HoaDon.Id, dbo.HoaDon.Ma, dbo.NhanVien.Ma AS Expr1, dbo.NhanVien.HoTen, dbo.KhachHang.Ma AS Expr2, dbo.KhachHang.HoTen AS Expr3, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HoaDon.TongSanPham,\n"
                 + "                  dbo.HoaDon.TrangThai\n"
                 + "FROM     dbo.HoaDon INNER JOIN\n"
@@ -93,9 +95,9 @@ public class HoaDonBanHangRepositoryThongKe {
 
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-            List<HoaDonCustomModelHD> listHD = new ArrayList<>();
+            List<HoaDonCustomModelHDThongKe> listHD = new ArrayList<>();
             while (rs.next()) {
-                listHD.add(new HoaDonCustomModelHD(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getInt(9), rs.getInt(10)));
+                listHD.add(new HoaDonCustomModelHDThongKe(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getInt(9), rs.getInt(10)));
             }
             return listHD;
         } catch (Exception e) {
