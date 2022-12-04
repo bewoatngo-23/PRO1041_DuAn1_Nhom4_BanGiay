@@ -597,6 +597,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng K&#xea;"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_thongKeKHActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_thangKH">
                   <Properties>

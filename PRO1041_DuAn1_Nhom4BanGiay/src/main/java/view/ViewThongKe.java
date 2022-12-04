@@ -48,7 +48,7 @@ public class ViewThongKe extends javax.swing.JFrame {
     }
             Calendar instance = Calendar.getInstance();
         int year = instance.get(Calendar.YEAR);
-        int month = instance.get(Calendar.MONTH);
+        int month = instance.get(Calendar.MONTH)+1;
         int day = instance.get(Calendar.DATE);
 
         
@@ -242,7 +242,13 @@ public class ViewThongKe extends javax.swing.JFrame {
         double thang10 =0;
         double thang11 =0;
         double thang12 =0;
-        int Thang = Integer.parseInt(thang)+1;
+        int Thang = 0;
+        if (Integer.parseInt(thang) == 12) {
+             Thang = 1;
+        }
+        else{
+            Thang = Integer.parseInt(thang)+1;
+        }
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (var x: hoaDonHDServiceThongKe.getHoaDonBetWeen("'"+nam+"-"+thang+"-01'", "'"+nam+"-"+Thang+"-01'")) {
              thang1 += x.getTongTien();
@@ -660,6 +666,11 @@ public class ViewThongKe extends javax.swing.JFrame {
         txt_namKH.setText("2022");
 
         btn_thongKeKH.setText("Thống Kê");
+        btn_thongKeKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_thongKeKHActionPerformed(evt);
+            }
+        });
 
         txt_thangKH.setText("2022");
 
@@ -893,6 +904,11 @@ public class ViewThongKe extends javax.swing.JFrame {
         setSanPhamTheoNgay(year+"",month+"",day+"");
         setKhachHangTheoNgay(year+"",month+"",day+"");
     }//GEN-LAST:event_btn_resetActionPerformed
+
+    private void btn_thongKeKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongKeKHActionPerformed
+        // TODO add your handling code here:
+  
+    }//GEN-LAST:event_btn_thongKeKHActionPerformed
 
     /**
      * @param args the command line arguments
