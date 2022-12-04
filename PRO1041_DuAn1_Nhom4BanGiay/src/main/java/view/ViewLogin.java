@@ -64,20 +64,20 @@ public class ViewLogin extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(18, 19, 19));
 
         jLabel1.setBackground(new java.awt.Color(119, 170, 226));
-        jLabel1.setFont(new java.awt.Font("Imprint MT Shadow", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Imprint MT Shadow", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("LOGIN");
 
-        jLabel2.setFont(new java.awt.Font("Sitka Small", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("User name");
 
-        jLabel3.setFont(new java.awt.Font("Sitka Small", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
 
         btnLogin.setBackground(new java.awt.Color(48, 56, 57));
-        btnLogin.setFont(new java.awt.Font("Zilla Slab Medium", 1, 14)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("Zilla Slab Medium", 1, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
         btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -87,6 +87,7 @@ public class ViewLogin extends javax.swing.JFrame {
             }
         });
 
+        chkShowPass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         chkShowPass.setText("Show password");
         chkShowPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +96,7 @@ public class ViewLogin extends javax.swing.JFrame {
         });
 
         btnExit.setBackground(new java.awt.Color(255, 255, 255));
+        btnExit.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,9 +111,6 @@ public class ViewLogin extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chkShowPass)
@@ -121,7 +120,10 @@ public class ViewLogin extends javax.swing.JFrame {
                                 .addComponent(txtUsername)
                                 .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                                 .addComponent(txtPassword))
-                            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -160,7 +162,7 @@ public class ViewLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.WEST);
@@ -172,11 +174,11 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel5.setText(" ");
 
         jLabel4.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(223, 215, 215));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("HỆ THỐNG");
 
         jLabel6.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(223, 215, 215));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("QUẢN LÝ BÁN GIÀY");
 
         lblAnh.setIcon(new javax.swing.ImageIcon("D:\\FPT_POLY_IV\\DuAn1\\CodeHeThongDuAnBanGiay\\PRO1041_DuAn1_Nhom4_BanGiay\\PRO1041_DuAn1_Nhom4BanGiay\\src\\main\\resources\\image\\giaylogin.jpg")); // NOI18N
