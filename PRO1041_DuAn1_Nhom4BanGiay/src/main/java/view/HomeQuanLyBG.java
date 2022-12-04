@@ -4482,9 +4482,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }//GEN-LAST:event_btnReloadBHActionPerformed
 
     private void cbbSoDienThoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSoDienThoaiActionPerformed
-        int index = cbbSoDienThoai.getSelectedIndex();
-        KhachHangCustomModel kh = listKHCM.get(index);
-        txtTenKhachHangBH.setText(kh.getHoTen());
+//        int index = cbbSoDienThoai.getSelectedIndex();
+//        KhachHangCustomModel kh = listKHCM.get(index);
+//        txtTenKhachHangBH.setText(kh.getHoTen());
     }//GEN-LAST:event_cbbSoDienThoaiActionPerformed
 
     private void btnHuyHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyHoaDonActionPerformed

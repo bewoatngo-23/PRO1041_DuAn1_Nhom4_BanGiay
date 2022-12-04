@@ -54,7 +54,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         
     public void setDoanhThuTheoNgay(String year,String month,String day) {
         double sum = 0;
-        for (HoaDonCustomModelHD x : hoaDonHDServiceThongKe.getHoaDon()) {
+        for (var x : hoaDonHDServiceThongKe.getHoaDon()) {
             if (x.getNgayThanhToan().equals(year+"-"+month+"-"+day)) {
                 sum = sum + x.getTongTien();
             }
@@ -65,7 +65,7 @@ public class ViewThongKe extends javax.swing.JFrame {
 
     public void setHoaDonTheoNgay(String year,String month,String day) {
         int sum = 0;
-        for (HoaDonCustomModelHD x : hoaDonHDServiceThongKe.getHoaDon()) {
+        for (var x : hoaDonHDServiceThongKe.getHoaDon()) {
             if (x.getNgayThanhToan().equals(year+"-"+month+"-"+day)) {
                sum++;
             }           
@@ -76,7 +76,7 @@ public class ViewThongKe extends javax.swing.JFrame {
 
     public void setSanPhamTheoNgay(String year,String month,String day) {
         int sum = 0;
-        for (HoaDonCustomModelHD x : hoaDonHDServiceThongKe.getHoaDon()) {
+        for (var x : hoaDonHDServiceThongKe.getHoaDon()) {
             if (x.getNgayThanhToan().equals(year+"-"+month+"-"+day)) {
                 sum = sum + x.getTongSP();
             } 
@@ -88,7 +88,7 @@ public class ViewThongKe extends javax.swing.JFrame {
 
     public void setKhachHangTheoNgay(String year,String month,String day) {
         int sum = 0;
-        for (HoaDonCustomModelHD x : hoaDonHDServiceThongKe.getHoaDon()) {
+        for (var x : hoaDonHDServiceThongKe.getHoaDon()) {
             if (x.getNgayThanhToan().equals(year+"-"+month+"-"+day)) {
                sum++;
             } 
@@ -102,7 +102,7 @@ public class ViewThongKe extends javax.swing.JFrame {
     public void setDoanhThuTheoThang(String year,String month) {
         double sum = 0;
         int thang = Integer.parseInt(month)+1;
-        for (HoaDonCustomModelHD x : hoaDonHDServiceThongKe.getHoaDonBetWeen("'"+year+"-"+month+"-01'","'"+year+"-"+ thang +"-01'" )) {    
+        for (var x : hoaDonHDServiceThongKe.getHoaDonBetWeen("'"+year+"-"+month+"-01'","'"+year+"-"+ thang +"-01'" )) {    
                 sum = sum + x.getTongTien();     
         }
         lbl_doanhThu.removeAll();
@@ -112,7 +112,7 @@ public class ViewThongKe extends javax.swing.JFrame {
     public void setHoaDonTheoThang(String year,String month) {
         int sum = 0;
         int thang = Integer.parseInt(month)+1;
-        for (HoaDonCustomModelHD x : hoaDonHDServiceThongKe.getHoaDonBetWeen("'"+year+"-"+month+"-01'","'"+year+"-"+ thang +"-01'" )) {    
+        for (var x : hoaDonHDServiceThongKe.getHoaDonBetWeen("'"+year+"-"+month+"-01'","'"+year+"-"+ thang +"-01'" )) {    
                 sum++;
         }
         lbl_hoaDon.removeAll();
@@ -122,7 +122,7 @@ public class ViewThongKe extends javax.swing.JFrame {
     public void setSanPhamTheoThang(String year,String month) {
         int sum = 0;
         int thang = Integer.parseInt(month)+1;
-        for (HoaDonCustomModelHD x : hoaDonHDServiceThongKe.getHoaDonBetWeen("'"+year+"-"+month+"-01'","'"+year+"-"+ thang +"-01'" )) {    
+        for (var x : hoaDonHDServiceThongKe.getHoaDonBetWeen("'"+year+"-"+month+"-01'","'"+year+"-"+ thang +"-01'" )) {    
                 sum = sum + x.getTongSP();     
         }
         lbl_sanPham.removeAll();
@@ -132,7 +132,7 @@ public class ViewThongKe extends javax.swing.JFrame {
     public void setKhachHangTheoThang(String year,String month) {
         int sum = 0;
         int thang = Integer.parseInt(month)+1;
-        for (HoaDonCustomModelHD x : hoaDonHDServiceThongKe.getHoaDonBetWeen("'"+year+"-"+month+"-01'","'"+year+"-"+ thang +"-01'" )) {    
+        for (var x : hoaDonHDServiceThongKe.getHoaDonBetWeen("'"+year+"-"+month+"-01'","'"+year+"-"+ thang +"-01'" )) {    
                 sum++;    
         }
         lbl_khachHang.removeAll();

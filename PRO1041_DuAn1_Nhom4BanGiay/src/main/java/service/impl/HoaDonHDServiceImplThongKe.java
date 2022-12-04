@@ -5,7 +5,9 @@
 package service.impl;
 
 import customModel.HDCTCustoModelHD;
+import customModel.HDCTCustoModelHDThongKe;
 import customModel.HoaDonCustomModelHD;
+import customModel.HoaDonCustomModelHDThongKe;
 import java.util.ArrayList;
 import java.util.List;
 import repository.impl.HoaDonBanHangRepository;
@@ -22,22 +24,22 @@ public class HoaDonHDServiceImplThongKe implements IHoaDonHDServiceThongKe {
     private HoaDonBanHangRepositoryThongKe hdbhr = new HoaDonBanHangRepositoryThongKe();
 
     @Override
-    public List<HDCTCustoModelHD> getHDCT(String id) {
+    public List<HDCTCustoModelHDThongKe> getHDCT(String id) {
         return hdbhr.getHDCT(id);
     }
 
     @Override
-    public List<HoaDonCustomModelHD> getHoaDon() {
+    public List<HoaDonCustomModelHDThongKe> getHoaDon() {
         return hdbhr.getHoaDon();
     }
 
     @Override
-    public List<HoaDonCustomModelHD> SearchHD(String input) {
-        List<HoaDonCustomModelHD> listHD = new ArrayList<>();
+    public List<HoaDonCustomModelHDThongKe> SearchHD(String input) {
+        List<HoaDonCustomModelHDThongKe> listHD = new ArrayList<>();
         if (input == null) {
             return hdbhr.getHoaDon();
         }
-        for (HoaDonCustomModelHD x : hdbhr.getHoaDon()) {
+        for (HoaDonCustomModelHDThongKe x : hdbhr.getHoaDon()) {
             if (x.getMaHD().contains(input) || x.getMaNV().contains(input) || x.getTenNV().contains(input) || x.getMaKH().contains(input)
                     || x.getTenKH().contains(input) || String.valueOf(x.getTongTien()).contains(input) || String.valueOf(x.getTongSP()).contains(input) || String.valueOf(x.getTrangThai()).contains(input)) {
                 listHD.add(x);
@@ -47,12 +49,12 @@ public class HoaDonHDServiceImplThongKe implements IHoaDonHDServiceThongKe {
     }
 
     @Override
-    public List<HoaDonCustomModelHD> SearchCBB(String input) {
-        List<HoaDonCustomModelHD> listHD = new ArrayList<>();
+    public List<HoaDonCustomModelHDThongKe> SearchCBB(String input) {
+        List<HoaDonCustomModelHDThongKe> listHD = new ArrayList<>();
         if (input == null) {
             return hdbhr.getHoaDon();
         }
-        for (HoaDonCustomModelHD x : hdbhr.getHoaDon()) {
+        for (HoaDonCustomModelHDThongKe x : hdbhr.getHoaDon()) {
             if (String.valueOf(x.getTrangThai()).contains(input)) {
                 listHD.add(x);
             }
@@ -61,13 +63,13 @@ public class HoaDonHDServiceImplThongKe implements IHoaDonHDServiceThongKe {
     }
 
     @Override
-    public List<HDCTCustoModelHD> getAllHDCT() {
+    public List<HDCTCustoModelHDThongKe> getAllHDCT() {
         return hdbhr.getALLHDCT();
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<HoaDonCustomModelHD> getHoaDonBetWeen(String batDau, String ketThuc) {
+    public List<HoaDonCustomModelHDThongKe> getHoaDonBetWeen(String batDau, String ketThuc) {
         return hdbhr.getHoaDonBetWeen(batDau, ketThuc);
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
