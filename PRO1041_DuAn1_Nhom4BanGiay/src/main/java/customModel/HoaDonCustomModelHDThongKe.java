@@ -19,12 +19,14 @@ public class HoaDonCustomModelHDThongKe {
     private String ngayThanhToan;
     private Double tongTien;
     private int tongSP;
+     private int tuoiKH;
     private int trangThai;
+   
 
     public HoaDonCustomModelHDThongKe() {
     }
 
-    public HoaDonCustomModelHDThongKe(String id, String maHD, String maNV, String tenNV, String maKH, String tenKH, String ngayThanhToan, Double tongTien, int tongSP, int trangThai) {
+    public HoaDonCustomModelHDThongKe(String id, String maHD, String maNV, String tenNV, String maKH, String tenKH, String ngayThanhToan, Double tongTien, int tongSP, int tuoiKH, int trangThai) {
         this.id = id;
         this.maHD = maHD;
         this.maNV = maNV;
@@ -34,8 +36,21 @@ public class HoaDonCustomModelHDThongKe {
         this.ngayThanhToan = ngayThanhToan;
         this.tongTien = tongTien;
         this.tongSP = tongSP;
+        this.tuoiKH = tuoiKH;
         this.trangThai = trangThai;
     }
+
+    
+
+    public int getTuoiKH() {
+        return tuoiKH;
+    }
+
+    public void setTuoiKH(int tuoiKH) {
+        this.tuoiKH = tuoiKH;
+    }
+
+    
 
     public String getId() {
         return id;
@@ -131,8 +146,10 @@ public class HoaDonCustomModelHDThongKe {
 
     @Override
     public String toString() {
-        return "HoaDonCustomModelHD{" + "id=" + id + ", maHD=" + maHD + ", maNV=" + maNV + ", tenNV=" + tenNV + ", maKH=" + maKH + ", tenKH=" + tenKH + ", ngayThanhToan=" + ngayThanhToan + ", tongTien=" + tongTien + ", tongSP=" + tongSP + ", trangThai=" + trangThai + '}';
+        return "HoaDonCustomModelHDThongKe{" + "id=" + id + ", maHD=" + maHD + ", maNV=" + maNV + ", tenNV=" + tenNV + ", maKH=" + maKH + ", tenKH=" + tenKH + ", ngayThanhToan=" + ngayThanhToan + ", tongTien=" + tongTien + ", tongSP=" + tongSP + ", trangThai=" + trangThai + ", tuoiKH=" + tuoiKH + '}';
     }
+
+    
 
 
 

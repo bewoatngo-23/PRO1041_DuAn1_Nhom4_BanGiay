@@ -22,6 +22,8 @@ public interface IHoaDonHDServiceThongKe {
 
     List<HoaDonCustomModelHDThongKe> getHoaDon();
     
+    List<HoaDonCustomModelHDThongKe> getHoaDonByNgay(String input);
+    
     List<HoaDonCustomModelHDThongKe> getHoaDonBetWeen(String batDau,String ketThuc);
 
     List<HoaDonCustomModelHDThongKe> SearchHD(String input);
