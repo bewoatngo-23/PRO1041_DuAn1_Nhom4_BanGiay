@@ -27,7 +27,7 @@ public class KhachHangRepository implements IInterface<KhachHang> {
             List<KhachHang> listKH = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listKH.add(new KhachHang(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                listKH.add(new KhachHang(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5)));
             }
             return listKH;
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class KhachHangRepository implements IInterface<KhachHang> {
             List<KhachHangCustomModel> listKH = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listKH.add(new KhachHangCustomModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                listKH.add(new KhachHangCustomModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5)));
             }
             return listKH;
         } catch (Exception e) {
@@ -59,7 +59,7 @@ public class KhachHangRepository implements IInterface<KhachHang> {
             ResultSet rs = ps.executeQuery();
             List<KhachHang> listKH = new ArrayList<>();
             while (rs.next()) {
-                listKH.add(new KhachHang(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                listKH.add(new KhachHang(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5)));
             }
             return (KhachHang) listKH;
         } catch (Exception e) {
@@ -75,14 +75,16 @@ public class KhachHangRepository implements IInterface<KhachHang> {
                 + "            [Ma]\n"
                 + "           ,[HoTen]\n"
                 + "           ,[Sdt]\n"
+                + "           ,[NgaySinh]\n"
                 + "           )\n"
                 + "     VALUES\n"
-                + "           (?,?,?)";
+                + "           (?,?,?,?)";
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
 
             ps.setObject(1, kh.getMa());
             ps.setObject(2, kh.getHoTen());
             ps.setObject(3, kh.getSdt());
+            ps.setObject(4, kh.getNgaySinh());
 
             if (ps.executeUpdate() > 0) {
                 return "Thêm thành công";
@@ -100,12 +102,14 @@ public class KhachHangRepository implements IInterface<KhachHang> {
                 + "   SET \n"
                 + "      [HoTen] = ?\n"
                 + "      ,[Sdt] = ?\n"
+                + "      ,[NgaySinh] = ?\n"
                 + "      \n"
                 + " WHERE Ma = ?";
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setObject(3, ma);
+            ps.setObject(4, ma);
             ps.setObject(1, kh.getHoTen());
             ps.setObject(2, kh.getSdt());
+            ps.setObject(3, kh.getNgaySinh());
 
             if (ps.executeUpdate() > 0) {
                 return "sửa thành công";
@@ -129,24 +133,6 @@ public class KhachHangRepository implements IInterface<KhachHang> {
             e.printStackTrace();
         }
         return "Xóa thất bại";
-    }
-
-    public List<KhachHangCustomModel> search(String ten) {
-        String sql = "SELECT Id, Ma, HoTen, Sdt\n"
-                + "FROM     KhachHang\n"
-                + "where HoTen like ?";
-        try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, "%" + ten + "%");
-            ResultSet rs = ps.executeQuery();
-            List<KhachHangCustomModel> listKH = new ArrayList<>();
-            while (rs.next()) {
-                listKH.add(new KhachHangCustomModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
-            }
-            return listKH;
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        return null;
     }
 
     public static void main(String[] args) {

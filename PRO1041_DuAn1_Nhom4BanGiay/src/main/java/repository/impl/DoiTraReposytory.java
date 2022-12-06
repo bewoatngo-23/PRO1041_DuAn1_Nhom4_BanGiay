@@ -88,9 +88,10 @@ public class DoiTraReposytory {
                 + "           ,[IdKH]\n"
                 + "           ,[NgayDoi]\n"
                 + "           ,[SoLuong]\n"
+                + "           ,[LiDoDoi]\n"
                 + "           ,[GhiChu])\n"
                 + "     VALUES\n"
-                + "           (?,?,?,?,?,?);";
+                + "           (?,?,?,?,?,?,?);";
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
 
             ps.setObject(1, hd.getIdCTSP());
@@ -98,7 +99,8 @@ public class DoiTraReposytory {
             ps.setObject(3, hd.getIdKH());
             ps.setObject(4, hd.getNgayThanhToan());
             ps.setObject(5, hd.getSoLuong());
-            ps.setObject(6, hd.getGhiChu());
+            ps.setObject(6, hd.getLiDoDoi());
+            ps.setObject(7, hd.getGhiChu());
 
             if (ps.executeUpdate() > 0) {
                 return "Đổi thành công";

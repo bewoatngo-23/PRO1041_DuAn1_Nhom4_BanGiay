@@ -4,6 +4,8 @@
  */
 package customModel;
 
+import java.sql.Date;
+
 /**
  *
  * @author ADMIN
@@ -14,15 +16,17 @@ public class KhachHangCustomModel {
     private String ma;
     private String hoTen;
     private String sdt;
+    private Date ngaySinh;
 
     public KhachHangCustomModel() {
     }
 
-    public KhachHangCustomModel(String id, String ma, String hoTen, String sdt) {
+    public KhachHangCustomModel(String id, String ma, String hoTen, String sdt, Date ngaySinh) {
         this.id = id;
         this.ma = ma;
         this.hoTen = hoTen;
         this.sdt = sdt;
+        this.ngaySinh = ngaySinh;
     }
 
     public String getId() {
@@ -55,6 +59,14 @@ public class KhachHangCustomModel {
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
+    }
+
+    public Date getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 
     @Override

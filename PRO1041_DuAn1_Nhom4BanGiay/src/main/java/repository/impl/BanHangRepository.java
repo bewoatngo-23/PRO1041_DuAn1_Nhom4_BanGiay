@@ -6,6 +6,7 @@ package repository.impl;
 
 import customModel.HoaDonChiTietCustomModel;
 import customModel.HoaDonCustomModel;
+import customModel.VoucherCustomModel;
 import customModelBanHang.GioHangViewModel;
 import customModelBanHang.HoaDonViewModel;
 import customModelBanHang.SanPhamViewModel;
@@ -190,17 +191,19 @@ public class BanHangRepository {
     public String updateTrangThai(HoaDonViewModel hd, String ma) {
         String query = "UPDATE [dbo].[HoaDon]\n"
                 + "   SET \n"
-                + "      [NgayThanhToan] = ?\n"
+                + "      [IdVoucher] = ?\n"
+                + "      ,[NgayThanhToan] = ?\n"
                 + "      ,[TongTien] = ?\n"
                 + "      ,[TongSanPham] = ?\n"
                 + "      ,[TrangThai] = ?\n"
                 + " WHERE Ma = ?";
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setObject(1, hd.getNgayThanhToan());
-            ps.setObject(2, hd.getTongTien());
-            ps.setObject(3, hd.getTongSanPham());
-            ps.setObject(4, hd.getTrangThai());
-            ps.setObject(5, ma);
+            ps.setObject(1, hd.getId());
+            ps.setObject(2, hd.getNgayThanhToan());
+            ps.setObject(3, hd.getTongTien());
+            ps.setObject(4, hd.getTongSanPham());
+            ps.setObject(5, hd.getTrangThai());
+            ps.setObject(6, ma);
 
             if (ps.executeUpdate() > 0) {
                 return "Thành công";

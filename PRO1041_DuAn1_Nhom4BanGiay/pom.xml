@@ -41,37 +41,37 @@
             <version>RELEASE126</version>
         </dependency>-->
 
-<!-- https://mvnrepository.com/artifact/org.swinglabs.swingx/swingx-all -->
-<dependency>
-    <groupId>org.swinglabs.swingx</groupId>
-    <artifactId>swingx-all</artifactId>
-    <version>1.6.5-1</version>
-</dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>jcalendar-1.4</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
-        
-                <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
-<dependency>
-    <groupId>org.jfree</groupId>
-    <artifactId>jfreechart</artifactId>
-    <version>1.5.3</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.jfree/jcommon -->
-<dependency>
-    <groupId>org.jfree</groupId>
-    <artifactId>jcommon</artifactId>
-    <version>1.0.24</version>
-</dependency>
-
         <!-- https://mvnrepository.com/artifact/org.swinglabs.swingx/swingx-all -->
         <dependency>
             <groupId>org.swinglabs.swingx</groupId>
             <artifactId>swingx-all</artifactId>
             <version>1.6.5-1</version>
         </dependency>
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>jcalendar-1.4</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.5.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jfree/jcommon -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.24</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.swinglabs.swingx/swingx-all -->
+<!--        <dependency>
+            <groupId>org.swinglabs.swingx</groupId>
+            <artifactId>swingx-all</artifactId>
+            <version>1.6.5-1</version>
+        </dependency>-->
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
