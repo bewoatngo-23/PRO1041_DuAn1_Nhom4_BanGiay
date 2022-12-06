@@ -66,7 +66,7 @@ public class HoaDonBanHangRepositoryThongKe {
 
 
     public List<HoaDonCustomModelHDThongKe> getHoaDon() {
-        String sql = "SELECT dbo.HoaDon.Id, dbo.HoaDon.Ma, dbo.NhanVien.Ma AS Expr1, dbo.NhanVien.HoTen, dbo.KhachHang.Ma AS Expr2, dbo.KhachHang.HoTen AS Expr3, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HoaDon.TongSanPham,\n"
+        String sql = "SELECT dbo.HoaDon.Id, dbo.HoaDon.Ma, dbo.NhanVien.Ma AS Expr1, dbo.NhanVien.HoTen, dbo.KhachHang.Ma AS Expr2, dbo.KhachHang.HoTen AS Expr3, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HoaDon.TongSanPham,CONVERT(int,ROUND(DATEDIFF(hour,dbo.KhachHang.NgaySinh,GETDATE())/8766.0,0)) AS tuoi,\n"
                 + "                  dbo.HoaDon.TrangThai\n"
                 + "FROM     dbo.HoaDon INNER JOIN\n"
                 + "                  dbo.KhachHang ON dbo.HoaDon.IdKH = dbo.KhachHang.Id INNER JOIN\n"
@@ -76,7 +76,7 @@ public class HoaDonBanHangRepositoryThongKe {
             ResultSet rs = ps.executeQuery();
             List<HoaDonCustomModelHDThongKe> listHD = new ArrayList<>();
             while (rs.next()) {
-                listHD.add(new HoaDonCustomModelHDThongKe(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7), rs.getDouble(8), rs.getInt(9), rs.getInt(10)));
+                listHD.add(new HoaDonCustomModelHDThongKe(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7), rs.getDouble(8), rs.getInt(9), rs.getInt(10),rs.getInt(11)));
             }
             return listHD;
         } catch (Exception e) {
@@ -86,7 +86,7 @@ public class HoaDonBanHangRepositoryThongKe {
     }
     
     public List<HoaDonCustomModelHDThongKe> getHoaDonBetWeen(String batDau, String ketThuc) {
-         String sql = "SELECT dbo.HoaDon.Id, dbo.HoaDon.Ma, dbo.NhanVien.Ma AS Expr1, dbo.NhanVien.HoTen, dbo.KhachHang.Ma AS Expr2, dbo.KhachHang.HoTen AS Expr3, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HoaDon.TongSanPham,\n"
+         String sql = "SELECT dbo.HoaDon.Id, dbo.HoaDon.Ma, dbo.NhanVien.Ma AS Expr1, dbo.NhanVien.HoTen, dbo.KhachHang.Ma AS Expr2, dbo.KhachHang.HoTen AS Expr3, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HoaDon.TongSanPham,CONVERT(int,ROUND(DATEDIFF(hour, dbo.KhachHang.NgaySinh,GETDATE())/8766.0,0)) AS tuoi,\n"
                 + "                  dbo.HoaDon.TrangThai\n"
                 + "FROM     dbo.HoaDon INNER JOIN\n"
                 + "                  dbo.KhachHang ON dbo.HoaDon.IdKH = dbo.KhachHang.Id INNER JOIN\n"
@@ -97,7 +97,28 @@ public class HoaDonBanHangRepositoryThongKe {
             ResultSet rs = ps.executeQuery();
             List<HoaDonCustomModelHDThongKe> listHD = new ArrayList<>();
             while (rs.next()) {
-                listHD.add(new HoaDonCustomModelHDThongKe(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getInt(9), rs.getInt(10)));
+                listHD.add(new HoaDonCustomModelHDThongKe(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getInt(9), rs.getInt(10),rs.getInt(11)));
+            }
+            return listHD;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return null;
+    }
+    
+    public List<HoaDonCustomModelHDThongKe> getHoaDonByNgay(String input) {
+         String sql = "SELECT dbo.HoaDon.Id, dbo.HoaDon.Ma, dbo.NhanVien.Ma AS Expr1, dbo.NhanVien.HoTen, dbo.KhachHang.Ma AS Expr2, dbo.KhachHang.HoTen AS Expr3, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HoaDon.TongSanPham,CONVERT(int,ROUND(DATEDIFF(hour, dbo.KhachHang.NgaySinh,GETDATE())/8766.0,0)) AS tuoi,\n"
+                + "                  dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HoaDon INNER JOIN\n"
+                + "                  dbo.KhachHang ON dbo.HoaDon.IdKH = dbo.KhachHang.Id INNER JOIN\n"
+                + "                  dbo.NhanVien ON dbo.HoaDon.IdNV = dbo.NhanVien.Id"
+                + "                  where dbo.HoaDon.NgayThanhToan like"+input;
+
+        try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            List<HoaDonCustomModelHDThongKe> listHD = new ArrayList<>();
+            while (rs.next()) {
+                listHD.add(new HoaDonCustomModelHDThongKe(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getInt(9), rs.getInt(10),rs.getInt(11)));
             }
             return listHD;
         } catch (Exception e) {
@@ -108,7 +129,7 @@ public class HoaDonBanHangRepositoryThongKe {
     
         public static void main(String[] args) {
         HoaDonBanHangRepositoryThongKe a = new HoaDonBanHangRepositoryThongKe();
-        System.out.println(a.getHoaDonBetWeen("'"+"2022-"+"01"+"-01'", "'"+"2022-"+"01"+"-28'"));
+        System.out.println(a.getHoaDon().get(0).getTuoiKH());
     }
 
 }

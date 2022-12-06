@@ -74,4 +74,15 @@ public class HoaDonHDServiceImplThongKe implements IHoaDonHDServiceThongKe {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public List<HoaDonCustomModelHDThongKe> getHoaDonByNgay(String input) {
+        return hdbhr.getHoaDonByNgay(input);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public static void main(String[] args) {
+        IHoaDonHDServiceThongKe a = new HoaDonHDServiceImplThongKe();
+        System.out.println(a.getHoaDonByNgay("'2022-12-4'"));
+    }
+
 }
