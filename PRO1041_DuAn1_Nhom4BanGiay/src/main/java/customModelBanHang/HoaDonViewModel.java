@@ -22,6 +22,7 @@ public class HoaDonViewModel {
     private Date ngayThanhToan;
     private Double tongTien;
     private int tongSanPham;
+    private String idVoucher;
     private String sdt;
 
     public HoaDonViewModel() {
@@ -136,6 +137,14 @@ public class HoaDonViewModel {
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
+    }
+
+    public String getIdVoucher() {
+        return idVoucher;
+    }
+
+    public void setIdVoucher(String idVoucher) {
+        this.idVoucher = idVoucher;
     }
 
     public String trangThai() {

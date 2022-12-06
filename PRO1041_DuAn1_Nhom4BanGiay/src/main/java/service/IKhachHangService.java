@@ -26,6 +26,6 @@ public interface IKhachHangService {
 
     String delete(String ma);
 
-    List<KhachHangCustomModel> Search(String ten);
+    
 
 }
