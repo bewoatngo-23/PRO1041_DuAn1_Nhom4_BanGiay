@@ -50,11 +50,6 @@ public class KhachHangServiceImpl implements IKhachHangService {
         return khr.delete(ma);
     }
 
-    @Override
-    public List<KhachHangCustomModel> Search(String ten) {
-        return khr.search(ten);
-    }
-
     public List<KhachHangCustomModel> SearchKH(String input) {
         List<KhachHangCustomModel> listKH = new ArrayList<>();
         if (input == null) {

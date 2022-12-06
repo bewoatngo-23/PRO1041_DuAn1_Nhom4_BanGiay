@@ -23,6 +23,7 @@ public class HoaDonDoiTraCustomModel {
     private Date ngayThanhToan;
     private String idCTSP;
     private int soLuong;
+    private String liDoDoi;
     private String ghiChu;
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -39,12 +40,13 @@ public class HoaDonDoiTraCustomModel {
         this.ngayThanhToan = ngayThanhToan;
     }
 
-    public HoaDonDoiTraCustomModel(String idCTSP, String id, String idKH, Date ngayThanhToan, int soLuong, String ghiChu) {
+    public HoaDonDoiTraCustomModel(String idCTSP, String id, String idKH, Date ngayThanhToan, int soLuong, String liDoDoi, String ghiChu) {
         this.idCTSP = idCTSP;
         this.id = id;
         this.idKH = idKH;
         this.ngayThanhToan = ngayThanhToan;
         this.soLuong = soLuong;
+        this.liDoDoi = liDoDoi;
         this.ghiChu = ghiChu;
     }
 
@@ -140,9 +142,17 @@ public class HoaDonDoiTraCustomModel {
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(getNgayThanhToan());
-        cal.add(Calendar.DATE, 1);
+        cal.add(Calendar.DATE, 3);
         return dateFormat.format(cal.getTime());
 
+    }
+
+    public String getLiDoDoi() {
+        return liDoDoi;
+    }
+
+    public void setLiDoDoi(String liDoDoi) {
+        this.liDoDoi = liDoDoi;
     }
 
     public Object[] toRowData() {

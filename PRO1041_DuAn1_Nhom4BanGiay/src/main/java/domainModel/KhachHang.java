@@ -4,6 +4,8 @@
  */
 package domainModel;
 
+import java.sql.Date;
+
 /**
  *
  * @author ADMIN
@@ -14,21 +16,36 @@ public class KhachHang {
     private String ma;
     private String hoTen;
     private String sdt;
+    private Date ngaySinh;
 
     public KhachHang() {
     }
 
-    public KhachHang(String id, String ma, String hoTen, String sdt) {
+//    public KhachHang(String id, String ma, String hoTen, String sdt) {
+//        this.id = id;
+//        this.ma = ma;
+//        this.hoTen = hoTen;
+//        this.sdt = sdt;
+//    }
+//
+//    public KhachHang(String ma, String hoTen, String sdt) {
+//        this.ma = ma;
+//        this.hoTen = hoTen;
+//        this.sdt = sdt;
+//    }
+    public KhachHang(String id, String ma, String hoTen, String sdt, Date ngaySinh) {
         this.id = id;
         this.ma = ma;
         this.hoTen = hoTen;
         this.sdt = sdt;
+        this.ngaySinh = ngaySinh;
     }
 
-    public KhachHang(String ma, String hoTen, String sdt) {
+    public KhachHang(String ma, String hoTen, String sdt, Date ngaySinh) {
         this.ma = ma;
         this.hoTen = hoTen;
         this.sdt = sdt;
+        this.ngaySinh = ngaySinh;
     }
 
     public String getId() {
@@ -61,6 +78,14 @@ public class KhachHang {
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
+    }
+
+    public Date getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 
     @Override

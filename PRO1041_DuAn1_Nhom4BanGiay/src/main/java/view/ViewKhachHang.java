@@ -221,8 +221,8 @@ public class ViewKhachHang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tên tìm kiếm không được để trống");
         } else {
             
-            List<KhachHangCustomModel> listNew = khs.Search(ten);
-            showData(listNew);
+//            List<KhachHangCustomModel> listNew = khs.Search(ten);
+//            showData(listNew);
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
@@ -246,9 +246,9 @@ public class ViewKhachHang extends javax.swing.JFrame {
         } else if (trung) {
             JOptionPane.showMessageDialog(this, "Mã không được để trùng");
         } else {
-            KhachHang kh = new KhachHang(ma, ten, sdt);
-            JOptionPane.showMessageDialog(this, khs.add(kh));
-            showData(listKHCM = khs.getAllCustom());
+//            KhachHang kh = new KhachHang(ma, ten, sdt);
+//            JOptionPane.showMessageDialog(this, khs.add(kh));
+//            showData(listKHCM = khs.getAllCustom());
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -264,9 +264,9 @@ public class ViewKhachHang extends javax.swing.JFrame {
         } else if (sdt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Số điện thoại không được để trống");
         } else {
-            KhachHang kh = new KhachHang(ma, ten, sdt);
-            JOptionPane.showMessageDialog(this, khs.update(kh, ma));
-            showData(listKHCM = khs.getAllCustom());
+//            KhachHang kh = new KhachHang(ma, ten, sdt);
+//            JOptionPane.showMessageDialog(this, khs.update(kh, ma));
+//            showData(listKHCM = khs.getAllCustom());
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
