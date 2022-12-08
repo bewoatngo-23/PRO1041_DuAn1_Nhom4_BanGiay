@@ -384,6 +384,11 @@ public class ViewBanHang extends javax.swing.JFrame implements Runnable, ThreadF
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGioHangMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblGioHang);
 
         btnXoaSanPham.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -1485,6 +1490,10 @@ public class ViewBanHang extends javax.swing.JFrame implements Runnable, ThreadF
             cbbMSBH.addItem(ms.getTen());
         });
     }//GEN-LAST:event_cbbMSBHMouseClicked
+
+    private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGioHangMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblGioHangMouseClicked
 
     /**
      * @param args the command line arguments

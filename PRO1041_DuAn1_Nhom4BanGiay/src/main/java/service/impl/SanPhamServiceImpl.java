@@ -6,10 +6,10 @@ package service.impl;
 
 import customModel.SanPhamCustomModel;
 import domainModel.SanPham;
+import java.util.ArrayList;
 import java.util.List;
 import repository.impl.SanPhamRepository;
 import service.ISanPhamService;
-
 
 public class SanPhamServiceImpl implements ISanPhamService {
 
@@ -46,8 +46,28 @@ public class SanPhamServiceImpl implements ISanPhamService {
     }
 
     @Override
-    public List<SanPhamCustomModel> Search(String ten) {
-        return msr.search(ten);
+    public List<SanPhamCustomModel> SearchNV(String input) {
+        List<SanPhamCustomModel> listNV = new ArrayList<>();
+        if (input == null) {
+            return msr.getAllCustom();
+        }
+        for (SanPhamCustomModel x : msr.getAllCustom()) {
+            if (x.getMa().contains(input) || x.getTen().contains(input)) {
+                listNV.add(x);
+            }
+        }
+        return listNV;
+    }
+
+    @Override
+    public boolean CheckTrungMa(String input) {
+        for (SanPhamCustomModel x : msr.getAllCustom()) {
+            if (x.getMa().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
 }

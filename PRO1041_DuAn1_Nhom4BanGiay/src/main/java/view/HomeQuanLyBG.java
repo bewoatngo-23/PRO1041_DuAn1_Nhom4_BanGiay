@@ -45,6 +45,7 @@ import java.awt.print.PrinterException;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -100,7 +101,7 @@ import utilities.Utility;
  * @author ADMIN
  */
 public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, ThreadFactory {
-    
+
     private DefaultTableModel tblmodel = new DefaultTableModel();
     private List<KhachHang> listKH = new ArrayList<>();
     private List<KhachHangCustomModel> listKHCM = new ArrayList<>();
@@ -164,7 +165,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private List<VoucherCustomModel> listVoucherCM = new ArrayList<>();
     private List<VoucherCustomModel> listVoucherCMTT = new ArrayList<>();
     private VoucherServiceImpl vcs = new VoucherServiceImpl();
-    
+    DecimalFormat fomat = new DecimalFormat("###,###,###");
+    private static final long serialVersionUID = 6441489157408381878L;
+
     public HomeQuanLyBG() {
         initComponents();
         cardLayout = (CardLayout) (pnlcards.getLayout());
@@ -208,7 +211,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         listSanPhams = bhs.getSanPhamVM();
         listHoaDons = bhs.getHoaDon();
         listFullHD = bhs.getHoaDonFull();
-        
+
         ListDG = deGiayService.getAll(null);
         listDSP = dongSPService.getAllCustom();
         listMS = mauSacService.getAllCustom();
@@ -219,7 +222,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             cbbNhanVienBH.addItem(nv.getHoTen());
         });
         cbbNhanVienBH.setSelectedItem("Tên nhân viên");
-        
+
         listKHCM = khs.getAllCustom();
         listKHCM.forEach((kh) -> {
             cbbSoDienThoai.addItem(kh.getSdt());
@@ -236,15 +239,15 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         Action action = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Double thanhToan = Double.valueOf(lblThanhToan.getText());
-                String tienKhachDua = txtTienKhachDua.getText();
+                Double thanhToan = Double.valueOf(lblThanhToan.getText().replace(",", ""));
+                String tienKhachDua = txtTienKhachDua.getText().replace(",", "");
                 Double tienThua = 0.0;
                 if (tienKhachDua == "0" || tienKhachDua.isEmpty()) {
                     tienThua = 0.0;
                 } else {
                     tienThua = Double.valueOf(tienKhachDua) - thanhToan;
                 }
-                lblTienThua.setText(String.valueOf(tienThua));
+                lblTienThua.setText(String.valueOf(fomat.format(tienThua)));
             }
         };
         txtTienKhachDua.addActionListener(action);
@@ -274,21 +277,21 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         });
         loadData(listVoucherCM);
     }
-    
+
     private void loadData(List<VoucherCustomModel> lists) {
         tblModelVoucher.setRowCount(0);
         for (VoucherCustomModel x : lists) {
             tblModelVoucher.addRow(x.toRowData());
         }
     }
-    
+
     private void fillDataVoucher(int index) {
         VoucherCustomModel v = listVoucherCM.get(index);
         txtMaVoucher.setText(v.getMa());
         txtTenVoucher.setText(v.getTen());
         txtNgayBatDau.setDate(v.getNgayBatDau());
         txtNgayHetHan.setDate(v.getNgayHetHan());
-        
+
         txtGhiChuVoucher.setText(v.getGhiChu());
         String gg = null;
         if (v.getGiamGia() == 0.95) {
@@ -314,18 +317,18 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         }
         cbbMucGiamGia.setSelectedItem(gg);
         String tt = null;
-        
+
         if (v.getTrangThai()
                 == 0) {
             tt = "Đang áp dụng";
         } else {
             tt = "Đã hết hạn";
         }
-        
+
         cbbTrangThaiVoucher.setSelectedItem(tt);
-        
+
     }
-    
+
     public boolean CheckDLVC() {
         if (uti.CheckRong(txtMaVoucher.getText())) {
             JOptionPane.showMessageDialog(this, "Mã không được để trống");
@@ -351,38 +354,38 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txtTenVoucher.setText("");
             return true;
         }
-        
+
         if (uti.DemChuoi(txtGhiChuVoucher.getText()) > 100) {
             JOptionPane.showMessageDialog(this, "Ghi chú không lớn hơn 100 ký tự");
             txtGhiChuVoucher.requestFocus();
             txtGhiChuVoucher.setText("");
             return true;
         }
-        
+
         return false;
     }
-    
+
     private void showDataHDDoiTra(List<HoaDonDoiTraCustomModel> lists) {
         tblModelHDDT.setRowCount(0);
         for (HoaDonDoiTraCustomModel x : lists) {
             tblModelHDDT.addRow(x.toRowData());
         }
     }
-    
+
     private void showDataHDCTDoiTra(List<HDCTDoiTraCustomModel> listss) {
         tblModelHDCTDT.setRowCount(0);
         for (HDCTDoiTraCustomModel x : listss) {
             tblModelHDCTDT.addRow(x.toRowData());
         }
     }
-    
+
     private void showDataDoiTra(List<DoiTraCustomModel> listsss) {
         tblModelDoiTra.setRowCount(0);
         for (DoiTraCustomModel x : listsss) {
             tblModelDoiTra.addRow(x.toRowData());
         }
     }
-    
+
     private void initWedcam() {
         java.awt.Dimension size = WebcamResolution.QVGA.getSize();
         webcam = Webcam.getWebcams().get(0);
@@ -393,14 +396,14 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         pnlWebcam.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 170));
         executor.execute(this);
     }
-    
+
     @Override
     public void run() {
         do {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
-                Logger.getLogger(HomeQuanLyBG.class.getName()).log(Level.SEVERE, null, ex);
+//                ex.printStackTrace();
             }
             Result result = null;
             BufferedImage image = null;
@@ -411,18 +414,18 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             }
             LuminanceSource source = new BufferedImageLuminanceSource(image);
             BinaryBitmap bb = new BinaryBitmap(new HybridBinarizer(source));
-            
+
             try {
                 result = new MultiFormatReader().decode(bb);
             } catch (NotFoundException ex) {
-                Logger.getLogger(ViewBanHang.class.getName()).log(Level.SEVERE, null, ex);
+
             }
-            
+
             if (result != null) {
                 JOptionPane.showMessageDialog(this, "Sản phẩm: " + result.getText());
                 listSanPhams = bhs.SearchSPBH(result.getText());
                 showDataSanPham(listSanPhams);
-                
+
             }
         } while (true);
     }
@@ -430,31 +433,31 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     //Load Table
     private void loadDataHoaDon(List<HoaDonViewModel> listHoaDons) {
         tblModelHoaDon.setRowCount(0);
-        
+
         for (HoaDonViewModel listHoaDon : listHoaDons) {
-            
+
             tblModelHoaDon.addRow(listHoaDon.toRowDataHD());
         }
     }
-    
+
     private void showDataSanPham(List<SanPhamViewModel> listSanPhams) {
         tblModelSanPham.setRowCount(0);
-        
+
         for (SanPhamViewModel sp : listSanPhams) {
-            
+
             tblModelSanPham.addRow(sp.todataRowSanPham());
         }
-        
+
     }
-    
+
     private void showDataGioHang(List<GioHangViewModel> listGioHangS) {
-        
+
         tblModelGioHang.setRowCount(0);
         for (GioHangViewModel gh : listGioHangS) {
-            
+
             tblModelGioHang.addRow(gh.todataRow());
         }
-        
+
     }
     // Fill data 
 
@@ -465,7 +468,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         cbbNhanVienBH.setSelectedItem(hd.getNv());
         cbbSoDienThoai.setSelectedItem(hd.getSdt());
         lblNgayTao.setText(sdf.format(hd.getNgayTao()));
-        
+
     }
 
     // Đếm trạng thái chờ sét btnTaoHoaDon
@@ -479,21 +482,21 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         }
         return a;
     }
-    
+
     private void showDataHD(List<HoaDonCustomModelHD> lists) {
         tblModelHoaDonBH.setRowCount(0);
         for (HoaDonCustomModelHD x : lists) {
             tblModelHoaDonBH.addRow(x.toRowData());
         }
     }
-    
+
     private void showDataHDCT(List<HDCTCustoModelHD> listss) {
         tblModelHDCTBH.setRowCount(0);
         for (HDCTCustoModelHD x : listss) {
             tblModelHDCTBH.addRow(x.toRowData());
         }
     }
-    
+
     private void showData(List<KhachHangCustomModel> lists) {
         tblmodel.setRowCount(0);
         int i = 1;
@@ -504,22 +507,22 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             tblmodel.addRow(data);
         }
     }
-    
+
     private void fillData(int index) {
         KhachHangCustomModel kh = listKHCM.get(index);
         txtMaKH.setText(kh.getMa());
         txtTenKH.setText(kh.getHoTen());
         txtSdt.setText(kh.getSdt());
-        
+
     }
-    
+
     private void showDataNV(List<NhanVienCustomModel> listNhanVienCustom) {
         dtm.setRowCount(0);
         for (NhanVienCustomModel listNhanViens : listNhanVienCustom) {
             dtm.addRow(listNhanViens.toRowData());
         }
     }
-    
+
     private void fillDataNV(int index) {
         NhanVienCustomModel kh = listNhanVienCustom.get(index);
         lbID.setText(kh.getId());
@@ -531,7 +534,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         txtDiaChi.setText(kh.getDiaChi());
         txtSdtNV.setText(kh.getSdt());
         txtEmail.setText(kh.getEmail());
-        
+
         if (kh.getGioiTinh().equalsIgnoreCase("Nam")) {
             radioNam.setSelected(true);
         } else {
@@ -539,12 +542,19 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         }
         cbbChucVu.setSelectedItem(kh.getTenCV());
         lbTenChucVu.setText(kh.getTenCV());
-        
+
     }
-    
+
     public boolean CheckDLNV() {
         if (uti.CheckRong(txtMa.getText())) {
             JOptionPane.showMessageDialog(this, "Mã không được để trống");
+            txtMa.requestFocus();
+            txtMa.setText("");
+            return true;
+        }
+
+        if (uti.DemChuoi(txtMa.getText()) > 20) {
+            JOptionPane.showMessageDialog(this, "Mã không lớn hơn 20 ký tự");
             txtMa.requestFocus();
             txtMa.setText("");
             return true;
@@ -555,14 +565,36 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txtTen.setText("");
             return true;
         }
+
+        if (uti.DemChuoi(txtTen.getText()) > 100) {
+            JOptionPane.showMessageDialog(this, "Họ tên không lớn hơn 100 ký tự");
+            txtTen.requestFocus();
+            txtTen.setText("");
+            return true;
+        }
         if (uti.CheckRong(txtTaiKhoan.getText())) {
             JOptionPane.showMessageDialog(this, "Tài khoản không được để trống");
             txtTaiKhoan.requestFocus();
             txtTaiKhoan.setText("");
             return true;
         }
+
+        if (uti.DemChuoi(txtTaiKhoan.getText()) > 100) {
+            JOptionPane.showMessageDialog(this, "Tài khoản không lớn hơn 100 ký tự");
+            txtTaiKhoan.requestFocus();
+            txtTaiKhoan.setText("");
+            return true;
+        }
+
         if (uti.CheckRong(txtMatKhau.getText())) {
             JOptionPane.showMessageDialog(this, "Mật khảu không được để trống");
+            txtMatKhau.requestFocus();
+            txtMatKhau.setText("");
+            return true;
+        }
+
+        if (uti.DemChuoi(txtMatKhau.getText()) > 25) {
+            JOptionPane.showMessageDialog(this, "Mật khảu không lớn hơn 25 ký tự");
             txtMatKhau.requestFocus();
             txtMatKhau.setText("");
             return true;
@@ -579,10 +611,24 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txtDiaChi.setText("");
             return true;
         }
+
+        if (uti.DemChuoi(txtDiaChi.getText()) > 100) {
+            JOptionPane.showMessageDialog(this, "Địa chỉ không lớn hơn 100 ký tự");
+            txtDiaChi.requestFocus();
+            txtDiaChi.setText("");
+            return true;
+        }
         if (uti.CheckRong(txtSdtNV.getText())) {
             JOptionPane.showMessageDialog(this, "Số điện thoại không được để trống");
             txtSdt.requestFocus();
             txtSdt.setText("");
+            return true;
+        }
+
+        if (uti.DemChuoi(txtSdtNV.getText()) > 10) {
+            JOptionPane.showMessageDialog(this, "SDT không lớn hơn 10 ký tự");
+            txtSdtNV.requestFocus();
+            txtSdtNV.setText("");
             return true;
         }
         if (uti.CheckRong(txtEmail.getText())) {
@@ -591,12 +637,19 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txtEmail.setText("");
             return true;
         }
-        
+
+        if (uti.DemChuoi(txtEmail.getText()) > 100) {
+            JOptionPane.showMessageDialog(this, "Email không lớn hơn 100 ký tự");
+            txtEmail.requestFocus();
+            txtEmail.setText("");
+            return true;
+        }
+
         return false;
     }
     //vu_ctsp
     private String click;
-    
+
     public void loadTable(String input) {
         DefaultTableModel mol = (DefaultTableModel) tbl_CTSanPham.getModel();
         mol.setRowCount(0);
@@ -615,11 +668,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 x.getKichCo(),
                 x.getXuatXu(),
                 x.getTrangThai() == 0 ? "Đang Bán" : "Dừng Bán"
-            
+
             });
         }
     }
-    
+
     public void loadTableByGia(String batDau, String ketThuc) {
         DefaultTableModel mol = (DefaultTableModel) tbl_CTSanPham.getModel();
         mol.setRowCount(0);
@@ -638,13 +691,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 x.getKichCo(),
                 x.getXuatXu(),
                 x.getTrangThai() == 0 ? "Đang Bán" : "Dừng Bán"
-            
+
             });
         }
     }
-    
+
     public void loadCBB() {
-        
+
         cbo_deGiay.removeAllItems();
         for (DeGiayCustomModel x : deGiayService.getAll(null)) {
             cbo_deGiay.addItem(x.getTen());
@@ -677,22 +730,22 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         cbo_trangThai.addItem("Đang Bán");
         cbo_trangThai.addItem("Dừng Bán");
         cbo_trangThai.setSelectedIndex(0);
-        
+
         cbo_locDeGiay.removeAllItems();
         for (DeGiayCustomModel x : deGiayService.getAll(null)) {
             cbo_locDeGiay.addItem(x.getTen());
         }
-        
+
         cbo_locDongSP.removeAllItems();
         for (var x : dongSPService.getAll()) {
             cbo_locDongSP.addItem(x.getTen());
         }
-        
+
         cbo_locMauSac.removeAllItems();
         for (var x : mauSacService.getAll()) {
             cbo_locMauSac.addItem(x.getTen());
         }
-        
+
         cbo_locGia.removeAllItems();
         cbo_locGia.addItem("100000 - 500000");
         cbo_locGia.addItem("500000 - 1000000");
@@ -700,9 +753,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         cbo_locGia.addItem("3000000 - 5000000");
         cbo_locGia.addItem("5000000 - 7000000");
         cbo_locGia.addItem("7000000 - 10000000");
-        
+
     }
-    
+
     public ChiTietSanPhamHiber getForm() {
         return new ChiTietSanPhamHiber(null,
                 sanPhamHiberService.getByIndex(cbo_sanPham.getSelectedIndex()),
@@ -716,7 +769,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 txt_kichCo.getText(),
                 cbo_trangThai.getSelectedIndex());
     }
-    
+
     public boolean checkDL() {
         // check giá bán
         if (uti.CheckRong(txt_giaBan.getText())) {
@@ -725,14 +778,14 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txt_giaBan.setText("");
             return true;
         }
-        
+
         if (uti.CheckSoThapPhan(txt_giaBan.getText())) {
             JOptionPane.showMessageDialog(this, "Giá Bán không đúng kiểu dữ liệu");
             txt_giaBan.requestFocus();
             txt_giaBan.setText("");
             return true;
         }
-        
+
         if (uti.DemChuoi(txt_giaBan.getText()) > 20) {
             JOptionPane.showMessageDialog(this, "Giá Bán không lớn hơn 20 ký tự");
             txt_giaBan.requestFocus();
@@ -747,14 +800,14 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txt_soLuong.setText("");
             return true;
         }
-        
+
         if (uti.CheckSo(txt_soLuong.getText())) {
             JOptionPane.showMessageDialog(this, "Số lượng không đúng kiểu dữ liệu");
             txt_soLuong.requestFocus();
             txt_soLuong.setText("");
             return true;
         }
-        
+
         if (uti.DemChuoi(txt_soLuong.getText()) > 10) {
             JOptionPane.showMessageDialog(this, "Số lượng không lớn hơn 10 ký tự");
             txt_soLuong.requestFocus();
@@ -769,14 +822,14 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txt_xuatXu.setText("");
             return true;
         }
-        
+
         if (uti.CheckChu(txt_xuatXu.getText())) {
             JOptionPane.showMessageDialog(this, "Xuất xứ không đúng kiểu dữ liệu");
             txt_xuatXu.requestFocus();
             txt_xuatXu.setText("");
             return true;
         }
-        
+
         if (uti.DemChuoi(txt_xuatXu.getText()) > 50) {
             JOptionPane.showMessageDialog(this, "Xuất xứ không lớn hơn 50 ký tự");
             txt_xuatXu.requestFocus();
@@ -799,7 +852,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txt_kichCo.setText("");
             return true;
         }
-        
+
         if (uti.DemChuoi(txt_kichCo.getText()) > 20) {
             JOptionPane.showMessageDialog(this, "Kích cỡ không lớn hơn 20 ký tự");
             txt_kichCo.requestFocus();
@@ -808,7 +861,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         }
         return false;
     }
-    
+
     public boolean CheckDLKH() {
         if (uti.CheckRong(txtMaKH.getText())) {
             JOptionPane.showMessageDialog(this, "Mã không được để trống");
@@ -834,7 +887,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txtTenKH.setText("");
             return true;
         }
-        
+
         if (uti.CheckRong(txtSdt.getText())) {
             JOptionPane.showMessageDialog(this, "Số điện thoại không được để trống");
             txtSdt.requestFocus();
@@ -847,7 +900,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             txtSdt.setText("");
             return true;
         }
-        
+
         return false;
     }
 
@@ -1012,11 +1065,17 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         txtGhiChu = new javax.swing.JTextArea();
         jLabel52 = new javax.swing.JLabel();
         cbbLiDoDoi = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jLabel53 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         txtTimKiemDoiTra = new javax.swing.JTextField();
         jScrollPane11 = new javax.swing.JScrollPane();
         tblHoaDonDoiTra = new javax.swing.JTable();
+        btnLoc = new javax.swing.JButton();
+        jLabel77 = new javax.swing.JLabel();
+        dcBatDau = new com.toedter.calendar.JDateChooser();
+        jLabel78 = new javax.swing.JLabel();
+        dcKetThuc = new com.toedter.calendar.JDateChooser();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
         tblDoiTra = new javax.swing.JTable();
@@ -1103,6 +1162,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         cbbLocTrangThaiHD = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblHoaDonBanHang = new javax.swing.JTable();
+        dcKetThucHD = new com.toedter.calendar.JDateChooser();
+        jLabel79 = new javax.swing.JLabel();
+        dcBatDauHD = new com.toedter.calendar.JDateChooser();
+        jLabel80 = new javax.swing.JLabel();
+        btnLocHoaDon = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel76 = new javax.swing.JLabel();
@@ -1136,7 +1200,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1400, 724));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -1525,11 +1588,12 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     .addComponent(jLabel3)
                     .addComponent(jLabel42))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNgaySinhKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNgaySinhKH, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1676,6 +1740,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         jLabel13.setText("Email");
 
         txtEmail.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Courier New", 1, 36)); // NOI18N
         jLabel14.setText("NHÂN VIÊN");
@@ -1850,11 +1919,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     .addComponent(btnUpdateNV, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteNV, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClearNV, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(txtTimKiemNV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
         );
 
         pnlcards.add(pnlNhanVien, "cardNV");
@@ -2555,7 +2624,17 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         jLabel52.setText("Lí do đổi hàng:");
 
         cbbLiDoDoi.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        cbbLiDoDoi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kích cỡ", "Màu", "Chất lượng" }));
+        cbbLiDoDoi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kich Co", "Mau Sac", "Chat Luong" }));
+
+        jButton1.setBackground(new java.awt.Color(153, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Hóa đơn");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -2584,10 +2663,12 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                                     .addComponent(lblNgaDoiHangDT, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDoiSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(btnDoiSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -2614,7 +2695,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDoiSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDoiSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2648,6 +2731,22 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         });
         jScrollPane11.setViewportView(tblHoaDonDoiTra);
 
+        btnLoc.setBackground(new java.awt.Color(255, 153, 0));
+        btnLoc.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLoc.setForeground(new java.awt.Color(255, 255, 255));
+        btnLoc.setText("Lọc");
+        btnLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocActionPerformed(evt);
+            }
+        });
+
+        jLabel77.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel77.setText("Từ ngày");
+
+        jLabel78.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel78.setText("Đến ngày");
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -2655,9 +2754,19 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(txtTimKiemDoiTra, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTimKiemDoiTra, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -2665,10 +2774,18 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtTimKiemDoiTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTimKiemDoiTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnLoc)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel77, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dcBatDau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel78, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dcKetThuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -2808,7 +2925,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDoiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -3494,11 +3611,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTimKiemHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbbLocTrangThaiHD, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(cbbLocTrangThaiHD, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimKiemHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(94, 94, 94))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3532,6 +3649,22 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         });
         jScrollPane5.setViewportView(tblHoaDonBanHang);
 
+        jLabel79.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel79.setText("Đến ngày");
+
+        jLabel80.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel80.setText("Từ ngày");
+
+        btnLocHoaDon.setBackground(new java.awt.Color(255, 153, 0));
+        btnLocHoaDon.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnLocHoaDon.setForeground(new java.awt.Color(255, 255, 255));
+        btnLocHoaDon.setText("Lọc");
+        btnLocHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocHoaDonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -3540,17 +3673,44 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 .addGap(25, 25, 25)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 331, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5))
-                .addContainerGap())
+                        .addComponent(jScrollPane5)
+                        .addContainerGap())
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(dcBatDauHD, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(151, 151, 151))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(dcKetThucHD, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLocHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel80)
+                            .addComponent(dcBatDauHD, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel79)
+                            .addComponent(dcKetThucHD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLocHoaDon))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -3575,13 +3735,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                         .addGap(83, 83, 83)
                         .addGroup(pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel25)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel26)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(pnlHoaDonLayout.createSequentialGroup()
                         .addGap(476, 476, 476)
                         .addComponent(jLabel76)))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         pnlHoaDonLayout.setVerticalGroup(
             pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3590,9 +3750,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 .addComponent(jLabel76)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel25)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(40, 40, 40)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3885,19 +4045,19 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
 
     private void btnSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanPhamActionPerformed
         cardLayout.show(pnlcards, "cardCTSP");
+
     }//GEN-LAST:event_btnSanPhamActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
         cardLayout.show(pnlcards, "cardTK");
-//        ViewThongKe vtk = new ViewThongKe();
-//        vtk.setVisible(true);
+        ViewThongKe vtk = new ViewThongKe();
+        vtk.setVisible(true);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
         // TODO add your handling code here:
-//        ViewBanHang vbh = new ViewBanHang();
-//        vbh.setVisible(true);
+
         cardLayout.show(pnlcards, "cardBH");
 
     }//GEN-LAST:event_btnBanHangActionPerformed
@@ -3918,12 +4078,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         ViewLogin l = new ViewLogin();
         var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắc chắn muốn đăng xuất");
         if (temp == 0) {
+            webcam.close();
             l.setVisible(true);
             this.dispose();
         }
 
     }//GEN-LAST:event_btnLogoutActionPerformed
-    
+
 
     private void btnUpdateNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateNVActionPerformed
         // TODO add your handling code here:
@@ -3932,7 +4093,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng");
         } else {
             if (CheckDLNV() == false) {
-                
+
                 var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn cập nhật");
                 if (temp == 0) {
                     NhanVienCustomModel nhanVien = listNhanVienCustom.get(row);
@@ -3946,7 +4107,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     nv.setEmail(txtEmail.getText());
                     nv.setSdt(txtSdt.getText());
                     nv.setNgaySinh(Date.valueOf(txtNgaySinh.getText()));
-                    
+
                     boolean gender = radioNam.isSelected();
                     String gioiTinh;
                     if (gender) {
@@ -3961,11 +4122,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     JOptionPane.showMessageDialog(this, nhanVienServiceImpl.update(nv, ma));
                     listNhanVienCustom = nhanVienServiceImpl.getAllCustom();
                     showDataNV(listNhanVienCustom);
-                    
+
                 }
-                
+
             }
-            
+
         }
 
     }//GEN-LAST:event_btnUpdateNVActionPerformed
@@ -4034,7 +4195,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         }
         String maCV = cbbChucVu.getSelectedItem().toString();
         ChucVu cv = (ChucVu) chucVuService.getOne(maCV);
-        
+
         boolean trung = false;
         for (NhanVienCustomModel x : listNhanVienCustom) {
             if (x.getMa().contains(ma)) {
@@ -4092,7 +4253,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             }
         }
         if (CheckDLKH() == false) {
-            
+
             if (trung) {
                 JOptionPane.showMessageDialog(this, "Mã không được để trùng");
             } else {
@@ -4112,11 +4273,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         if (CheckDLKH() == false) {
             var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn cập nhật");
             if (temp == 0) {
-                
+
                 KhachHang kh = new KhachHang(ma, ten, sdt, Date.valueOf(ngaySinh));
                 JOptionPane.showMessageDialog(this, khs.update(kh, ma));
                 showData(listKHCM = khs.getAllCustom());
-                
+
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -4124,7 +4285,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private void btnThemCVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemCVActionPerformed
         ViewChucVu vcv = new ViewChucVu();
         vcv.setVisible(true);
-        
+
 
     }//GEN-LAST:event_btnThemCVActionPerformed
 
@@ -4355,10 +4516,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         } else {
             giamGia = 1;
         }
-        lblThanhTien.setText(String.valueOf(thanhTien));
-        lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+        lblThanhTien.setText(String.valueOf(fomat.format(thanhTien)));
+        lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
         fillDataHD(index);
-        
+
         txtTienKhachDua.setText("0");
         lblTienThua.setText("0");
         txtHoaDonPDF.setText("");
@@ -4369,42 +4530,42 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void btnXoaSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSanPhamActionPerformed
-        
+
         int indexHD = tblHoaDon.getSelectedRow();
         int indexGH = tblGioHang.getSelectedRow();
         if (indexGH < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xóa");
-            
+
         } else {
-            
+
             GioHangViewModel gh = listGioHangS.get(indexGH);
             HoaDonViewModel hd = listHoaDons.get(indexHD);
             int soLuongGH = gh.getSoLuong();
             String idHD = hd.getId();
-            
+
             String id = gh.getId();
             String idCTSP = gh.getIdCtsp();
             var tempTT = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa sản phẩm khỏi giỏ hàng không ?");
             if (tempTT == 0) {
-                
+
                 ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongGH);
                 bhs.capNhatSoLuong(ctsp, idCTSP);
                 JOptionPane.showMessageDialog(this, bhs.deleteGioHang(id));
                 listSanPhams = bhs.getSanPhamVM();
                 listGioHangS = bhs.getGioHang(idHD);
-                
+
                 showDataGioHang(listGioHangS);
                 showDataSanPham(listSanPhams);
-                
+
                 double thanhTien = 0;
                 double thanhToan = 0;
                 double giamGia = 0;
                 String cbbVoucher = cbbGiaGiam.getSelectedItem().toString();
                 for (GioHangViewModel gha : listGioHangS) {
                     thanhTien += gha.getSoLuong() * gh.getDonGia();
-                    
+
                 }
-                
+
                 if (cbbVoucher.equals("5%")) {
                     giamGia = 0.95;
                 } else if (cbbVoucher.equals("10%")) {
@@ -4428,9 +4589,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 } else {
                     giamGia = 1;
                 }
-                lblThanhTien.setText(String.valueOf(thanhTien));
-                lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
-                
+                lblThanhTien.setText(String.valueOf(fomat.format(thanhTien)));
+                lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
+
             }
         }
     }//GEN-LAST:event_btnXoaSanPhamActionPerformed
@@ -4439,10 +4600,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         int indexHD = tblHoaDon.getSelectedRow();
         int indexGH = tblGioHang.getSelectedRow();
         SanPhamViewModel sp = new SanPhamViewModel();
-        
+
         if (indexGH < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần cập nhật số lượng");
-            
+
         } else {
             GioHangViewModel ghsl = listGioHangS.get(indexGH);
             String idSL = ghsl.getIdCtsp();
@@ -4478,16 +4639,16 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     showDataGioHang(listGioHangS);
                     listSanPhams = bhs.getSanPhamVM();
                     showDataSanPham(listSanPhams);
-                    
+
                     double thanhTien = 0;
                     double thanhToan = 0;
                     double giamGia = 0;
                     String cbbVoucher = cbbGiaGiam.getSelectedItem().toString();
                     for (GioHangViewModel gha : listGioHangS) {
                         thanhTien += gha.getSoLuong() * gh.getDonGia();
-                        
+
                     }
-                    
+
                     if (cbbVoucher.equals("5%")) {
                         giamGia = 0.95;
                     } else if (cbbVoucher.equals("10%")) {
@@ -4511,9 +4672,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     } else {
                         giamGia = 1;
                     }
-                    lblThanhTien.setText(String.valueOf(thanhTien));
-                    lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
-                    
+                    lblThanhTien.setText(String.valueOf(fomat.format(thanhTien)));
+                    lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
+
                 }
             }
         }
@@ -4562,10 +4723,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                         } else {
                             // Thêm sản phẩm vào list giỏ hàng
                             listGioHangS.add(gh);
-                            
+
                             sp.setSoLuong(sp.getSoLuong() - Integer.valueOf(soLuong));
                             showDataSanPham(listSanPhams);
-                            
+
                             String idHD = hd.getId();
                             String idCtsp = sp.getId();
                             int soLuong1 = Integer.valueOf(soLuong);
@@ -4585,13 +4746,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                             double thanhTien = 0;
                             double thanhToan = 0;
                             double giamGia = 0;
-                            
+
                             String cbbVoucher = cbbGiaGiam.getSelectedItem().toString();
                             for (GioHangViewModel gha : listGioHangS) {
                                 thanhTien += gha.getSoLuong() * gh.getDonGia();
-                                
+
                             }
-                            
+
                             if (cbbVoucher.equals("5%")) {
                                 giamGia = 0.95;
                             } else if (cbbVoucher.equals("10%")) {
@@ -4615,9 +4776,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                             } else {
                                 giamGia = 1;
                             }
-                            lblThanhTien.setText(String.valueOf(thanhTien));
-                            lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
-                            
+                            lblThanhTien.setText(String.valueOf(fomat.format(thanhTien)));
+                            lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
+
                         }
                     }
                 }
@@ -4627,14 +4788,14 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
 
     private void cbbDSPBHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbDSPBHMouseClicked
         listDSP = dongSPService.getAllCustom();
-        
+
         listDSP.forEach((dsp) -> {
             cbbDSPBH.addItem(dsp.getTen());
         });
     }//GEN-LAST:event_cbbDSPBHMouseClicked
 
     private void cbbDSPBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbDSPBHActionPerformed
-        
+
         List<SanPhamViewModel> listNew = bhs.SearchSPBH(cbbDSPBH.getSelectedItem().toString());
         showDataSanPham(listNew);
     }//GEN-LAST:event_cbbDSPBHActionPerformed
@@ -4647,7 +4808,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }//GEN-LAST:event_cbbDGBHMouseClicked
 
     private void cbbDGBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbDGBHActionPerformed
-        
+
         List<SanPhamViewModel> listNew = bhs.SearchSPBH(cbbDGBH.getSelectedItem().toString());
         showDataSanPham(listNew);
     }//GEN-LAST:event_cbbDGBHActionPerformed
@@ -4660,19 +4821,19 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }//GEN-LAST:event_cbbMSBHMouseClicked
 
     private void cbbMSBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbMSBHActionPerformed
-        
+
         List<SanPhamViewModel> listNew = bhs.SearchSPBH(cbbMSBH.getSelectedItem().toString());
         showDataSanPham(listNew);
     }//GEN-LAST:event_cbbMSBHActionPerformed
 
     private void btnThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThayDoiActionPerformed
-        
+
         int indexNV = cbbNhanVienBH.getSelectedIndex();
         NhanVienCustomModel nv = listNV.get(indexNV);
-        
+
         int indexKHSDT = cbbSoDienThoai.getSelectedIndex();
         KhachHangCustomModel khSDT = listKHCM.get(indexKHSDT);
-        
+
         String ma = lblMaHD.getText();
         if (ma.equals("HD___")) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn muốn thay đổi");
@@ -4690,11 +4851,15 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }//GEN-LAST:event_btnThemKHBHActionPerformed
 
     private void btnReloadBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadBHActionPerformed
-        
-        cbbSoDienThoai.removeAllItems();
-        for (var x : khs.getAllCustom()) {
-            cbbSoDienThoai.addItem(x.getSdt());
+
+        listKHCM = khs.getAllCustom();
+        int itemCount3 = cbbSoDienThoai.getItemCount();
+        for (int i = 0; i < itemCount3; i++) {
+            cbbSoDienThoai.removeItemAt(0);
         }
+        listKHCM.forEach((kh) -> {
+            cbbSoDienThoai.addItem(kh.getSdt());
+        });
         cbbSoDienThoai.setSelectedIndex(0);
     }//GEN-LAST:event_btnReloadBHActionPerformed
 
@@ -4707,7 +4872,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private void btnHuyHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyHoaDonActionPerformed
         int index = tblHoaDon.getSelectedRow();
         int sl = listGioHangS.size();
-        
+
         if (index < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn muốn hủy");
         } else {
@@ -4719,7 +4884,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                         String idCTSP = ghu.getIdCtsp();
                         ChiTietSanPhamHiber ctsp = new ChiTietSanPhamHiber(soLuongGH);
                         bhs.capNhatSoLuong(ctsp, idCTSP);
-                        
+
                     }
                     HoaDonViewModel hdid = listHoaDons.get(index);
                     String idHD = hdid.getId();
@@ -4736,7 +4901,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     }
                     lblMaHD.setText("Tạo");
                     lblThanhTien.setText("0");
-                    
+
                     lblThanhToan.setText("0");
                     txtTienKhachDua.setText("0");
                     lblTienThua.setText("0");
@@ -4759,21 +4924,22 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         String tenKH = txtTenKhachHangBH.getText();
         String sdtKH = cbbSoDienThoai.getSelectedItem().toString();
         String thanhToan = lblThanhToan.getText();
+
         String tienKhachDua = txtTienKhachDua.getText();
-        String tienThua = lblTienThua.getText();
+        String tienThua = fomat.format(lblTienThua.getText());
         int temp = 3;
-        
+
         int soLuong = 0;
         for (GioHangViewModel gh : listGioHangS) {
             soLuong += gh.getSoLuong();
         }
-        
+
         if (lblThanhTien.getText().equals("0.0")) {
             JOptionPane.showMessageDialog(this, "Vui lòng thêm sản phẩm trước khi thanh toán");
         } else if (txtTienKhachDua.getText().equals("0") || txtTienKhachDua.getText().matches("\\s+")) {
             JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin");
             txtTienKhachDua.setText("0");
-        } else if (Double.valueOf(tienKhachDua) < Double.valueOf(thanhToan)) {
+        } else if (Double.valueOf(tienKhachDua.replace(",", "")) < Double.valueOf(thanhToan.replace(",", ""))) {
             JOptionPane.showMessageDialog(this, "Thiếu tiền, vui lòng nhập lại");
         } else {
             var tempTT = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn thanh toán không ?");
@@ -4784,15 +4950,15 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 VoucherCustomModel vc = listVoucherCM.get(indexVC);
                 hd.setIdVoucher(vc.getId());
                 hd.setNgayThanhToan(new Date(millis));
-                hd.setTongTien(Double.valueOf(lblThanhToan.getText()));
+                hd.setTongTien(Double.valueOf(thanhToan.replace(",", "")));
                 hd.setTongSanPham(soLuong);
                 hd.setTrangThai(3);
-                
+
                 JOptionPane.showMessageDialog(this, bhs.updateTrangThai(hd, maHd));
-                
+
                 listHoaDons = bhs.getHoaDon();
                 loadDataHoaDon(listHoaDons);
-                
+
                 listGioHangS = bhs.getGioHang(maHd);
                 showDataGioHang(listGioHangS);
                 txtHoaDonPDF.append("\nSHOP 6G SNEAKER\n"
@@ -4811,7 +4977,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 btnThanhToan.setEnabled(false);
                 btnHuyHoaDon.setEnabled(false);
                 btnLamMoi.setEnabled(false);
-                
+
             }
         }
         if (temp == 0) {
@@ -4822,11 +4988,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             }
             lblMaHD.setText("Tạo");
             lblThanhTien.setText("0");
-            
+
             lblThanhToan.setText("0");
             txtTienKhachDua.setText("0");
             lblTienThua.setText("0");
-            
+
         }
         if (demTrangThai() < 5) {
             btnTaoHoaDon.setEnabled(true);
@@ -4868,7 +5034,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private void btnDoiSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiSanPhamActionPerformed
         int indexHDCT = tblHDCTDoiTra.getSelectedRow();
         int indexDT = tblDoiTra.getSelectedRow();
-        
+
         DoiTraCustomModel dt = new DoiTraCustomModel();
         int indexHD = tblHoaDonDoiTra.getSelectedRow();
         if (indexHD < 0) {
@@ -4895,7 +5061,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private void tblHoaDonDoiTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonDoiTraMouseClicked
         int index = tblHoaDonDoiTra.getSelectedRow();
         HoaDonDoiTraCustomModel hd = listHDDT.get(index);
-        
+
         long millis = System.currentTimeMillis();
         Timestamp t = new Timestamp(millis);
         Date ngayTT = hd.getNgayThanhToan();
@@ -4925,6 +5091,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         DoiTraCustomModel dt = new DoiTraCustomModel();
         int indexHD = tblHoaDonDoiTra.getSelectedRow();
         long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
         if (indexHD < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn muốn đổi sản phẩm");
         } else {
@@ -4934,13 +5101,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     trung = true;
                 }
             }
-            
+
             if (trung) {
                 JOptionPane.showMessageDialog(this, "Sản phẩm đã có trong hóa đơn đổi hàng, để cập nhật vui lòng xóa đi chọn lại");
             } else {
-                //                if (listDoiTra.size() == 1) {
-                //                    JOptionPane.showMessageDialog(this, "Để thêm sản phẩm, hãy đổi sản phẩm trước đó");
-                //                } else {
+
                 soLuongDTBH = JOptionPane.showInputDialog("Mời nhập số lượng: ");
                 if (soLuongDTBH != null) {
                     if (!soLuongDTBH.matches("[0-9]+")) {
@@ -4951,7 +5116,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                         JOptionPane.showMessageDialog(this, "Vui lòng điền ghi chú");
                     } else {
                         var chon = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn đổi sản phẩm");
-                        
+
                         if (chon == 0) {
                             HoaDonDoiTraCustomModel hd = listHDDT.get(indexHD);
                             dt.setMaHD(lblMaHDDoiTra.getText());
@@ -4960,15 +5125,15 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                             dt.setSoLuongDoi(Integer.valueOf(soLuongDTBH));
                             listDoiTra.add(dt);
                             showDataDoiTra(listDoiTra);
-                            
+
                             HoaDonDoiTraCustomModel hdc = listHDDT.get(indexHD);
                             String idCTSP = hdct.getIdCTSP();
                             String idHD = hdc.getId();
                             String idKH = hdc.getIdKH();
-                            Date ngayDoi = new Date(millis);
+
                             String liDoDoi = cbbLiDoDoi.getSelectedItem().toString();
                             String ghiChu = txtGhiChu.getText();
-                            HoaDonDoiTraCustomModel hdadd = new HoaDonDoiTraCustomModel(idCTSP, idHD, idKH, ngayDoi, Integer.valueOf(soLuongDTBH), liDoDoi, ghiChu);
+                            HoaDonDoiTraCustomModel hdadd = new HoaDonDoiTraCustomModel(idCTSP, idHD, idKH, date, Integer.valueOf(soLuongDTBH), liDoDoi, ghiChu);
                             HDCTDoiTraCustomModel hdctadd = new HDCTDoiTraCustomModel(Integer.valueOf(soLuongDTBH));
                             dts.doiTra(hdadd);
                             dts.capNhatSoLuong(hdctadd, idCTSP);
@@ -4980,116 +5145,124 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }//GEN-LAST:event_tblHDCTDoiTraMouseClicked
 
     private void btnThemVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemVoucherActionPerformed
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String ma = txtMaVoucher.getText();
         String ten = txtTenVoucher.getText();
-        String ngayBD = sdf.format(txtNgayBatDau.getDate());
-        String ngayHH = sdf.format(txtNgayHetHan.getDate());
-        int trangThai = 0;
-        if (cbbTrangThaiVoucher.getSelectedItem().equals("Đang áp dụng")) {
-            trangThai = 0;
+        if (txtNgayBatDau.getDate() == null || txtNgayHetHan.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Ngày không để trống");
         } else {
-            trangThai = 1;
-        }
-        Double mucGiam = 0.0;
-        String gg = cbbMucGiamGia.getSelectedItem().toString();
-        if (gg == "5%") {
-            mucGiam = 0.95;
-        } else if (gg == "10%") {
-            mucGiam = 0.9;
-        } else if (gg == "15%") {
-            mucGiam = 0.85;
-        } else if (gg == "20%") {
-            mucGiam = 0.8;
-        } else if (gg == "25%") {
-            mucGiam = 0.75;
-        } else if (gg == "30%") {
-            mucGiam = 0.7;
-        } else if (gg == "35%") {
-            mucGiam = 0.65;
-        } else if (gg == "40%") {
-            mucGiam = 0.6;
-        } else if (gg == "45%") {
-            mucGiam = 0.55;
-        } else if (gg == "50%") {
-            mucGiam = 0.50;
-        }
-        
-        String ghiChu = txtGhiChuVoucher.getText();
-        
-        boolean trung = false;
-        for (VoucherCustomModel x : listVoucherCM) {
-            if (x.getMa().contains(ma)) {
-                trung = true;
-            }
-        }
-        if (CheckDLVC() == false) {
-            if (trung) {
-                JOptionPane.showMessageDialog(this, "Mã không được trùng, vui lòng nhập lại");
-            } else if (txtNgayBatDau.getDate() == null || txtNgayHetHan.getDate() == null) {
-                JOptionPane.showMessageDialog(this, "Ngày không được để trống");
+            String ngayBD = sdf.format(txtNgayBatDau.getDate());
+            String ngayHH = sdf.format(txtNgayHetHan.getDate());
+            int trangThai = 0;
+            if (cbbTrangThaiVoucher.getSelectedItem().equals("Đang áp dụng")) {
+                trangThai = 0;
             } else {
-                var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thêm mới");
-                if (temp == 0) {
-                    Voucher v = new Voucher(ma, ten, mucGiam, Date.valueOf(ngayBD), Date.valueOf(ngayHH), ghiChu, trangThai);
-                    JOptionPane.showMessageDialog(this, vcs.add(v));
-                    listVoucherCM = vcs.getAllCustom();
-                    loadData(listVoucherCM);
+                trangThai = 1;
+            }
+            Double mucGiam = 0.0;
+            String gg = cbbMucGiamGia.getSelectedItem().toString();
+            if (gg == "5%") {
+                mucGiam = 0.95;
+            } else if (gg == "10%") {
+                mucGiam = 0.9;
+            } else if (gg == "15%") {
+                mucGiam = 0.85;
+            } else if (gg == "20%") {
+                mucGiam = 0.8;
+            } else if (gg == "25%") {
+                mucGiam = 0.75;
+            } else if (gg == "30%") {
+                mucGiam = 0.7;
+            } else if (gg == "35%") {
+                mucGiam = 0.65;
+            } else if (gg == "40%") {
+                mucGiam = 0.6;
+            } else if (gg == "45%") {
+                mucGiam = 0.55;
+            } else if (gg == "50%") {
+                mucGiam = 0.50;
+            }
+
+            String ghiChu = txtGhiChuVoucher.getText();
+
+            boolean trung = false;
+            for (VoucherCustomModel x : listVoucherCM) {
+                if (x.getMa().contains(ma)) {
+                    trung = true;
+                }
+            }
+            if (CheckDLVC() == false) {
+                if (trung) {
+                    JOptionPane.showMessageDialog(this, "Mã không được trùng, vui lòng nhập lại");
+                } else if (txtNgayBatDau.getDate() == null || txtNgayHetHan.getDate() == null) {
+                    JOptionPane.showMessageDialog(this, "Ngày không được để trống");
+                } else {
+                    var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thêm mới");
+                    if (temp == 0) {
+                        Voucher v = new Voucher(ma, ten, mucGiam, Date.valueOf(ngayBD), Date.valueOf(ngayHH), ghiChu, trangThai);
+                        JOptionPane.showMessageDialog(this, vcs.add(v));
+                        listVoucherCM = vcs.getAllCustom();
+                        loadData(listVoucherCM);
+                    }
                 }
             }
         }
     }//GEN-LAST:event_btnThemVoucherActionPerformed
 
     private void btnSuaVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaVoucherActionPerformed
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String ma = txtMaVoucher.getText();
         String ten = txtTenVoucher.getText();
-        String ngayBD = sdf.format(txtNgayBatDau.getDate());
-        String ngayHH = sdf.format(txtNgayHetHan.getDate());
-        int trangThai = 0;
-        if (cbbTrangThaiVoucher.getSelectedItem().equals("Đang áp dụng")) {
-            trangThai = 0;
+        if (txtNgayBatDau.getDate() == null || txtNgayHetHan.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Ngày không để trống");
         } else {
-            trangThai = 1;
-        }
-        Double mucGiam = 0.0;
-        String gg = cbbMucGiamGia.getSelectedItem().toString();
-        if (gg == "5%") {
-            mucGiam = 0.95;
-        } else if (gg == "10%") {
-            mucGiam = 0.9;
-        } else if (gg == "15%") {
-            mucGiam = 0.85;
-        } else if (gg == "20%") {
-            mucGiam = 0.8;
-        } else if (gg == "25%") {
-            mucGiam = 0.75;
-        } else if (gg == "30%") {
-            mucGiam = 0.7;
-        } else if (gg == "35%") {
-            mucGiam = 0.65;
-        } else if (gg == "40%") {
-            mucGiam = 0.6;
-        } else if (gg == "45%") {
-            mucGiam = 0.55;
-        } else if (gg == "50%") {
-            mucGiam = 0.50;
-        }
-        
-        String ghiChu = txtGhiChuVoucher.getText();
-        
-        if (CheckDLVC() == false) {
-            
-            var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn sửa");
-            if (temp == 0) {
-                
-                Voucher v = new Voucher(ma, ten, mucGiam, Date.valueOf(ngayBD), Date.valueOf(ngayHH), ghiChu, trangThai);
-                JOptionPane.showMessageDialog(this, vcs.update(v, ma));
-                listVoucherCM = vcs.getAllCustom();
-                loadData(listVoucherCM);
-                
+            String ngayBD = sdf.format(txtNgayBatDau.getDate());
+            String ngayHH = sdf.format(txtNgayHetHan.getDate());
+            int trangThai = 0;
+            if (cbbTrangThaiVoucher.getSelectedItem().equals("Đang áp dụng")) {
+                trangThai = 0;
+            } else {
+                trangThai = 1;
+            }
+            Double mucGiam = 0.0;
+            String gg = cbbMucGiamGia.getSelectedItem().toString();
+            if (gg == "5%") {
+                mucGiam = 0.95;
+            } else if (gg == "10%") {
+                mucGiam = 0.9;
+            } else if (gg == "15%") {
+                mucGiam = 0.85;
+            } else if (gg == "20%") {
+                mucGiam = 0.8;
+            } else if (gg == "25%") {
+                mucGiam = 0.75;
+            } else if (gg == "30%") {
+                mucGiam = 0.7;
+            } else if (gg == "35%") {
+                mucGiam = 0.65;
+            } else if (gg == "40%") {
+                mucGiam = 0.6;
+            } else if (gg == "45%") {
+                mucGiam = 0.55;
+            } else if (gg == "50%") {
+                mucGiam = 0.50;
+            }
+
+            String ghiChu = txtGhiChuVoucher.getText();
+
+            if (CheckDLVC() == false) {
+
+                var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn sửa");
+                if (temp == 0) {
+
+                    Voucher v = new Voucher(ma, ten, mucGiam, Date.valueOf(ngayBD), Date.valueOf(ngayHH), ghiChu, trangThai);
+                    JOptionPane.showMessageDialog(this, vcs.update(v, ma));
+                    listVoucherCM = vcs.getAllCustom();
+                    loadData(listVoucherCM);
+
+                }
             }
         }
     }//GEN-LAST:event_btnSuaVoucherActionPerformed
@@ -5109,13 +5282,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
 
     private void tblVoucherMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVoucherMouseClicked
         int index = tblVoucher.getSelectedRow();
-        
+
         fillDataVoucher(index);
     }//GEN-LAST:event_tblVoucherMouseClicked
 
     private void cbbGiaGiamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbGiaGiamActionPerformed
         int index = cbbGiaGiam.getSelectedIndex();
-        VoucherCustomModel kh = listVoucherCM.get(index);
+        VoucherCustomModel kh = listVoucherCMTT.get(index);
         lblTenVoucher.setText(kh.getTen());
         double thanhTien = 0;
         double thanhToan = 0;
@@ -5147,8 +5320,8 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         } else {
             giamGia = 1;
         }
-        lblThanhTien.setText(String.valueOf(thanhTien));
-        lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+        lblThanhTien.setText(String.valueOf(fomat.format(thanhTien)));
+        lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
     }//GEN-LAST:event_cbbGiaGiamActionPerformed
 
     private void txtGhiChuCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtGhiChuCaretUpdate
@@ -5160,13 +5333,83 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }//GEN-LAST:event_txtGhiChuCaretUpdate
 
     private void btnLoadVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadVoucherActionPerformed
-        
-        cbbGiaGiam.removeAllItems();
-        for (var x : vcs.getVoucherTrangThai()) {
-            cbbGiaGiam.addItem(x.giamGiaTT());
+        listVoucherCMTT = vcs.getVoucherTrangThai();
+        int itemCount3 = cbbGiaGiam.getItemCount();
+        for (int i = 0; i < itemCount3; i++) {
+            cbbGiaGiam.removeItemAt(0);
         }
+        listVoucherCMTT.forEach((kh) -> {
+            cbbGiaGiam.addItem(kh.giamGiaTT());
+        });
+        cbbGiaGiam.setSelectedIndex(0);
+
 
     }//GEN-LAST:event_btnLoadVoucherActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DailogDoiTra dld = new DailogDoiTra(this, true);
+        dld.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        if (dcBatDau.getDate() == null || dcKetThuc.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Ngày bắt đầu và ngày kết thúc không được để trống");
+        } else {
+
+            java.util.Date bd = (java.util.Date) dcBatDau.getDate();
+            java.util.Date kt = (java.util.Date) dcKetThuc.getDate();
+
+            Calendar c1 = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
+            c1.setTime(bd);
+            c2.setTime(kt);
+            var temp = 0;
+            long noDay = (c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000);
+
+            if (noDay < 0) {
+                JOptionPane.showConfirmDialog(this, "Ngày kết thúc phải lớn hơn ngày bắt đầu");
+            } else {
+
+                String batDau = sdf.format(dcBatDau.getDate());
+                String ketThuc = sdf.format(dcKetThuc.getDate());
+                listHDDT = dts.getHoaDonDoiTraBetween(batDau, ketThuc);
+                showDataHDDoiTra(listHDDT);
+            }
+        }
+    }//GEN-LAST:event_btnLocActionPerformed
+
+    private void btnLocHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocHoaDonActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        if (dcBatDauHD.getDate() == null || dcKetThucHD.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Ngày bắt đầu và ngày kết thúc không được để trống");
+        } else {
+            java.util.Date Date = new java.util.Date();
+            java.util.Date bd = (java.util.Date) dcBatDauHD.getDate();
+            java.util.Date kt = (java.util.Date) dcKetThucHD.getDate();
+
+            Calendar c1 = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
+            c1.setTime(bd);
+            c2.setTime(kt);
+            var temp = 0;
+            long noDay = (c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000);
+
+            if (noDay < 0) {
+                temp = JOptionPane.showConfirmDialog(this, "Ngày kết thúc phải lớn hơn ngày bắt đầu");
+            } else {
+
+                String batDau = sdf.format(dcBatDauHD.getDate());
+                String ketThuc = sdf.format(dcKetThucHD.getDate());
+                listHD = hds.getHoaDonBetween(batDau, ketThuc);
+                showDataHD(listHD);
+            }
+        }
+    }//GEN-LAST:event_btnLocHoaDonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -5203,7 +5446,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             }
         });
     }
-    
+
     @Override
     public Thread newThread(Runnable r) {
         Thread t = new Thread(r, "My Thread");
@@ -5228,6 +5471,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JButton btnKhachhang;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnLoadVoucher;
+    private javax.swing.JButton btnLoc;
+    private javax.swing.JButton btnLoc1;
+    private javax.swing.JButton btnLocHoaDon;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnNhanVien;
     private javax.swing.JButton btnReloadBH;
@@ -5274,6 +5520,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JComboBox<String> cbo_mauSac;
     private javax.swing.JComboBox<String> cbo_sanPham;
     private javax.swing.JComboBox<String> cbo_trangThai;
+    private com.toedter.calendar.JDateChooser dcBatDau;
+    private com.toedter.calendar.JDateChooser dcBatDauHD;
+    private com.toedter.calendar.JDateChooser dcKetThuc;
+    private com.toedter.calendar.JDateChooser dcKetThucHD;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -5349,7 +5600,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;

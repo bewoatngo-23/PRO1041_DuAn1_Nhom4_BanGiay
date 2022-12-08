@@ -59,6 +59,7 @@ public class ViewThongKe extends javax.swing.JFrame {
 
     public ViewThongKe() {
         initComponents();
+
         batDau = ((JTextField) date_batDau.getDateEditor().getUiComponent());
         ketThuc = ((JTextField) date_ketThuc.getDateEditor().getUiComponent());
         batDauDoiTra = ((JTextField) date_doiTraBD.getDateEditor().getUiComponent());
@@ -111,7 +112,9 @@ public class ViewThongKe extends javax.swing.JFrame {
             sum = sum + x.getTongTien();
             tong = instance.format(sum);
         }
+
         lbl_doanhThu.setText(tong + "");
+
     }
 
     public void setHoaDonTheoNgay(String day) {
@@ -160,7 +163,9 @@ public class ViewThongKe extends javax.swing.JFrame {
         lbl_khachHang.setText(sum + "");
     }
 
+
     public void setDoiTraTheoNgay(String day) {
+
         int sum = 0;
         String ngay = null;
         if (day.equals("1") || day.equals("2") || day.equals("3") || day.equals("4") || day.equals("5") || day.equals("6") || day.equals("7") || day.equals("8") || day.equals("9")) {
@@ -175,20 +180,24 @@ public class ViewThongKe extends javax.swing.JFrame {
         lbl_doiTra.setText(sum + "");
     }
 
+
     public void setDoanhThuTheoNam(String batDau, String ketThuc) {
         NumberFormat instance = NumberFormat.getInstance();
         String tong = null;
+
         double sum = 0;
         for (var x : hoaDonHDServiceThongKe.getHoaDonBetWeen("'" + batDau + "'", "'" + ketThuc + "'")) {
             sum = sum + x.getTongTien();
             tong = instance.format(sum);
         }
         lbl_doanhThu.removeAll();
+
         if (sum == 0) {
             lbl_doanhThu.setText(sum + "");
         } else {
             lbl_doanhThu.setText(tong + "");
         }
+
 
     }
 
@@ -233,8 +242,10 @@ public class ViewThongKe extends javax.swing.JFrame {
             tong = instance.format(sum);
         }
         lbl_khachHang.removeAll();
+
         if (sum == 0) {
             lbl_khachHang.setText(sum + "");
+
         } else {
             lbl_khachHang.setText(tong + "");
         }
@@ -256,7 +267,9 @@ public class ViewThongKe extends javax.swing.JFrame {
             lbl_doiTra.setText(tong + "");
         }
 
+
     }
+
 
     public void setDoiTraChatLuong(String batDau, String ketThuc) {
         NumberFormat instance = NumberFormat.getInstance();
@@ -274,6 +287,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         } else {
             lbl_doiTraChatLuong.setText(tong + "");
         }
+
 
     }
 
@@ -334,6 +348,7 @@ public class ViewThongKe extends javax.swing.JFrame {
     public void setDoiTraKichCo(String batDau, String ketThuc) {
         NumberFormat instance = NumberFormat.getInstance();
         String tong = null;
+
         int sum = 0;
         for (var x : doiTraThongKe.getAllBetWeen("'" + batDau + "'", "'" + ketThuc + "'")) {
             if (x.getLiDoDoi().equals("Kich Co")) {
@@ -511,7 +526,9 @@ public class ViewThongKe extends javax.swing.JFrame {
 
         JFreeChart cha = ChartFactory.createPieChart("Biểu Đồ Thống Kê Tuổi Khách Hàng Năm " + batDau, dataset);
         ChartPanel chartPanel = new ChartPanel(cha);;
+
         chartPanel.setPreferredSize(new Dimension(input.getWidth(), 5));
+
 
         input.removeAll();
         input.setLayout(new CardLayout());
@@ -601,7 +618,9 @@ public class ViewThongKe extends javax.swing.JFrame {
         input.repaint();
     }
 
+
     public void setTronDoiTraGetAll(JPanel input) {
+
         int chatLuong = 0;
         int mauSac = 0;
         int kichCo = 0;
@@ -748,7 +767,9 @@ public class ViewThongKe extends javax.swing.JFrame {
     public boolean checkDL(JTextField input) {
         String p = "0[0-9]{3}";
         if (utility.CheckSo(input.getText())) {
+
             JOptionPane.showMessageDialog(this, "Năm Không Đúng Kiểu Dữ Liệu");
+
             input.requestFocus();
             input.setText("");
             return true;
@@ -855,7 +876,9 @@ public class ViewThongKe extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+
                 .addComponent(lbl_doanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addContainerGap())
@@ -1476,6 +1499,7 @@ public class ViewThongKe extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_resetActionPerformed
 
     private void btn_thongKeLBLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongKeLBLActionPerformed
+
         try {
             //        setDoanhThuTheoNam(batDau.getText(), ketThuc.getText());
 //        setKhachHangTheoNam(batDau.getText(), ketThuc.getText());
@@ -1498,11 +1522,12 @@ public class ViewThongKe extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "lỗi");
             }
             else{
+
             }
         } catch (ParseException ex) {
             Logger.getLogger(ViewThongKe.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 
     }//GEN-LAST:event_btn_thongKeLBLActionPerformed
 
