@@ -21,4 +21,6 @@ public interface IHoaDonHDService {
     List<HoaDonCustomModelHD> SearchHD(String input);
 
     List<HoaDonCustomModelHD> SearchCBB(String input);
+
+    List<HoaDonCustomModelHD> getHoaDonBetween(String batDau, String ketThuc);
 }

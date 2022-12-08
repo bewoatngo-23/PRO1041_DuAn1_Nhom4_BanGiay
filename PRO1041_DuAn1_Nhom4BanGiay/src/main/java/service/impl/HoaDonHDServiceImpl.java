@@ -58,4 +58,9 @@ public class HoaDonHDServiceImpl implements IHoaDonHDService {
         return listHD;
     }
 
+    @Override
+    public List<HoaDonCustomModelHD> getHoaDonBetween(String batDau, String ketThuc) {
+        return hdbhr.getHoaDonBetween(batDau, ketThuc);
+    }
+
 }

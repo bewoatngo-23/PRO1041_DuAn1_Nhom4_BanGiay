@@ -21,10 +21,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
 import java.sql.Date;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.MessageFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,6 +83,7 @@ public class ViewBanHangFull extends javax.swing.JFrame {
     private List<VoucherCustomModel> listVoucherCM = new ArrayList<>();
     private VoucherServiceImpl vcs = new VoucherServiceImpl();
     private DefaultComboBoxModel cbbModelVC = new DefaultComboBoxModel();
+    DecimalFormat fomat = new DecimalFormat("###,###,###");
 
     public ViewBanHangFull() {
         initComponents();
@@ -134,15 +139,16 @@ public class ViewBanHangFull extends javax.swing.JFrame {
         Action action = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Double thanhToan = Double.valueOf(lblThanhToan.getText());
-                String tienKhachDua = txtTienKhachDua.getText();
+                Double thanhToan = Double.valueOf(lblThanhToan.getText().replace(",", ""));
+                Double tienKhachDua = Double.valueOf(txtTienKhachDua.getText());
                 Double tienThua = 0.0;
-                if (tienKhachDua == "0" || tienKhachDua.isEmpty()) {
+
+                if (tienKhachDua == 0 || tienKhachDua == null) {
                     tienThua = 0.0;
                 } else {
-                    tienThua = Double.valueOf(tienKhachDua) - thanhToan;
+                    tienThua = tienKhachDua - thanhToan;
                 }
-                lblTienThua.setText(String.valueOf(tienThua));
+                lblTienThua.setText(String.valueOf(fomat.format(tienThua)));
             }
         };
         txtTienKhachDua.addActionListener(action);
@@ -982,8 +988,9 @@ public class ViewBanHangFull extends javax.swing.JFrame {
                         } else {
                             giamGia = 0.5;
                         }
-                        lblThanhTien.setText(String.valueOf(thanhTien));
-                        lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+
+                        lblThanhTien.setText(String.valueOf(fomat.format(thanhTien)));
+                        lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
                     }
 
                 }
@@ -1071,8 +1078,8 @@ public class ViewBanHangFull extends javax.swing.JFrame {
         } else {
             giamGia = 0.5;
         }
-        lblThanhTien.setText(String.valueOf(thanhTien));
-        lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+        lblThanhTien.setText(String.valueOf(fomat.format(thanhTien)));
+        lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
         fillDataHD(index);
 
         txtTienKhachDua.setText("0");
@@ -1123,6 +1130,7 @@ public class ViewBanHangFull extends javax.swing.JFrame {
         String tenKH = txtTenKhachHangBH.getText();
         String sdtKH = cbbSoDienThoai.getSelectedItem().toString();
         String thanhToan = lblThanhToan.getText();
+        
         String tienKhachDua = txtTienKhachDua.getText();
         String tienThua = lblTienThua.getText();
         int temp = 3;
@@ -1143,7 +1151,7 @@ public class ViewBanHangFull extends javax.swing.JFrame {
                 String maHd = lblMaHD.getText();
                 HoaDonViewModel hd = new HoaDonViewModel();
                 hd.setNgayThanhToan(new Date(millis));
-                hd.setTongTien(Double.valueOf(lblThanhToan.getText()));
+                hd.setTongTien(Double.valueOf(thanhToan.replace(",","")));
                 hd.setTongSanPham(soLuong);
                 hd.setTrangThai(3);
 
@@ -1308,8 +1316,8 @@ public class ViewBanHangFull extends javax.swing.JFrame {
                 } else {
                     giamGia = 0.5;
                 }
-                lblThanhTien.setText(String.valueOf(thanhTien));
-                lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+                lblThanhTien.setText(String.valueOf(fomat.format(thanhTien)));
+                lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
 
             }
         }
@@ -1378,8 +1386,8 @@ public class ViewBanHangFull extends javax.swing.JFrame {
                     } else {
                         giamGia = 0.5;
                     }
-                    lblThanhTien.setText(String.valueOf(thanhTien));
-                    lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+                    lblThanhTien.setText(String.valueOf(fomat.format(thanhTien)));
+                    lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
 
                 }
             }
@@ -1440,8 +1448,8 @@ public class ViewBanHangFull extends javax.swing.JFrame {
         } else {
             giamGia = 0.5;
         }
-        lblThanhTien.setText(String.valueOf(thanhTien));
-        lblThanhToan.setText(String.valueOf(thanhToan = thanhTien * giamGia));
+        lblThanhTien.setText((String.valueOf(fomat.format(thanhTien))));
+        lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien * giamGia)));
     }//GEN-LAST:event_cbbGiaGiamActionPerformed
 
     /**

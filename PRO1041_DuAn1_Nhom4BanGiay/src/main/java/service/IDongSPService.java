@@ -30,4 +30,8 @@ public interface IDongSPService {
 
     List<DongSanPhamCustomModel> Search(String ten);
 
+    List<DongSanPhamCustomModel> SearchNV(String input);
+
+    boolean CheckTrungMa(String input);
+
 }

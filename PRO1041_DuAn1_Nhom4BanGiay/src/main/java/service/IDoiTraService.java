@@ -23,4 +23,14 @@ public interface IDoiTraService {
     String doiTra(HoaDonDoiTraCustomModel hd);
 
     String capNhatSoLuong(HDCTDoiTraCustomModel hdct, String id);
+
+    List<HoaDonDoiTraCustomModel> getHoaDonDaDoiTra();
+
+    List<HDCTDoiTraCustomModel> getHDCTDaDoiTra(String id);
+
+    List<HoaDonDoiTraCustomModel> SearchHDDaDT(String input);
+    
+    List<HoaDonDoiTraCustomModel> getHoaDonDaDoiTraBetween(String batDau, String ketThuc);
+    
+    List<HoaDonDoiTraCustomModel> getHoaDonDoiTraBetween(String batDau, String ketThuc);
 }

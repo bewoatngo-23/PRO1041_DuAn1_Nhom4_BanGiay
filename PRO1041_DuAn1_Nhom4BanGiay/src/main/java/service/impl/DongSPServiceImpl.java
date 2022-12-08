@@ -6,6 +6,7 @@ package service.impl;
 
 import customModel.DongSanPhamCustomModel;
 import domainModel.DongSP;
+import java.util.ArrayList;
 import java.util.List;
 import repository.impl.DongSPRespository;
 import service.IDongSPService;
@@ -14,9 +15,10 @@ import service.IDongSPService;
  *
  * @author Admin
  */
-public class DongSPServiceImpl implements  IDongSPService{
+public class DongSPServiceImpl implements IDongSPService {
 
-        private DongSPRespository dsp = new DongSPRespository();
+    private DongSPRespository dsp = new DongSPRespository();
+
     @Override
     public List<DongSP> getAll() {
         return dsp.getAll();
@@ -51,5 +53,29 @@ public class DongSPServiceImpl implements  IDongSPService{
     public List<DongSanPhamCustomModel> Search(String ten) {
         return dsp.search(ten);
     }
-    
+
+    @Override
+    public List<DongSanPhamCustomModel> SearchNV(String input) {
+        List<DongSanPhamCustomModel> listNV = new ArrayList<>();
+        if (input == null) {
+            return dsp.getAllCustom();
+        }
+        for (DongSanPhamCustomModel x : dsp.getAllCustom()) {
+            if (x.getMa().contains(input) || x.getTen().contains(input)) {
+                listNV.add(x);
+            }
+        }
+        return listNV;
+    }
+
+    @Override
+    public boolean CheckTrungMa(String input) {
+        for (DongSanPhamCustomModel x : dsp.getAllCustom()) {
+            if (x.getMa().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
 }

@@ -11,7 +11,7 @@ import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -102,6 +102,11 @@ public class viewDoiTra extends javax.swing.JFrame {
         txtTimKiemDoiTra = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoaDonDoiTra = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        dcKetThuc = new com.toedter.calendar.JDateChooser();
+        btnLoc = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        dcBatDau = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -158,6 +163,24 @@ public class viewDoiTra extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblHoaDonDoiTra);
 
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel8.setText("Đến ngày");
+
+        btnLoc.setBackground(new java.awt.Color(255, 153, 0));
+        btnLoc.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLoc.setForeground(new java.awt.Color(255, 255, 255));
+        btnLoc.setText("Lọc");
+        btnLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel12.setText("Từ ngày");
+
+        dcBatDau.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -165,20 +188,37 @@ public class viewDoiTra extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtTimKiemDoiTra, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(txtTimKiemDoiTra, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtTimKiemDoiTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTimKiemDoiTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnLoc)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dcBatDau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dcKetThuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -430,7 +470,6 @@ public class viewDoiTra extends javax.swing.JFrame {
     private void tblHoaDonDoiTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonDoiTraMouseClicked
         int index = tblHoaDonDoiTra.getSelectedRow();
         HoaDonDoiTraCustomModel hd = listHDDT.get(index);
-
         long millis = System.currentTimeMillis();
         Timestamp t = new Timestamp(millis);
         Date ngayTT = hd.getNgayThanhToan();
@@ -461,6 +500,8 @@ public class viewDoiTra extends javax.swing.JFrame {
         DoiTraCustomModel dt = new DoiTraCustomModel();
         int indexHD = tblHoaDonDoiTra.getSelectedRow();
         long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+       
         if (indexHD < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn muốn đổi sản phẩm");
         } else {
@@ -474,9 +515,6 @@ public class viewDoiTra extends javax.swing.JFrame {
             if (trung) {
                 JOptionPane.showMessageDialog(this, "Sản phẩm đã có trong hóa đơn đổi hàng, để cập nhật vui lòng xóa đi chọn lại");
             } else {
-//                if (listDoiTra.size() == 1) {
-//                    JOptionPane.showMessageDialog(this, "Để thêm sản phẩm, hãy đổi sản phẩm trước đó");
-//                } else {
                 soLuong = JOptionPane.showInputDialog("Mời nhập số lượng: ");
                 if (soLuong != null) {
                     if (!soLuong.matches("[0-9]+")) {
@@ -501,10 +539,10 @@ public class viewDoiTra extends javax.swing.JFrame {
                             String idCTSP = hdct.getIdCTSP();
                             String idHD = hdc.getId();
                             String idKH = hdc.getIdKH();
-                            Date ngayDoi = new Date(millis);
+                          
                             String liDoDoi = cbbLiDoDoi.getSelectedItem().toString();
                             String ghiChu = txtGhiChu.getText();
-                            HoaDonDoiTraCustomModel hdadd = new HoaDonDoiTraCustomModel(idCTSP, idHD, idKH, ngayDoi, Integer.valueOf(soLuong), liDoDoi, ghiChu);
+                            HoaDonDoiTraCustomModel hdadd = new HoaDonDoiTraCustomModel(idCTSP, idHD, idKH, date, Integer.valueOf(soLuong), liDoDoi, ghiChu);
                             HDCTDoiTraCustomModel hdctadd = new HDCTDoiTraCustomModel(Integer.valueOf(soLuong));
                             dts.doiTra(hdadd);
                             dts.capNhatSoLuong(hdctadd, idCTSP);
@@ -549,6 +587,32 @@ public class viewDoiTra extends javax.swing.JFrame {
             btnDoiSanPham.setEnabled(true);
         }
     }//GEN-LAST:event_txtGhiChuCaretUpdate
+
+    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        if (dcBatDau.getDate() == null || dcKetThuc.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Ngày bắt đầu và ngày kết thúc không được để trống");
+        } else {
+            Date bd = (Date) dcBatDau.getDate();
+            Date kt = (Date) dcKetThuc.getDate();
+            Calendar c1 = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
+            c1.setTime(bd);
+            c2.setTime(kt);
+            var temp = 0;
+            long noDay = (c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000);
+
+            if (noDay < 0) {
+                temp = JOptionPane.showConfirmDialog(this, "Ngày kết thúc phải lớn hơn ngày bắt đầu");
+            } else {
+
+                String batDau = sdf.format(dcBatDau.getDate());
+                String ketThuc = sdf.format(dcKetThuc.getDate());
+                listHDDT = dts.getHoaDonDoiTraBetween(batDau, ketThuc);
+                showDataHDDoiTra(listHDDT);
+            }
+        }
+    }//GEN-LAST:event_btnLocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -595,16 +659,21 @@ public class viewDoiTra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDoiSanPham;
+    private javax.swing.JButton btnLoc;
     private javax.swing.JComboBox<String> cbbLiDoDoi;
+    private com.toedter.calendar.JDateChooser dcBatDau;
+    private com.toedter.calendar.JDateChooser dcKetThuc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
