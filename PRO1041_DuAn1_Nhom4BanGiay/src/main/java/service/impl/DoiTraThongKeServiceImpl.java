@@ -17,8 +17,8 @@ import repository.IDoiTraThongKeRes;
 public class DoiTraThongKeServiceImpl implements IDoiTraThongKeService{
 private IDoiTraThongKeRes doiTra = new DoiTraThongKeRepository();
     @Override
-    public List<SanPhamDoiTraThongKe> getAll(String batDau, String ketThuc) {
-        return doiTra.getAll(batDau,ketThuc);
+    public List<SanPhamDoiTraThongKe> getAllBetWeen(String batDau, String ketThuc) {
+        return doiTra.getAllBetWeen(batDau,ketThuc);
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -27,5 +27,13 @@ private IDoiTraThongKeRes doiTra = new DoiTraThongKeRepository();
         return doiTra.getAllWhere(input);
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public List<SanPhamDoiTraThongKe> getAll() {
+        return doiTra.getAll();
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
     
 }

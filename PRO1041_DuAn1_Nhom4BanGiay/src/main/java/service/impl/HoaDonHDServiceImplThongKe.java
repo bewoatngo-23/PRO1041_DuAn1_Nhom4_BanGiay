@@ -29,17 +29,17 @@ public class HoaDonHDServiceImplThongKe implements IHoaDonHDServiceThongKe {
     }
 
     @Override
-    public List<HoaDonCustomModelHDThongKe> getHoaDon() {
-        return hdbhr.getHoaDon();
+    public List<HoaDonCustomModelHDThongKe> getAllHoaDon() {
+        return hdbhr.getAllHoaDon();
     }
 
     @Override
     public List<HoaDonCustomModelHDThongKe> SearchHD(String input) {
         List<HoaDonCustomModelHDThongKe> listHD = new ArrayList<>();
         if (input == null) {
-            return hdbhr.getHoaDon();
+            return hdbhr.getAllHoaDon();
         }
-        for (HoaDonCustomModelHDThongKe x : hdbhr.getHoaDon()) {
+        for (HoaDonCustomModelHDThongKe x : hdbhr.getAllHoaDon()) {
             if (x.getMaHD().contains(input) || x.getMaNV().contains(input) || x.getTenNV().contains(input) || x.getMaKH().contains(input)
                     || x.getTenKH().contains(input) || String.valueOf(x.getTongTien()).contains(input) || String.valueOf(x.getTongSP()).contains(input) || String.valueOf(x.getTrangThai()).contains(input)) {
                 listHD.add(x);
@@ -52,9 +52,9 @@ public class HoaDonHDServiceImplThongKe implements IHoaDonHDServiceThongKe {
     public List<HoaDonCustomModelHDThongKe> SearchCBB(String input) {
         List<HoaDonCustomModelHDThongKe> listHD = new ArrayList<>();
         if (input == null) {
-            return hdbhr.getHoaDon();
+            return hdbhr.getAllHoaDon();
         }
-        for (HoaDonCustomModelHDThongKe x : hdbhr.getHoaDon()) {
+        for (HoaDonCustomModelHDThongKe x : hdbhr.getAllHoaDon()) {
             if (String.valueOf(x.getTrangThai()).contains(input)) {
                 listHD.add(x);
             }

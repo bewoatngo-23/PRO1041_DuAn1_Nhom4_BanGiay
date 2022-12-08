@@ -12,7 +12,10 @@ import java.util.List;
  * @author admin
  */
 public interface IDoiTraThongKeRes {
-    List<SanPhamDoiTraThongKe> getAll(String batDau,String ketThuc);
+    
+    List<SanPhamDoiTraThongKe> getAll();
+    
+    List<SanPhamDoiTraThongKe> getAllBetWeen(String batDau,String ketThuc);
     
     List<SanPhamDoiTraThongKe> getAllWhere(String input);
 }
