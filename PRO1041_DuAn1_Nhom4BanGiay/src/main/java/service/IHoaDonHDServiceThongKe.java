@@ -20,7 +20,7 @@ public interface IHoaDonHDServiceThongKe {
     
     List<HDCTCustoModelHDThongKe> getAllHDCT();
 
-    List<HoaDonCustomModelHDThongKe> getHoaDon();
+    List<HoaDonCustomModelHDThongKe> getAllHoaDon();
     
     List<HoaDonCustomModelHDThongKe> getHoaDonByNgay(String input);
     

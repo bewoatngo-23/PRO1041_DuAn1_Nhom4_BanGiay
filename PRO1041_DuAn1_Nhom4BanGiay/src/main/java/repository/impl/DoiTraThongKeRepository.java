@@ -22,7 +22,7 @@ import repository.IDoiTraThongKeRes;
 public class DoiTraThongKeRepository implements IDoiTraThongKeRes{
 
     @Override
-    public List<SanPhamDoiTraThongKe> getAll(String batDau, String ketThuc) {
+    public List<SanPhamDoiTraThongKe> getAllBetWeen(String batDau, String ketThuc) {
         List<SanPhamDoiTraThongKe> list = new ArrayList<>();
         try {
              Connection conn = DBContext.getConnection();
@@ -67,5 +67,27 @@ public class DoiTraThongKeRepository implements IDoiTraThongKeRes{
     public static void main(String[] args) {
         DoiTraThongKeRepository a = new DoiTraThongKeRepository();
         System.out.println(a.getAllWhere("'2022-11-01'"));
+    }
+
+    @Override
+    public List<SanPhamDoiTraThongKe> getAll() {
+        List<SanPhamDoiTraThongKe> list = new ArrayList<>();
+        try {
+             Connection conn = DBContext.getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select * from doitra ");
+            while (rs.next()) {                
+                list.add(new SanPhamDoiTraThongKe(rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+            }
+            
+            rs.close();
+            st.close();
+            conn.close();
+            
+        } catch (Exception e) {
+            System.out.println("Lỗi tại getAll");
+        }
+        return list;
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

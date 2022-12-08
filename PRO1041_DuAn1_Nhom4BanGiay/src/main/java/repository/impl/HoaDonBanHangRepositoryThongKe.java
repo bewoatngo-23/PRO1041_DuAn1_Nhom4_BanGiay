@@ -65,7 +65,7 @@ public class HoaDonBanHangRepositoryThongKe {
     
 
 
-    public List<HoaDonCustomModelHDThongKe> getHoaDon() {
+    public List<HoaDonCustomModelHDThongKe> getAllHoaDon() {
         String sql = "SELECT dbo.HoaDon.Id, dbo.HoaDon.Ma, dbo.NhanVien.Ma AS Expr1, dbo.NhanVien.HoTen, dbo.KhachHang.Ma AS Expr2, dbo.KhachHang.HoTen AS Expr3, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HoaDon.TongSanPham,CONVERT(int,ROUND(DATEDIFF(hour,dbo.KhachHang.NgaySinh,GETDATE())/8766.0,0)) AS tuoi,\n"
                 + "                  dbo.HoaDon.TrangThai\n"
                 + "FROM     dbo.HoaDon INNER JOIN\n"
@@ -91,7 +91,7 @@ public class HoaDonBanHangRepositoryThongKe {
                 + "FROM     dbo.HoaDon INNER JOIN\n"
                 + "                  dbo.KhachHang ON dbo.HoaDon.IdKH = dbo.KhachHang.Id INNER JOIN\n"
                 + "                  dbo.NhanVien ON dbo.HoaDon.IdNV = dbo.NhanVien.Id"
-                + "                  where dbo.HoaDon.NgayThanhToan BetWeen"+batDau+"and"+ketThuc;
+                + "                  where dbo.HoaDon.NgayThanhToan BetWeen"+batDau+"and"+ketThuc+" order by NgayThanhToan asc";
 
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
@@ -127,9 +127,9 @@ public class HoaDonBanHangRepositoryThongKe {
         return null;
     }
     
-        public static void main(String[] args) {
-        HoaDonBanHangRepositoryThongKe a = new HoaDonBanHangRepositoryThongKe();
-        System.out.println(a.getHoaDon().get(0).getTuoiKH());
-    }
+//        public static void main(String[] args) {
+//        HoaDonBanHangRepositoryThongKe a = new HoaDonBanHangRepositoryThongKe();
+//        System.out.println(a.getAllHoaDon().get(0).getTuoiKH());
+//    }
 
 }
