@@ -22,5 +22,7 @@ public interface ISanPhamService {
 
     String delete(String ma);
 
-    List<SanPhamCustomModel> Search(String ten);
+    List<SanPhamCustomModel> SearchNV(String input);
+
+    boolean CheckTrungMa(String input);
 }

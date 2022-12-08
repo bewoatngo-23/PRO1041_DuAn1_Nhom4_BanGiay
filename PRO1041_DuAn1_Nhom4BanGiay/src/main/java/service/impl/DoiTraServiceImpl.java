@@ -53,4 +53,39 @@ public class DoiTraServiceImpl implements IDoiTraService {
         return dtr.capNhatSoLuong(hdct, id);
     }
 
+    @Override
+    public List<HoaDonDoiTraCustomModel> getHoaDonDaDoiTra() {
+        return dtr.getHoaDonDaDoiTra();
+    }
+
+    @Override
+    public List<HDCTDoiTraCustomModel> getHDCTDaDoiTra(String id) {
+        return dtr.getHDCTDaDoiTra(id);
+    }
+
+    @Override
+    public List<HoaDonDoiTraCustomModel> SearchHDDaDT(String input) {
+        List<HoaDonDoiTraCustomModel> listHDDT = new ArrayList<>();
+        if (input == null) {
+            return dtr.getHoaDonDaDoiTra();
+        }
+        for (HoaDonDoiTraCustomModel x : dtr.getHoaDonDaDoiTra()) {
+            if (x.getMaHD().contains(input) || x.getTenNV().contains(input) || x.getTenKH().contains(input) || String.valueOf(x.getNgayThanhToan()).contains(input) || x.getSdt().contains(input)
+                    || String.valueOf(x.getSoLuong()).contains(input) || x.getLiDoDoi().contains(input) || x.getGhiChu().contains(input)) {
+                listHDDT.add(x);
+            }
+        }
+        return listHDDT;
+    }
+
+    @Override
+    public List<HoaDonDoiTraCustomModel> getHoaDonDaDoiTraBetween(String batDau, String ketThuc) {
+        return dtr.getHoaDonDaDoiTraBetween(batDau, ketThuc);
+    }
+
+    @Override
+    public List<HoaDonDoiTraCustomModel> getHoaDonDoiTraBetween(String batDau, String ketThuc) {
+        return dtr.getHoaDonDoiTraBetween(batDau, ketThuc);
+    }
+
 }

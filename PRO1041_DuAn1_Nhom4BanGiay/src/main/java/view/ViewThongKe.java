@@ -56,8 +56,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         setBieuDoDTTheoThang(pnl_doanhThu, month + "", year + "");
         setBieuDoKHTronTheoThang(pnl_khachHangTron, month + "", year + "");
         setBieuDoKHTheoThang(pnl_khachHang, month + "", year + "");
-        setTronDoiTraTheoThang(pnl_doiTra, month+"", year+"");
-       
+        setTronDoiTraTheoThang(pnl_doiTra, month + "", year + "");
 
         txt_ngayTK.setText(day + "");
         txt_thangTK.setText(month + "");
@@ -66,8 +65,8 @@ public class ViewThongKe extends javax.swing.JFrame {
         txt_thangKH.setText(month + "");
         txt_namDT.setText(year + "");
         txt_namKH.setText(year + "");
-        txt_namDoiTra.setText(year+"");
-        txt_thangDoiTra.setText(month+"");
+        txt_namDoiTra.setText(year + "");
+        txt_thangDoiTra.setText(month + "");
 
     }
     Calendar instance = Calendar.getInstance();
@@ -86,7 +85,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         for (HoaDonCustomModelHDThongKe x : hoaDonHDServiceThongKe.getHoaDonByNgay("'" + year + "-" + month + "-" + ngay + "'")) {
             sum = sum + x.getTongTien();
         }
-        lbl_doanhThu.setText(sum + "");
+        lbl_doanhThu.setText(String.format("%.2f", sum));
     }
 
     public void setHoaDonTheoNgay(String year, String month, String day) {
@@ -134,7 +133,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         lbl_khachHang.removeAll();
         lbl_khachHang.setText(sum + "");
     }
-    
+
     public void setDoiTraTheoNgay(String year, String month, String day) {
         int sum = 0;
         String ngay = null;
@@ -150,7 +149,6 @@ public class ViewThongKe extends javax.swing.JFrame {
         lbl_doiTra.setText(sum + "");
     }
 
-    
     public void setDoanhThuTheoThang(String nam, String thang) {
         double sum = 0;
         int Thang = 0;
@@ -166,7 +164,7 @@ public class ViewThongKe extends javax.swing.JFrame {
             sum = sum + x.getTongTien();
         }
         lbl_doanhThu.removeAll();
-        lbl_doanhThu.setText(sum + "");
+        lbl_doanhThu.setText(String.format("%.2f", sum));
 
     }
 
@@ -223,7 +221,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         lbl_khachHang.removeAll();
         lbl_khachHang.setText(sum + "");
     }
-    
+
     public void setDoiTraTheoThang(String nam, String thang) {
         int sum = 0;
         int Thang = 0;
@@ -242,7 +240,6 @@ public class ViewThongKe extends javax.swing.JFrame {
         lbl_doiTra.setText(sum + "");
     }
 
-    
     public void setDoanhThuTheoNam(String year) {
         double sum = 0;
 
@@ -250,7 +247,7 @@ public class ViewThongKe extends javax.swing.JFrame {
             sum = sum + x.getTongTien();
         }
         lbl_doanhThu.removeAll();
-        lbl_doanhThu.setText(sum + "");
+         lbl_doanhThu.setText(String.format("%.2f", sum));
 
     }
 
@@ -280,7 +277,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         lbl_khachHang.removeAll();
         lbl_khachHang.setText(sum + "");
     }
-    
+
     public void setDoiTraTheoNam(String year) {
         int sum = 0;
         for (var x : doiTraThongKe.getAll("'" + year + "-01-01'", "'" + year + "-12-31'")) {
@@ -509,7 +506,6 @@ public class ViewThongKe extends javax.swing.JFrame {
         ChartPanel chartPanel = new ChartPanel(cha);;
         chartPanel.setPreferredSize(new Dimension(input.getWidth(), 470));
 
-
         input.removeAll();
         input.setLayout(new CardLayout());
         input.add(chartPanel);
@@ -597,7 +593,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         input.validate();
         input.repaint();
     }
-    
+
     public void setTronDoiTraTheoThang(JPanel input, String thang, String nam) {
         int chatLuong = 0;
         int mauSac = 0;
@@ -630,8 +626,6 @@ public class ViewThongKe extends javax.swing.JFrame {
                 dataset.setValue("Kích Cỡ", kichCo);
             }
         }
-        
-        
 
         JFreeChart cha = ChartFactory.createPieChart("Biểu Đồ Thống Kê Sản Phẩm Đổi Trả ", dataset);
         ChartPanel chartPanel = new ChartPanel(cha);;
@@ -643,9 +637,6 @@ public class ViewThongKe extends javax.swing.JFrame {
         input.validate();
         input.repaint();
     }
-
-
-    
 
     public void setBieuDoKHTheoNam(JPanel input, String batDau) {
         double thang1 = 0;
@@ -807,7 +798,7 @@ public class ViewThongKe extends javax.swing.JFrame {
             input.setText("");
             return true;
         }
-        if ( utility.DemChuoi(input.getText()) >= 3) {
+        if (utility.DemChuoi(input.getText()) >= 3) {
             JOptionPane.showMessageDialog(this, "Ngày Tháng không đúng kiểu dữ liệu");
             input.requestFocus();
             input.setText("");
@@ -916,10 +907,10 @@ public class ViewThongKe extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbl_doanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_doanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addGap(44, 44, 44))
+                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jLabel1)
@@ -1485,34 +1476,29 @@ public class ViewThongKe extends javax.swing.JFrame {
 
     private void btn_thongKeLBLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongKeLBLActionPerformed
         // TODO add your handling code here:
-        if (checkNgayThang(txt_ngayTK)==false && checkNgayThang(txt_thangTK)==false&&checkNam(txt_namTK)==false) {
-            
-            
-             if (txt_ngayTK.getText().isEmpty()&&txt_thangTK.getText().isEmpty() ) {
+        if (checkNgayThang(txt_ngayTK) == false && checkNgayThang(txt_thangTK) == false && checkNam(txt_namTK) == false) {
+
+            if (txt_ngayTK.getText().isEmpty() && txt_thangTK.getText().isEmpty()) {
                 setDoanhThuTheoNam(txt_namTK.getText());
                 setHoaDonTheoNam(txt_namTK.getText());
                 setKhachHangTheoNam(txt_namTK.getText());
                 setSanPhamTheoNam(txt_namTK.getText());
                 setDoiTraTheoNam(txt_namTK.getText());
-            }
-            else if (txt_ngayTK.getText().isBlank()&&txt_thangTK.getText().isBlank()) {
+            } else if (txt_ngayTK.getText().isBlank() && txt_thangTK.getText().isBlank()) {
                 setDoanhThuTheoNam(txt_namTK.getText());
                 setHoaDonTheoNam(txt_namTK.getText());
                 setKhachHangTheoNam(txt_namTK.getText());
                 setSanPhamTheoNam(txt_namTK.getText());
                 setDoiTraTheoNam(txt_namTK.getText());
-            }
-            else if (txt_ngayTK.getText().isBlank()||txt_ngayTK.getText().isEmpty()) {
+            } else if (txt_ngayTK.getText().isBlank() || txt_ngayTK.getText().isEmpty()) {
                 setDoanhThuTheoThang(txt_namTK.getText(), txt_thangTK.getText());
                 setHoaDonTheoThang(txt_namTK.getText(), txt_thangTK.getText());
                 setKhachHangTheoThang(txt_namTK.getText(), txt_thangTK.getText());
                 setSanPhamTheoThang(txt_namTK.getText(), txt_thangTK.getText());
                 setDoiTraTheoThang(txt_namTK.getText(), txt_thangTK.getText());
-            }
-            else if (txt_namTK.getText().isBlank()||txt_namTK.getText().isEmpty()) {
+            } else if (txt_namTK.getText().isBlank() || txt_namTK.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Vui lòng điền năm cần thống kê");
-            }
-            else {
+            } else {
                 setDoanhThuTheoNgay(txt_namTK.getText(), txt_thangTK.getText(), txt_ngayTK.getText());
                 setHoaDonTheoNgay(txt_namTK.getText(), txt_thangTK.getText(), txt_ngayTK.getText());
                 setSanPhamTheoNgay(txt_namTK.getText(), txt_thangTK.getText(), txt_ngayTK.getText());
@@ -1520,7 +1506,7 @@ public class ViewThongKe extends javax.swing.JFrame {
                 setDoiTraTheoNgay(txt_namTK.getText(), txt_thangTK.getText(), txt_ngayTK.getText());
             }
         }
-        
+
 
     }//GEN-LAST:event_btn_thongKeLBLActionPerformed
 

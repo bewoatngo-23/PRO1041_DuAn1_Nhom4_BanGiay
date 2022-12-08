@@ -37,6 +37,17 @@ public class HDCTDoiTraCustomModel {
         this.soLuong = soLuong;
     }
 
+    public HDCTDoiTraCustomModel(String idCTSP, String maSP, String tenSP, String dongSP, String deGiay, String mauSac, String size) {
+        this.idCTSP = idCTSP;
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.dongSP = dongSP;
+        this.deGiay = deGiay;
+        this.mauSac = mauSac;
+        this.size = size;
+
+    }
+
     public String getIdCTSP() {
         return idCTSP;
     }
@@ -103,6 +114,10 @@ public class HDCTDoiTraCustomModel {
 
     public Object[] toRowData() {
         return new Object[]{maSP, tenSP, dongSP, deGiay, mauSac, size, soLuong};
+    }
+
+    public Object[] toRowDataDa() {
+        return new Object[]{maSP, tenSP, dongSP, deGiay, mauSac, size};
     }
 
 }

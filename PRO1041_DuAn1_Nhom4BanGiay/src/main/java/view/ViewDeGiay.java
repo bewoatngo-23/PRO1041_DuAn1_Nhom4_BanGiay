@@ -21,18 +21,20 @@ public class ViewDeGiay extends javax.swing.JFrame {
     /**
      * Creates new form ViewDeGiay
      */
-    private IDeGiayService deGiayService= new DeGiayServiecImpl();
+    private IDeGiayService deGiayService = new DeGiayServiecImpl();
     private utilities.Utility uti = new Utility();
     private ViewCTSanPham viewCTSanPham = new ViewCTSanPham();
+
     public ViewDeGiay() {
         initComponents();
         setLocationRelativeTo(null);
         loadTable(null);
-        
+
     }
 
     private String click;
-    public void loadTable(String input){
+
+    public void loadTable(String input) {
         DefaultTableModel mol = (DefaultTableModel) tbl_deGiay.getModel();
         mol.setRowCount(0);
         int stt = 1;
@@ -45,14 +47,21 @@ public class ViewDeGiay extends javax.swing.JFrame {
             });
         }
     }
-    
-    public DeGiayHiber getForm(){
+
+    public DeGiayHiber getForm() {
         return new DeGiayHiber(null, txt_ma.getText(), txt_ten.getText());
     }
-    
-    public boolean CheckDL(){
+
+    public boolean CheckDL() {
         if (uti.CheckRong(txt_ma.getText())) {
             JOptionPane.showMessageDialog(this, "Mã không được để trống");
+            txt_ma.requestFocus();
+            txt_ma.setText("");
+            return true;
+        }
+
+        if (uti.DemChuoi(txt_ma.getText()) > 20) {
+            JOptionPane.showMessageDialog(this, "Mã không lớn hơn 20 ký tự");
             txt_ma.requestFocus();
             txt_ma.setText("");
             return true;
@@ -63,10 +72,17 @@ public class ViewDeGiay extends javax.swing.JFrame {
             txt_ten.setText("");
             return true;
         }
+
+        if (uti.DemChuoi(txt_ten.getText()) > 30) {
+            JOptionPane.showMessageDialog(this, "Tên không lớn hơn 30 ký tự");
+            txt_ten.requestFocus();
+            txt_ten.setText("");
+            return true;
+        }
         return false;
     }
-    
-    public boolean CheckTrung(){
+
+    public boolean CheckTrung() {
         if (deGiayService.CheckTrungMa(txt_ma.getText())) {
             JOptionPane.showMessageDialog(this, "Trùng mã");
             txt_ma.requestFocus();
@@ -75,6 +91,7 @@ public class ViewDeGiay extends javax.swing.JFrame {
         }
         return false;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,8 +101,10 @@ public class ViewDeGiay extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_deGiay = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
         lbl_ten = new javax.swing.JLabel();
         txt_ma = new javax.swing.JTextField();
         lbl_ma = new javax.swing.JLabel();
@@ -99,6 +118,9 @@ public class ViewDeGiay extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         tbl_deGiay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,13 +140,19 @@ public class ViewDeGiay extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_deGiay);
 
-        lbl_ten.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 153, 102));
+        jLabel4.setText("Đế giày");
+
+        lbl_ten.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lbl_ten.setText("Tên Đế Giày");
 
-        lbl_ma.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl_ma.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lbl_ma.setText("Mã Đế Giày");
 
-        btn_them.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_them.setBackground(new java.awt.Color(204, 0, 51));
+        btn_them.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btn_them.setForeground(new java.awt.Color(255, 255, 255));
         btn_them.setText("Thêm");
         btn_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +160,9 @@ public class ViewDeGiay extends javax.swing.JFrame {
             }
         });
 
-        btn_sua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_sua.setBackground(new java.awt.Color(204, 0, 51));
+        btn_sua.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btn_sua.setForeground(new java.awt.Color(255, 255, 255));
         btn_sua.setText("Sửa");
         btn_sua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +170,9 @@ public class ViewDeGiay extends javax.swing.JFrame {
             }
         });
 
-        btn_xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_xoa.setBackground(new java.awt.Color(204, 0, 51));
+        btn_xoa.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btn_xoa.setForeground(new java.awt.Color(255, 255, 255));
         btn_xoa.setText("Xóa");
         btn_xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +180,9 @@ public class ViewDeGiay extends javax.swing.JFrame {
             }
         });
 
-        btn_clear.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_clear.setBackground(new java.awt.Color(204, 0, 51));
+        btn_clear.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btn_clear.setForeground(new java.awt.Color(255, 255, 255));
         btn_clear.setText("Clear");
         btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +205,9 @@ public class ViewDeGiay extends javax.swing.JFrame {
             }
         });
 
+        btnQuayLai1.setBackground(new java.awt.Color(0, 0, 0));
+        btnQuayLai1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnQuayLai1.setForeground(new java.awt.Color(255, 255, 255));
         btnQuayLai1.setText("Quay lại");
         btnQuayLai1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,14 +215,14 @@ public class ViewDeGiay extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,43 +231,48 @@ public class ViewDeGiay extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(134, 134, 134))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
                         .addComponent(btnQuayLai1)
                         .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(lbl_ma, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_ma, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(lbl_ten, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(txt_ten, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 53, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txt_tiemKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(lbl_ma, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_ma, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(lbl_ten, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_ten, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(txt_tiemKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(btnQuayLai1)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnQuayLai1)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_ma, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_ma, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_ten, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_ten, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,50 +280,59 @@ public class ViewDeGiay extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(txt_tiemKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        // TODO add your handling code here:
-        if (CheckDL()==false && CheckTrung()==false) {
-            var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thêm mới");
-        if (temp == 0) {
-            JOptionPane.showMessageDialog(this, deGiayService.add(getForm()));
-        loadTable(null);
-        viewCTSanPham.loadCBB();
-        }else{
-            loadTable(null);
-        }
-        }
-        
-    }//GEN-LAST:event_btn_themActionPerformed
-
     private void tbl_deGiayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_deGiayMouseClicked
         // TODO add your handling code here:
         var dong = tbl_deGiay.getSelectedRow();
-        click = tbl_deGiay.getModel().getValueAt(dong, 1).toString();      
+        click = tbl_deGiay.getModel().getValueAt(dong, 1).toString();
         txt_ma.setText(tbl_deGiay.getModel().getValueAt(dong, 2).toString());
         txt_ten.setText(tbl_deGiay.getModel().getValueAt(dong, 3).toString());
     }//GEN-LAST:event_tbl_deGiayMouseClicked
 
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        // TODO add your handling code here:
+        if (CheckDL() == false && CheckTrung() == false) {
+            var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thêm mới");
+            if (temp == 0) {
+                JOptionPane.showMessageDialog(this, deGiayService.add(getForm()));
+                loadTable(null);
+                viewCTSanPham.loadCBB();
+            } else {
+                loadTable(null);
+            }
+        }
+    }//GEN-LAST:event_btn_themActionPerformed
+
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         // TODO add your handling code here:
-        if (CheckDL()==false && CheckTrung()==false) {
+        if (CheckDL() == false && CheckTrung() == false) {
             var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn sửa thông tin không ?");
-        if (temp == 0) {
-            var deGiay = getForm();       
-        deGiay.setId(click);
-        JOptionPane.showMessageDialog(this, deGiayService.update(deGiay));
-        loadTable(null);
-        viewCTSanPham.loadCBB();
-        }
-        else{
-            loadTable(null);
-        }
+            if (temp == 0) {
+                var deGiay = getForm();
+                deGiay.setId(click);
+                JOptionPane.showMessageDialog(this, deGiayService.update(deGiay));
+                loadTable(null);
+                viewCTSanPham.loadCBB();
+            } else {
+                loadTable(null);
+            }
         }
     }//GEN-LAST:event_btn_suaActionPerformed
 
@@ -290,25 +341,19 @@ public class ViewDeGiay extends javax.swing.JFrame {
         var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa không ?");
         if (temp == 0) {
             var deGiay = new DeGiayHiber();
-        deGiay.setId(click);
-        JOptionPane.showMessageDialog(this, deGiayService.delete(deGiay));
-        loadTable(null);
-        viewCTSanPham.loadCBB();
+            deGiay.setId(click);
+            JOptionPane.showMessageDialog(this, deGiayService.delete(deGiay));
+            loadTable(null);
+            viewCTSanPham.loadCBB();
         }
         loadTable(null);
     }//GEN-LAST:event_btn_xoaActionPerformed
 
-    private void txt_tiemKiemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tiemKiemFocusGained
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         // TODO add your handling code here:
-        txt_tiemKiem.setText("");
-        
-    }//GEN-LAST:event_txt_tiemKiemFocusGained
-
-    private void txt_tiemKiemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tiemKiemFocusLost
-        // TODO add your handling code here:
-        txt_tiemKiem.setText("Tìm Kiếm...");
-        loadTable(null);
-    }//GEN-LAST:event_txt_tiemKiemFocusLost
+        txt_ma.setText("");
+        txt_ten.setText("");
+    }//GEN-LAST:event_btn_clearActionPerformed
 
     private void txt_tiemKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_tiemKiemCaretUpdate
         // TODO add your handling code here:
@@ -318,11 +363,16 @@ public class ViewDeGiay extends javax.swing.JFrame {
         loadTable(txt_tiemKiem.getText());
     }//GEN-LAST:event_txt_tiemKiemCaretUpdate
 
-    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+    private void txt_tiemKiemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tiemKiemFocusGained
         // TODO add your handling code here:
-        txt_ma.setText("");
-        txt_ten.setText("");
-    }//GEN-LAST:event_btn_clearActionPerformed
+        txt_tiemKiem.setText("");
+    }//GEN-LAST:event_txt_tiemKiemFocusGained
+
+    private void txt_tiemKiemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tiemKiemFocusLost
+        // TODO add your handling code here:
+        txt_tiemKiem.setText("Tìm Kiếm...");
+        loadTable(null);
+    }//GEN-LAST:event_txt_tiemKiemFocusLost
 
     private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai1ActionPerformed
 
@@ -370,6 +420,8 @@ public class ViewDeGiay extends javax.swing.JFrame {
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_xoa;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_ma;
     private javax.swing.JLabel lbl_ten;

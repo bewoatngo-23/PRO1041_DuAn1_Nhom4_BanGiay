@@ -6,6 +6,7 @@ package service.impl;
 
 import customModel.MauSacCustomModel;
 import domainModel.MauSac;
+import java.util.ArrayList;
 import java.util.List;
 import repository.impl.MauSacRepository;
 import service.IMauSacService;
@@ -51,6 +52,31 @@ public class MauSacServiceImpl implements IMauSacService {
     @Override
     public List<MauSacCustomModel> Search(String ten) {
         return msr.search(ten);
+    }
+
+    @Override
+    public List<MauSacCustomModel> SearchNV(String input) {
+        List<MauSacCustomModel> listNV = new ArrayList<>();
+        if (input == null) {
+            return msr.getAllCustom();
+        }
+        for (MauSacCustomModel x : msr.getAllCustom()) {
+            if (x.getMa().contains(input) || x.getTen().contains(input)) {
+                listNV.add(x);
+            }
+        }
+        return listNV;
+    }
+
+    @Override
+    public boolean CheckTrungMa(String input) {
+        for (MauSacCustomModel x : msr.getAllCustom()) {
+            if (x.getMa().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
 }

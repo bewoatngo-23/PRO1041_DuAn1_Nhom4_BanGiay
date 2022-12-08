@@ -50,6 +50,18 @@ public class HoaDonDoiTraCustomModel {
         this.ghiChu = ghiChu;
     }
 
+    public HoaDonDoiTraCustomModel(String idCTSP, String maHD, String tenNV, String tenKH, String sdt, Date ngayThanhToan, int soLuong, String liDoDoi, String ghiChu) {
+        this.idCTSP = idCTSP;
+        this.maHD = maHD;
+        this.tenNV = tenNV;
+        this.tenKH = tenKH;
+        this.sdt = sdt;
+        this.ngayThanhToan = ngayThanhToan;
+        this.soLuong = soLuong;
+        this.liDoDoi = liDoDoi;
+        this.ghiChu = ghiChu;
+    }
+
     public String getId() {
         return id;
     }
@@ -157,5 +169,9 @@ public class HoaDonDoiTraCustomModel {
 
     public Object[] toRowData() {
         return new Object[]{maHD, tenNV, tenKH, sdt, dateFormat.format(ngayThanhToan), hanDoi()};
+    }
+
+    public Object[] toRowDataDa() {
+        return new Object[]{maHD, tenNV, tenKH, sdt, dateFormat.format(ngayThanhToan), soLuong, liDoDoi, ghiChu};
     }
 }
