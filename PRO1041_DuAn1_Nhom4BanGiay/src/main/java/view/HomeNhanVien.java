@@ -14,6 +14,11 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import customModel.DeGiayCustomModel;
 import customModel.DongSanPhamCustomModel;
 import customModel.HDCTCustoModelHD;
@@ -42,6 +47,8 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.awt.print.PrinterException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -59,6 +66,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -437,8 +445,6 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
         jPanel6 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        txtHoaDonPDF = new javax.swing.JTextArea();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -774,13 +780,6 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jScrollPane7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        txtHoaDonPDF.setColumns(20);
-        txtHoaDonPDF.setRows(5);
-        txtHoaDonPDF.setPreferredSize(new java.awt.Dimension(204, 40));
-        jScrollPane7.setViewportView(txtHoaDonPDF);
-
         jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(11, 42, 61));
         jLabel27.setText("Hóa đơn chờ");
@@ -948,7 +947,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                                 .addComponent(jLabel31)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbbDSPBH, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                                 .addComponent(jLabel32)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbbDGBH, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1315,7 +1314,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                     .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         pnlWebcam.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1327,28 +1326,33 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
             .addGroup(pnlBanHangLayout.createSequentialGroup()
                 .addGap(511, 511, 511)
                 .addComponent(pnlWebcam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(653, Short.MAX_VALUE))
+                .addContainerGap(696, Short.MAX_VALUE))
             .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBanHangLayout.createSequentialGroup()
                     .addGap(37, 37, 37)
                     .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnlBanHangLayout.createSequentialGroup()
-                            .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(pnlBanHangLayout.createSequentialGroup()
-                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(243, 243, 243)))
-                            .addGap(5, 5, 5))
-                        .addComponent(jLabel29)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(421, 421, 421))
                         .addGroup(pnlBanHangLayout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(82, 82, 82)))
+                            .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlBanHangLayout.createSequentialGroup()
+                                    .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(pnlBanHangLayout.createSequentialGroup()
+                                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(243, 243, 243)))
+                                    .addGap(5, 5, 5))
+                                .addGroup(pnlBanHangLayout.createSequentialGroup()
+                                    .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel29)
+                                        .addGroup(pnlBanHangLayout.createSequentialGroup()
+                                            .addGap(9, 9, 9)
+                                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(82, 82, 82)))))
         );
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1363,10 +1367,6 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnlBanHangLayout.createSequentialGroup()
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnlBanHangLayout.createSequentialGroup()
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(8, 8, 8)
                             .addComponent(jLabel28)
@@ -1375,7 +1375,8 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jLabel29)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -2061,7 +2062,6 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
 
         txtTienKhachDua.setText("0");
         lblTienThua.setText("0");
-        txtHoaDonPDF.setText("");
         btnThanhToan.setEnabled(true);
         btnHuyHoaDon.setEnabled(true);
         btnLamMoi.setEnabled(true);
@@ -2101,7 +2101,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                 double giamGia = 0;
                 String cbbVoucher = cbbGiaGiam.getSelectedItem().toString();
                 for (GioHangViewModel gha : listGioHangS) {
-                    thanhTien += gha.getSoLuong() * gh.getDonGia();
+                    thanhTien += gha.getSoLuong() * gha.getDonGia();
 
                 }
 
@@ -2184,7 +2184,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                     double giamGia = 0;
                     String cbbVoucher = cbbGiaGiam.getSelectedItem().toString();
                     for (GioHangViewModel gha : listGioHangS) {
-                        thanhTien += gha.getSoLuong() * gh.getDonGia();
+                        thanhTien += gha.getSoLuong() * gha.getDonGia();
 
                     }
 
@@ -2288,7 +2288,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
 
                             String cbbVoucher = cbbGiaGiam.getSelectedItem().toString();
                             for (GioHangViewModel gha : listGioHangS) {
-                                thanhTien += gha.getSoLuong() * gh.getDonGia();
+                                thanhTien += gha.getSoLuong() * gha.getDonGia();
 
                             }
 
@@ -2464,7 +2464,13 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
         String sdtKH = cbbSoDienThoai.getSelectedItem().toString();
         String thanhToan = lblThanhToan.getText();
         String tienKhachDua = txtTienKhachDua.getText();
-        String tienThua = fomat.format(lblTienThua.getText());
+        String tienThua = lblTienThua.getText();
+        String path = "";
+        String tenNV = cbbNhanVienBH.getSelectedItem().toString();
+        String maHD = lblMaHD.getText();
+        String thanhTien = lblThanhTien.getText();
+        String giamGia = cbbGiaGiam.getSelectedItem().toString();
+
         int temp = 3;
 
         int soLuong = 0;
@@ -2472,7 +2478,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
             soLuong += gh.getSoLuong();
         }
 
-        if (lblThanhTien.getText().equals("0.0")) {
+        if (lblThanhTien.getText().equals("0")) {
             JOptionPane.showMessageDialog(this, "Vui lòng thêm sản phẩm trước khi thanh toán");
         } else if (txtTienKhachDua.getText().equals("0") || txtTienKhachDua.getText().matches("\\s+")) {
             JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin");
@@ -2497,20 +2503,6 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                 listHoaDons = bhs.getHoaDon();
                 loadDataHoaDon(listHoaDons);
 
-                listGioHangS = bhs.getGioHang(maHd);
-                showDataGioHang(listGioHangS);
-                txtHoaDonPDF.append("\nSHOP 6G SNEAKER\n"
-                        + "\n              Hóa Đơn Thanh Toán \n"
-                        + "---------------------------------------------------\n"
-                        + "Ngày thanh toán:    " + ngayThanhToan + "\n"
-                        + "Tên khách hàng:    " + tenKH + "\n"
-                        + "Số điện thoại:         " + sdtKH + "\n"
-                        + "Thành tiền:             " + thanhToan + "   VNĐ" + "\n"
-                        + "Tiền khách đưa:     " + tienKhachDua + "   VNĐ" + "\n"
-                        + "Tiền thừa:              " + tienThua + "   VNĐ" + "\n"
-                        + "---------------------------------------------------\n"
-                        + "              Cảm Ơn Quý Khách\n"
-                );
                 temp = JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn không");
                 btnThanhToan.setEnabled(false);
                 btnHuyHoaDon.setEnabled(false);
@@ -2519,17 +2511,85 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
             }
         }
         if (temp == 0) {
-            try {
-                txtHoaDonPDF.print();
-            } catch (PrinterException ex) {
-                Logger.getLogger(ViewBanHang.class.getName()).log(Level.SEVERE, null, ex);
+            JFileChooser j = new JFileChooser();
+            j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int x = j.showSaveDialog(this);
+            if (x == JFileChooser.APPROVE_OPTION) {
+                path = j.getSelectedFile().getPath();
             }
-            lblMaHD.setText("Tạo");
-            lblThanhTien.setText("0");
 
-            lblThanhToan.setText("0");
-            txtTienKhachDua.setText("0");
-            lblTienThua.setText("0");
+            Document doc = new Document();
+
+            try {
+                PdfWriter pw = PdfWriter.getInstance(doc, new FileOutputStream(path + "\\" + maHD + ".pdf"));
+                doc.open();
+                doc.add(new Paragraph("                                                              SHOP GIÀY 6G SNEAKER\n"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Ngày thanh toán:          " + ngayThanhToan.toString()));
+                doc.add(new Paragraph("Tên nhân viên:              " + String.valueOf(tenNV)));
+                doc.add(new Paragraph("Tên khách hàng:           " + String.valueOf(tenKH)));
+                doc.add(new Paragraph("So dien thoai:               " + sdtKH));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                PdfPTable tbl = new PdfPTable(5);
+                tbl.setWidthPercentage(100);
+                tbl.setSpacingBefore(11f);
+                tbl.setSpacingAfter(11f);
+
+                float[] col = {2f, 2f, 2f, 2f, 2f};
+                tbl.setWidths(col);
+
+                tbl.addCell("Ma San Pham");
+                tbl.addCell("Ten San Pham");
+                tbl.addCell("So Luong");
+                tbl.addCell("Don Gia");
+                tbl.addCell("Tong Tien");
+
+                for (int i = 0; i < tblGioHang.getRowCount(); i++) {
+                    String ma = tblGioHang.getValueAt(i, 0).toString();
+                    String ten = tblGioHang.getValueAt(i, 1).toString();
+                    String sl = tblGioHang.getValueAt(i, 2).toString();
+                    String dg = tblGioHang.getValueAt(i, 3).toString();
+                    Double tt = Double.valueOf(dg) * Integer.valueOf(sl);
+
+                    tbl.addCell(ma);
+                    tbl.addCell(ten);
+                    tbl.addCell(sl);
+                    tbl.addCell(fomat.format(Double.valueOf((dg))) + " VND");
+                    tbl.addCell(fomat.format(Double.valueOf((tt))) + " VND");
+                }
+                doc.add(tbl);
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Thanh tien: " + "                                                                                                            " + (thanhTien) + " VND"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Giam gia: " + "                                                                                                              " + (giamGia)));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Thanh toán: " + "                                                                                                          " + (thanhToan) + " VND"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Tien khach dua: " + "                                                                                                    " + fomat.format(Double.valueOf(tienKhachDua)) + " VND"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Tien thua: " + "                                                                                                              " + (tienThua) + " VND"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("****************************************************************************************************************"));
+                doc.add(new Paragraph("                                                           THANK YOU COME AGAIN"));
+                doc.add(new Paragraph("****************************************************************************************************************"));
+                doc.add(new Paragraph("                                                           SOFTWARE BY NHOM4_IT17320"));
+                doc.add(new Paragraph("                                                           CONTACT: g6sneaker@it17320.com"));
+                doc.close();
+                pw.close();
+                listGioHangS = bhs.getGioHang(maHD);
+                showDataGioHang(listGioHangS);
+                lblMaHD.setText("Tạo");
+                lblThanhTien.setText("0");
+
+                lblThanhToan.setText("0");
+                txtTienKhachDua.setText("0");
+                lblTienThua.setText("0");
+
+            } catch (DocumentException ex) {
+                Logger.getLogger(ViewBanHang.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(HomeNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
         if (demTrangThai() < 5) {
@@ -2958,7 +3018,6 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
@@ -2989,7 +3048,6 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JTable tblHoaDonDoiTra;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextArea txtGhiChu;
-    private javax.swing.JTextArea txtHoaDonPDF;
     private javax.swing.JTextField txtTenKhachHangBH;
     private javax.swing.JLabel txtTenQuanLy;
     private javax.swing.JTextField txtTienKhachDua;
