@@ -57,7 +57,7 @@ import utilities.Utility;
  *
  * @author ADMIN
  */
-public class ViewBanHangD extends javax.swing.JFrame {
+public class ViewHoaDon extends javax.swing.JFrame {
 
     private DefaultTableModel tblModelHoaDon = new DefaultTableModel();
     private DefaultTableModel tblModelGioHang = new DefaultTableModel();
@@ -85,7 +85,7 @@ public class ViewBanHangD extends javax.swing.JFrame {
     private DefaultComboBoxModel cbbModelVC = new DefaultComboBoxModel();
     DecimalFormat fomat = new DecimalFormat("###,###,###");
 
-    public ViewBanHangD() {
+    public ViewHoaDon() {
         initComponents();
         String headersss[] = {"Mã HĐ", "Ngày tạo", "Nhân viên tạo", "Khách hàng", "Tình trạng"};
         tblModelHoaDon.setColumnIdentifiers(headersss);
@@ -1470,21 +1470,25 @@ public class ViewBanHangD extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHangD.class
+            java.util.logging.Logger.getLogger(ViewHoaDon.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHangD.class
+            java.util.logging.Logger.getLogger(ViewHoaDon.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHangD.class
+            java.util.logging.Logger.getLogger(ViewHoaDon.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHangD.class
+            java.util.logging.Logger.getLogger(ViewHoaDon.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1493,7 +1497,7 @@ public class ViewBanHangD extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewBanHangD().setVisible(true);
+                new ViewHoaDon().setVisible(true);
             }
         });
     }

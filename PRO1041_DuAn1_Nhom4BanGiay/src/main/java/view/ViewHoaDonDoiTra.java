@@ -65,7 +65,7 @@ import utilities.Utility;
  *
  * @author ADMIN
  */
-public class ViewBanHangH extends javax.swing.JFrame implements Runnable, ThreadFactory {
+public class ViewHoaDonDoiTra extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
     private DefaultTableModel tblModelHoaDon = new DefaultTableModel();
     private DefaultTableModel tblModelGioHang = new DefaultTableModel();
@@ -93,7 +93,7 @@ public class ViewBanHangH extends javax.swing.JFrame implements Runnable, Thread
     private Webcam webcam = null;
     private Executor executor = Executors.newSingleThreadExecutor(this);
 
-    public ViewBanHangH() {
+    public ViewHoaDonDoiTra() {
         initComponents();
         initWedcam();
         String headersss[] = {"Mã HĐ", "Ngày tạo", "Nhân viên tạo", "Khách hàng", "Tình trạng"};
@@ -170,7 +170,7 @@ public class ViewBanHangH extends javax.swing.JFrame implements Runnable, Thread
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
-                Logger.getLogger(ViewBanHangH.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ViewHoaDonDoiTra.class.getName()).log(Level.SEVERE, null, ex);
             }
             Result result = null;
             BufferedImage image = null;
@@ -185,7 +185,7 @@ public class ViewBanHangH extends javax.swing.JFrame implements Runnable, Thread
             try {
                 result = new MultiFormatReader().decode(bb);
             } catch (NotFoundException ex) {
-                Logger.getLogger(ViewBanHangH.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ViewHoaDonDoiTra.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             if (result != null) {
@@ -1224,7 +1224,7 @@ public class ViewBanHangH extends javax.swing.JFrame implements Runnable, Thread
             try {
                 txtHoaDonPDF.print();
             } catch (PrinterException ex) {
-                Logger.getLogger(ViewBanHangH.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ViewHoaDonDoiTra.class.getName()).log(Level.SEVERE, null, ex);
             }
             lblMaHD.setText("Tạo");
             lblThanhTien.setText("0");
@@ -1512,21 +1512,23 @@ public class ViewBanHangH extends javax.swing.JFrame implements Runnable, Thread
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHangH.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewHoaDonDoiTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHangH.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewHoaDonDoiTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHangH.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewHoaDonDoiTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewBanHangH.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewHoaDonDoiTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewBanHangH().setVisible(true);
+                new ViewHoaDonDoiTra().setVisible(true);
             }
         });
     }
