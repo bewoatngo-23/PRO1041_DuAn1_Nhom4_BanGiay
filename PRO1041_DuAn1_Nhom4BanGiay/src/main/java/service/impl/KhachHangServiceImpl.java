@@ -63,4 +63,14 @@ public class KhachHangServiceImpl implements IKhachHangService {
         return listKH;
     }
 
+    @Override
+    public boolean CheckTrungMa(String input) {
+        for (KhachHangCustomModel x : khr.getAllCustom()) {
+            if (x.getMa().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

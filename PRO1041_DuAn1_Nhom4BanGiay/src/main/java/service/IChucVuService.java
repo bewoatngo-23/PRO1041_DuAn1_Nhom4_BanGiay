@@ -26,5 +26,8 @@ public interface IChucVuService {
 
     List<ChucVuCustomModel> getAllCustom();
 
-    List<ChucVuCustomModel> Search(String ten);
+    List<ChucVuCustomModel> Search(String input);
+
+    boolean CheckTrungMa(String input);
+
 }

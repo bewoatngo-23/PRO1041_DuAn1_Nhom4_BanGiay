@@ -34,25 +34,25 @@ public class NhanVienServiceImpl implements INhanVienService {
     @Override
     public String add(NhanVien t) {
         if (NhanVienRes.add(t)) {
-            return "Add thành công";
+            return "Thêm thành công";
         }
-        return "Add thất bại";
+        return "Thêm thất bại";
     }
 
     @Override
     public String update(NhanVien t, String id) {
         if (NhanVienRes.update(t, id)) {
-            return "Update thành công";
+            return "Cập nhật thành công";
         }
-        return "Update thất bại";
+        return "Cập nhật thất bại";
     }
 
     @Override
     public String delete(String id) {
         if (NhanVienRes.delete(id)) {
-            return "Delete thành công";
+            return "Xóa thành công";
         }
-        return "Delete thất bại";
+        return "Xóa thất bại, nhân viên đang bán hàng tại quầy không thể xóa";
     }
 
     @Override
@@ -84,6 +84,16 @@ public class NhanVienServiceImpl implements INhanVienService {
     @Override
     public List<NhanVienCustomModel> getAllCustomByMaNV() {
         return NhanVienRes.getAllCustomByMaNV();
+    }
+
+    @Override
+    public boolean CheckTrungMa(String input) {
+        for (NhanVienCustomModel x : NhanVienRes.getAllCustomModel()) {
+            if (x.getMa().equals(input)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

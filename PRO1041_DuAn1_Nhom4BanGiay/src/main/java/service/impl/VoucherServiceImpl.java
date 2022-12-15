@@ -71,4 +71,14 @@ public class VoucherServiceImpl implements IVoucherSevice {
         return vcr.getVoucherTrangThai();
     }
 
+    @Override
+    public boolean CheckTrungMa(String input) {
+        for (VoucherCustomModel x : vcr.getAllCustom()) {
+            if (x.getMa().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

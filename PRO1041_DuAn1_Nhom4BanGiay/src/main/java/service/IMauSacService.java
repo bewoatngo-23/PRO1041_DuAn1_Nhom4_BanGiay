@@ -26,8 +26,6 @@ public interface IMauSacService {
 
     String delete(String ma);
 
-    List<MauSacCustomModel> Search(String ten);
-
     List<MauSacCustomModel> SearchNV(String input);
 
     boolean CheckTrungMa(String input);

@@ -41,7 +41,6 @@ public class ViewDeGiay extends javax.swing.JFrame {
         for (var x : deGiayService.getAll(input)) {
             mol.addRow(new Object[]{
                 stt++,
-                x.getId(),
                 x.getMa(),
                 x.getTen()
             });
@@ -84,7 +83,7 @@ public class ViewDeGiay extends javax.swing.JFrame {
 
     public boolean CheckTrung() {
         if (deGiayService.CheckTrungMa(txt_ma.getText())) {
-            JOptionPane.showMessageDialog(this, "Trùng mã");
+            JOptionPane.showMessageDialog(this, "Mã bị trùng, vui lòng nhập mã khác");
             txt_ma.requestFocus();
             txt_ma.setText("");
             return true;
@@ -124,13 +123,13 @@ public class ViewDeGiay extends javax.swing.JFrame {
 
         tbl_deGiay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "STT", "ID", "Mã", "Tên"
+                "STT", "Mã", "Tên"
             }
         ));
         tbl_deGiay.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -199,9 +198,6 @@ public class ViewDeGiay extends javax.swing.JFrame {
         txt_tiemKiem.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txt_tiemKiemFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_tiemKiemFocusLost(evt);
             }
         });
 
@@ -302,8 +298,8 @@ public class ViewDeGiay extends javax.swing.JFrame {
         // TODO add your handling code here:
         var dong = tbl_deGiay.getSelectedRow();
         click = tbl_deGiay.getModel().getValueAt(dong, 1).toString();
-        txt_ma.setText(tbl_deGiay.getModel().getValueAt(dong, 2).toString());
-        txt_ten.setText(tbl_deGiay.getModel().getValueAt(dong, 3).toString());
+        txt_ma.setText(tbl_deGiay.getModel().getValueAt(dong, 1).toString());
+        txt_ten.setText(tbl_deGiay.getModel().getValueAt(dong, 2).toString());
     }//GEN-LAST:event_tbl_deGiayMouseClicked
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
@@ -367,12 +363,6 @@ public class ViewDeGiay extends javax.swing.JFrame {
         // TODO add your handling code here:
         txt_tiemKiem.setText("");
     }//GEN-LAST:event_txt_tiemKiemFocusGained
-
-    private void txt_tiemKiemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tiemKiemFocusLost
-        // TODO add your handling code here:
-        txt_tiemKiem.setText("Tìm Kiếm...");
-        loadTable(null);
-    }//GEN-LAST:event_txt_tiemKiemFocusLost
 
     private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai1ActionPerformed
 

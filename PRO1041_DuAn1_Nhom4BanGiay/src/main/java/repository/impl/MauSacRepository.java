@@ -125,25 +125,7 @@ public class MauSacRepository implements IInterface<MauSac> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Xóa thất bại";
-    }
-
-    public List<MauSacCustomModel> search(String ten) {
-        String sql = "SELECT Id, Ma, Ten\n"
-                + "FROM     MauSac\n"
-                + "where Ten like ?";
-        try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, "%" + ten + "%");
-            ResultSet rs = ps.executeQuery();
-            List<MauSacCustomModel> listMS = new ArrayList<>();
-            while (rs.next()) {
-                listMS.add(new MauSacCustomModel(rs.getString(1), rs.getString(2), rs.getString(3)));
-            }
-            return listMS;
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        return null;
+        return "Xóa thất bại, màu sắc đã được thêm vào sản phẩm chi tiết không thể xóa";
     }
 
     public static void main(String[] args) {

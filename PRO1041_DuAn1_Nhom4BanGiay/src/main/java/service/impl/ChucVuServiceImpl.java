@@ -4,6 +4,7 @@
  */
 package service.impl;
 
+import com.itextpdf.text.pdf.PdfStructTreeController;
 import customModel.ChucVuCustomModel;
 import domainModel.ChucVu;
 import java.util.ArrayList;
@@ -34,27 +35,27 @@ public class ChucVuServiceImpl implements IChucVuService {
     @Override
     public String add(ChucVu t) {
         if (ChucVuRes.add(t)) {
-            return "Add thành công";
+            return "Thêm thành công";
         } else {
-            return "Add thất bại";
+            return "Thêm thất bại";
         }
     }
 
     @Override
     public String update(ChucVu t, String id) {
         if (ChucVuRes.update(t, id)) {
-            return "Update thành công";
+            return "Sửa thành công";
         } else {
-            return "Update thất bại";
+            return "Sửa thất bại";
         }
     }
 
     @Override
     public String delete(String ma) {
         if (ChucVuRes.delete(ma)) {
-            return "Delete thành công";
+            return "Xóa thành công";
         } else {
-            return "Delete thất bại";
+            return "Xóa thất bại, chức vụ đã được thêm vào nhân viên không thể xóa";
         }
     }
 
@@ -65,8 +66,27 @@ public class ChucVuServiceImpl implements IChucVuService {
     }
 
     @Override
-    public List<ChucVuCustomModel> Search(String ten) {
-        return ChucVuRes.search(ten);
+    public List<ChucVuCustomModel> Search(String input) {
+        List<ChucVuCustomModel> listCV = new ArrayList<>();
+        if (input == null) {
+            return ChucVuRes.getAllCustom();
+        }
+        for (ChucVuCustomModel x : ChucVuRes.getAllCustom()) {
+            if (x.getMa().contains(input) || x.getTen().contains(input)) {
+                listCV.add(x);
+            }
+        }
+        return listCV;
+    }
+
+    @Override
+    public boolean CheckTrungMa(String input) {
+        for (ChucVuCustomModel x : ChucVuRes.getAllCustom()) {
+            if (x.getMa().equals(input)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

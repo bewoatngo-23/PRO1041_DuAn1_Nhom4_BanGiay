@@ -4,7 +4,6 @@
  */
 package repository.impl;
 
-
 import customModel.SanPhamCustomModel;
 import domainModel.SanPham;
 import java.sql.Connection;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import repository.IInterface;
 import utilities.DBContext;
-
 
 public class SanPhamRepository implements IInterface<SanPham> {
 
@@ -92,29 +90,12 @@ public class SanPhamRepository implements IInterface<SanPham> {
 
     @Override
     public String update(SanPham ms, String ma) {
-//        String query = "UPDATE [dbo].[SanPham]\n"
-//                + "   SET \n"
-//                + "      [Ten] = ?\n"
-//                + "      \n"
-//                + " WHERE Ma = ?";
-//        try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
-//            ps.setObject(1, ma);
-//            ps.setObject(2, ms.getTen());
-//
-//            if (ps.executeUpdate() > 0) {
-//                return "sửa thành công";
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return "Sửa thất bại";
         String query = "UPDATE [dbo].[SanPham]\n"
                 + "   SET \n"
                 + "      [Ten] = ?\n"
                 + "      \n"
                 + " WHERE Ma = ?";
-        try ( Connection con = DBContext.getConnection();
-            PreparedStatement ps = con.prepareStatement(query)) {
+        try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(2, ma);
             ps.setObject(1, ms.getTen());
 
@@ -139,26 +120,7 @@ public class SanPhamRepository implements IInterface<SanPham> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Xóa thất bại";
-    }
-
-    public List<SanPhamCustomModel> search(String ma) {
-        String sql = "SELECT Id, Ma, Ten\n"
-                + "FROM     SanPham\n"
-                + "where Ma like ?";
-        try ( Connection con = DBContext.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, "%" + ma + "%");
-            ResultSet rs = ps.executeQuery();
-            List<SanPhamCustomModel> listMS = new ArrayList<>();
-            while (rs.next()) {
-                listMS.add(new SanPhamCustomModel(rs.getString(1), rs.getString(2), rs.getString(3)));
-            }
-            return listMS;
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        return null;
+        return "Xóa thất bại,sản phẩm đã được thêm vào sản phẩm chi tiết không thể xóa";
     }
 
     public static void main(String[] args) {

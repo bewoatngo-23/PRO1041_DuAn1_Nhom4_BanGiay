@@ -198,7 +198,7 @@ public class BanHangRepository {
                 + "      ,[TrangThai] = ?\n"
                 + " WHERE Ma = ?";
         try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setObject(1, hd.getId());
+            ps.setObject(1, hd.getIdVoucher());
             ps.setObject(2, hd.getNgayThanhToan());
             ps.setObject(3, hd.getTongTien());
             ps.setObject(4, hd.getTongSanPham());
