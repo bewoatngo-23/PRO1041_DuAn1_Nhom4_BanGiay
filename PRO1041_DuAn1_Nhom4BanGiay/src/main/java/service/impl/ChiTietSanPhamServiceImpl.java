@@ -13,14 +13,14 @@ import repository.impl.ChiTietSPRepositoryImpl;
 
 import service.IChiTietSanPhamService;
 
-
 /**
  *
  * @author admin
  */
-public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService{
+public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService {
 
     private IChiTietSanPhamRes ChiTietSanPham = new ChiTietSPRepositoryImpl();
+
     @Override
     public List<ChiTietSanPhamHiber> getAll() {
         List<ChiTietSanPhamHiber> list_chiChiTietSanPham = new ArrayList<>();
@@ -30,33 +30,31 @@ public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService{
         return list_chiChiTietSanPham;
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-   @Override
+
+    @Override
     public List<ChiTietSPCustomModel> getAllCustomModel(String input) {
         List<ChiTietSPCustomModel> list_chiCustomModels = new ArrayList<>();
         if (input == null) {
-           return ChiTietSanPham.getAllCustomModels();
-       }
+            return ChiTietSanPham.getAllCustomModels();
+        }
         for (ChiTietSPCustomModel x : ChiTietSanPham.getAllCustomModels()) {
-            if (x.getMaSP().contains(input) || x.getTenSP().contains(input)|| x.getTenDongSP().contains(input)|| x.getTenDeGiay().contains(input)|| x.getTenMauSac().contains(input)||x.getXuatXu().contains(input)) {
+            if (x.getMaSP().contains(input) || x.getTenSP().contains(input) || x.getTenDongSP().contains(input) || x.getTenDeGiay().contains(input) || x.getTenMauSac().contains(input) || x.getXuatXu().contains(input)) {
                 list_chiCustomModels.add(x);
             }
-       }
+        }
         return list_chiCustomModels;
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-     @Override
+
+    @Override
     public List<ChiTietSPCustomModel> getAllBetWeen(String batDau, String ketThuc) {
-         List<ChiTietSPCustomModel> list_between = new ArrayList<>();
+        List<ChiTietSPCustomModel> list_between = new ArrayList<>();
         for (var x : ChiTietSanPham.getAllBetWeen(batDau, ketThuc)) {
-              list_between.add(x);
-       }
+            list_between.add(x);
+        }
         return list_between;
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-  
-   
 
     @Override
     public String add(ChiTietSanPhamHiber obj) {
@@ -81,7 +79,7 @@ public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService{
         if (ChiTietSanPham.delete(obj)) {
             return "Xóa thành công";
         }
-        return "Xóa không thành công";
+        return "Xóa không thành công, sản phẩm chi tiết đã được thêm vào hóa đơn không thể xóa";
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -99,12 +97,7 @@ public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService{
     @Override
     public String getIdByIndex(int input) {
         return ChiTietSanPham.getAllCustomModels().get(input).getId();
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-   
-    
-
-    
-    
 }

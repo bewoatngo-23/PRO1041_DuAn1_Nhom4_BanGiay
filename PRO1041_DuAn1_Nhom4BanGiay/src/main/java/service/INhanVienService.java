@@ -31,4 +31,6 @@ public interface INhanVienService {
     List<NhanVienCustomModel> SearchNV(String input);
 
     List<NhanVienCustomModel> getAllCustomByMaNV();
+
+    boolean CheckTrungMa(String input);
 }

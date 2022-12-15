@@ -132,7 +132,7 @@ public class KhachHangRepository implements IInterface<KhachHang> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Xóa thất bại";
+        return "Xóa thất bại, khách hàng đã được thêm vào hóa đơn không thể xóa";
     }
 
     public static void main(String[] args) {

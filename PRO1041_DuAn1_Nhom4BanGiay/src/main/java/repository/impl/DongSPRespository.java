@@ -24,7 +24,7 @@ public class DongSPRespository implements IDongSPRes<DongSP> {
             List<DongSP> listDs = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listDs.add(new DongSP(rs.getString(1), rs.getString(2),rs.getString(3)));
+                listDs.add(new DongSP(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
             return listDs;
         } catch (Exception e) {
@@ -39,7 +39,7 @@ public class DongSPRespository implements IDongSPRes<DongSP> {
             List<DongSanPhamCustomModel> listDs = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listDs.add(new DongSanPhamCustomModel(rs.getString(1), rs.getString(2),rs.getString(3)));
+                listDs.add(new DongSanPhamCustomModel(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
             return listDs;
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class DongSPRespository implements IDongSPRes<DongSP> {
             ResultSet rs = ps.executeQuery();
             List<DongSP> listDs = new ArrayList<>();
             while (rs.next()) {
-                listDs.add(new DongSP(rs.getString(1), rs.getString(2),rs.getString(3)));
+                listDs.add(new DongSP(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
             return (DongSP) listDs;
         } catch (Exception e) {
@@ -91,22 +91,6 @@ public class DongSPRespository implements IDongSPRes<DongSP> {
 
     @Override
     public String update(DongSP ds, String ma) {
-//        String query = "UPDATE [dbo].[SanPham]\n"
-//                + "   SET \n"
-//                + "      [Ten] = ?\n"
-//                + "      \n"
-//                + " WHERE Ma = ?";
-//        try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
-//            ps.setObject(1, ma);
-//            ps.setObject(2, ms.getTen());
-//
-//            if (ps.executeUpdate() > 0) {
-//                return "sửa thành công";
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return "Sửa thất bại";
         String query = "UPDATE [dbo].[DongSP]\n"
                 + "   SET \n"
                 + "      [Ten] = ?\n"
@@ -137,7 +121,7 @@ public class DongSPRespository implements IDongSPRes<DongSP> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Xóa thất bại";
+        return "Xóa thất bại, dòng sản phẩm đã được thêm vào sản phẩm chi tiết không thể xóa";
     }
 
     public List<DongSanPhamCustomModel> search(String ma) {

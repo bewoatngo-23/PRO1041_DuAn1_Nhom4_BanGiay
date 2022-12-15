@@ -90,7 +90,7 @@ public class ViewMauSac extends javax.swing.JFrame {
 
     public boolean CheckTrung() {
         if (khs.CheckTrungMa(txtMa.getText())) {
-            JOptionPane.showMessageDialog(this, "Trùng mã");
+            JOptionPane.showMessageDialog(this, "Mã bị trùng, vui lòng nhập mã khác");
             txtMa.requestFocus();
             txtMa.setText("");
             return true;
@@ -123,9 +123,15 @@ public class ViewMauSac extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 204, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txtTimKiem.setText("Tìm kiếm ....");
         txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtTimKiemCaretUpdate(evt);
+            }
+        });
+        txtTimKiem.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTimKiemFocusGained(evt);
             }
         });
 
@@ -237,9 +243,9 @@ public class ViewMauSac extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jLabel4)
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMa)
@@ -285,11 +291,11 @@ public class ViewMauSac extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnQuayLai1)
-                .addContainerGap(578, Short.MAX_VALUE))
+                .addContainerGap(497, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 81, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -358,6 +364,11 @@ public class ViewMauSac extends javax.swing.JFrame {
     private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
         showData(khs.SearchNV(txtTimKiem.getText()));
     }//GEN-LAST:event_txtTimKiemCaretUpdate
+
+    private void txtTimKiemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKiemFocusGained
+
+        txtTimKiem.setText("");
+    }//GEN-LAST:event_txtTimKiemFocusGained
 
     /**
      * @param args the command line arguments

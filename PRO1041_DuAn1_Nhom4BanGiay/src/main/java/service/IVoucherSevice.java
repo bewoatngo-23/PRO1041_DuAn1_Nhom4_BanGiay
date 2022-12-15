@@ -27,6 +27,8 @@ public interface IVoucherSevice {
     String delete(String ma);
 
     List<VoucherCustomModel> Search(String input);
-    
-     List<VoucherCustomModel> getVoucherTrangThai();
+
+    List<VoucherCustomModel> getVoucherTrangThai();
+
+    boolean CheckTrungMa(String input);
 }

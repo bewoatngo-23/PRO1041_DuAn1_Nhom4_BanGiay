@@ -64,7 +64,7 @@ public class DeGiayServiecImpl implements IDeGiayService{
         if (DeGiayRepository.delete(obj)) {
             return "Xóa thành công";
         }
-        return "Xóa thất bại";
+        return "Xóa thất bại, đế giầy đã được thêm vào sản phẩm chi tiết không thể xóa";
     }
 
     @Override

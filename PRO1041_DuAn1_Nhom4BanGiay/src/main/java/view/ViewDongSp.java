@@ -91,7 +91,7 @@ public class ViewDongSp extends javax.swing.JFrame {
 
     public boolean CheckTrung() {
         if (nccs.CheckTrungMa(txtMaDSP.getText())) {
-            JOptionPane.showMessageDialog(this, "Trùng mã");
+            JOptionPane.showMessageDialog(this, "Mã bị trùng, vui lòng nhập mã khác");
             txtMaDSP.requestFocus();
             txtMaDSP.setText("");
             return true;
@@ -196,9 +196,15 @@ public class ViewDongSp extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jLabel2.setText("Tên Dòng Sản Phẩm");
 
+        txtTimKiem.setText("Tìm kiếm ...");
         txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtTimKiemCaretUpdate(evt);
+            }
+        });
+        txtTimKiem.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTimKiemFocusGained(evt);
             }
         });
 
@@ -357,6 +363,10 @@ public class ViewDongSp extends javax.swing.JFrame {
     private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
         showData(nccs.SearchNV(txtTimKiem.getText()));
     }//GEN-LAST:event_txtTimKiemCaretUpdate
+
+    private void txtTimKiemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKiemFocusGained
+        txtTimKiem.setText("");
+    }//GEN-LAST:event_txtTimKiemFocusGained
 
     /**
      * @param args the command line arguments

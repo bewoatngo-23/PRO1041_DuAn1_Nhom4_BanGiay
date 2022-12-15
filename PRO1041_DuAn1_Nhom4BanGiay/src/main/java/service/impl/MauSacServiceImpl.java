@@ -50,11 +50,6 @@ public class MauSacServiceImpl implements IMauSacService {
     }
 
     @Override
-    public List<MauSacCustomModel> Search(String ten) {
-        return msr.search(ten);
-    }
-
-    @Override
     public List<MauSacCustomModel> SearchNV(String input) {
         List<MauSacCustomModel> listNV = new ArrayList<>();
         if (input == null) {

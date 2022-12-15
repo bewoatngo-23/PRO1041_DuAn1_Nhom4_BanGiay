@@ -10,12 +10,21 @@ import customModel.*;
  *
  * @author ADMIN
  */
-public class login {
+public class Login {
 
     private String username;
     private String password;
+    private String ma;
+    private String hoTen;
 
-    public login(String username, String password) {
+    public Login(String username, String password, String ma, String hoTen) {
+        this.username = username;
+        this.password = password;
+        this.ma = ma;
+        this.hoTen = hoTen;
+    }
+
+    public Login(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -36,9 +45,25 @@ public class login {
         this.password = password;
     }
 
+    public String getMa() {
+        return ma;
+    }
+
+    public void setMa(String ma) {
+        this.ma = ma;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
     @Override
     public String toString() {
-        return "login{" + "username=" + username + ", password=" + password + '}';
+        return "Login{" + "username=" + username + ", password=" + password + ", ma=" + ma + '}';
     }
 
 }

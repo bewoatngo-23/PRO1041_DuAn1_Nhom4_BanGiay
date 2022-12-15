@@ -5,11 +5,14 @@
 package view;
 
 import customModel.NhanVienCustomModel;
+import domainModel.Login;
+import java.awt.Cursor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import service.impl.LoginServiceImpl;
 import utilities.DBContext;
 
 /**
@@ -18,12 +21,10 @@ import utilities.DBContext;
  */
 public class ViewLogin extends javax.swing.JFrame {
 
+    private LoginServiceImpl lgs = new LoginServiceImpl();
+
     public ViewLogin() {
         initComponents();
-        ImageIcon imgThisImg = new ImageIcon("D:\\FPT_POLY_IV\\DuAn1\\CodeHeThongDuAnBanGiay\\PRO1041_DuAn1_Nhom4_BanGiay\\PRO1041_DuAn1_Nhom4BanGiay\\src\\main\\resources\\image\\giaylogin.jpg");
-
-        lblAnh.setIcon(imgThisImg);
-
     }
 
     /**
@@ -61,34 +62,45 @@ public class ViewLogin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(350, 0));
 
-        jPanel5.setBackground(new java.awt.Color(18, 19, 19));
+        jPanel5.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setBackground(new java.awt.Color(119, 170, 226));
         jLabel1.setFont(new java.awt.Font("Imprint MT Shadow", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("LOGIN");
 
-        jLabel2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("User name");
 
-        jLabel3.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
 
-        btnLogin.setBackground(new java.awt.Color(48, 56, 57));
+        btnLogin.setBackground(new java.awt.Color(255, 255, 255));
         btnLogin.setFont(new java.awt.Font("Zilla Slab Medium", 1, 18)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
         btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLoginMouseEntered(evt);
+            }
+        });
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
 
-        chkShowPass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        chkShowPass.setBackground(new java.awt.Color(0, 0, 0));
+        chkShowPass.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        chkShowPass.setForeground(new java.awt.Color(255, 255, 255));
         chkShowPass.setText("Show password");
+        chkShowPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                chkShowPassMouseEntered(evt);
+            }
+        });
         chkShowPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkShowPassActionPerformed(evt);
@@ -98,6 +110,11 @@ public class ViewLogin extends javax.swing.JFrame {
         btnExit.setBackground(new java.awt.Color(255, 255, 255));
         btnExit.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnExit.setText("Exit");
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExitMouseEntered(evt);
+            }
+        });
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -108,44 +125,43 @@ public class ViewLogin extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkShowPass)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtUsername)
-                                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                .addComponent(txtPassword))
-                            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtUsername)
+                        .addComponent(txtPassword))
+                    .addComponent(chkShowPass))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGap(51, 51, 51)
+                .addGap(69, 69, 69)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chkShowPass)
-                .addGap(18, 18, 18)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(btnExit)
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -162,7 +178,7 @@ public class ViewLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.WEST);
@@ -227,53 +243,30 @@ public class ViewLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String query = "Select HoTen from NhanVien where TaiKhoan=? and MatKhau=?";
+
         String u = txtUsername.getText();
         String p = txtPassword.getText();
-        try ( Connection con = DBContext.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setObject(1, u);
-            ps.setObject(2, p);
-            ResultSet rs = ps.executeQuery();
+        if (u.isEmpty() || p.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không được để trống tài khoản hoặc mật khẩu");
+        } else {
+            try {
 
-            if (rs.next()) {
-                
-                if (u.contains("quanly")) {
+                Login log = lgs.login(u, p);
+                if (u.equalsIgnoreCase(log.getUsername()) && p.equalsIgnoreCase(log.getPassword()) && log.getMa().contains("QL")) {
                     HomeQuanLyBG ql = new HomeQuanLyBG();
                     ql.setVisible(true);
                     this.dispose();
-                } else if (u.contains("nhanvien")) {
+                    JOptionPane.showMessageDialog(this, "Chào mừng quản lý " + log.getHoTen());
+                } else if (u.equalsIgnoreCase(log.getUsername()) && p.equalsIgnoreCase(log.getPassword()) && log.getMa().contains("NV")) {
                     HomeNhanVien nv = new HomeNhanVien();
                     nv.setVisible(true);
                     this.dispose();
-                } else {
-//                
-                    JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu");
+                    JOptionPane.showMessageDialog(this, "Chào mừng nhân viên " + log.getHoTen());
                 }
-            } else {
-//                
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu");
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-//        String u = txtUsername.getText();
-//        String p = txtPassword.getText();
-//        if (u.contains("quanly") && p.contains("ql")) {
-//            HomeQuanLyBG hql = new HomeQuanLyBG();
-//            hql.setVisible(true);
-//            this.dispose();
-//        } else if (u.contains("nhanvien") && p.contains("nv")) {
-//            HomeNhanVien hnv = new HomeNhanVien();
-//            hnv.setVisible(true);
-//            this.dispose();
-//        } else {
-//
-//            JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu");
-//        }
-//        HomeQuanLyBG hql = new HomeQuanLyBG();
-//        hql.setVisible(true);
-//        this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void chkShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkShowPassActionPerformed
@@ -287,6 +280,20 @@ public class ViewLogin extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void chkShowPassMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkShowPassMouseEntered
+        chkShowPass.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_chkShowPassMouseEntered
+
+    private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
+        // TODO add your handling code here:
+        btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnLoginMouseEntered
+
+    private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
+        // TODO add your handling code here:
+        btnExit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnExitMouseEntered
 
     /**
      * @param args the command line arguments
