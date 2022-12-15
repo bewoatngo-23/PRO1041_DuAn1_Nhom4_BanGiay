@@ -4,7 +4,7 @@
  */
 package repository.impl;
 
-import domainModel.Login;
+import domainModel.Loginn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ import utilities.DBContext;
  */
 public class LoginRepository {
 
-    public Login login(String user, String pass) {
+    public Loginn login(String user, String pass) {
         String query = "SELECT [TaiKhoan]\n"
                 + "      ,[MatKhau]\n"
                 + "      ,[Ma]\n"
@@ -28,7 +28,7 @@ public class LoginRepository {
             ps.setObject(2, pass);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                return new Login(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                return new Loginn(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -37,7 +37,7 @@ public class LoginRepository {
     }
 
     public static void main(String[] args) {
-        Login tk = new LoginRepository().login("quanly01", "ql01");
+        Loginn tk = new LoginRepository().login("quanly01", "ql01");
         System.out.println(tk);
     }
 }

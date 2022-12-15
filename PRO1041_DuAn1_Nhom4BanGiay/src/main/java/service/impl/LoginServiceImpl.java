@@ -4,7 +4,7 @@
  */
 package service.impl;
 
-import domainModel.Login;
+import domainModel.Loginn;
 import javax.swing.JOptionPane;
 import repository.impl.LoginRepository;
 import service.ILoginService;
@@ -18,7 +18,7 @@ public class LoginServiceImpl implements ILoginService {
     private LoginRepository lgr = new LoginRepository();
 
     @Override
-    public Login login(String user, String pass) {
+    public Loginn login(String user, String pass) {
 
         return lgr.login(user, pass);
 
