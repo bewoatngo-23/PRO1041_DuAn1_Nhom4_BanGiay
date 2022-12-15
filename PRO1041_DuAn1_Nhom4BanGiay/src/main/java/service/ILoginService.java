@@ -4,7 +4,7 @@
  */
 package service;
 
-import domainModel.Login;
+import domainModel.Loginn;
 
 /**
  *
@@ -12,5 +12,5 @@ import domainModel.Login;
  */
 public interface ILoginService {
 
-    public Login login(String user, String pass);
+    public Loginn login(String user, String pass);
 }

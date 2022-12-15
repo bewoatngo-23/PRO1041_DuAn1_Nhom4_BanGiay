@@ -5,7 +5,7 @@
 package view;
 
 import customModel.NhanVienCustomModel;
-import domainModel.Login;
+import domainModel.Loginn;
 import java.awt.Cursor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -251,7 +251,7 @@ public class ViewLogin extends javax.swing.JFrame {
         } else {
             try {
 
-                Login log = lgs.login(u, p);
+                Loginn log = lgs.login(u, p);
                 if (u.equalsIgnoreCase(log.getUsername()) && p.equalsIgnoreCase(log.getPassword()) && log.getMa().contains("QL")) {
                     HomeQuanLyBG ql = new HomeQuanLyBG();
                     ql.setVisible(true);

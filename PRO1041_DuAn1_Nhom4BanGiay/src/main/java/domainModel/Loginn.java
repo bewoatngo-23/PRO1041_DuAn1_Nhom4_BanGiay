@@ -10,21 +10,20 @@ import customModel.*;
  *
  * @author ADMIN
  */
-public class Login {
-
+public class Loginn {
     private String username;
     private String password;
     private String ma;
     private String hoTen;
 
-    public Login(String username, String password, String ma, String hoTen) {
+    public Loginn(String username, String password, String ma, String hoTen) {
         this.username = username;
         this.password = password;
         this.ma = ma;
         this.hoTen = hoTen;
     }
 
-    public Login(String username, String password) {
+    public Loginn(String username, String password) {
         this.username = username;
         this.password = password;
     }
