@@ -96,4 +96,34 @@ public class NhanVienServiceImpl implements INhanVienService {
         return false;
     }
 
+    @Override
+    public boolean CheckSDT(String input) {
+        for (NhanVienCustomModel x : NhanVienRes.getAllCustomModel()) {
+            if (x.getSdt().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean CheckTK(String input) {
+        for (NhanVienCustomModel x : NhanVienRes.getAllCustomModel()) {
+            if (x.getTaiKhoan().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean CheckMK(String input) {
+        for (NhanVienCustomModel x : NhanVienRes.getAllCustomModel()) {
+            if (x.getMatKhau().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

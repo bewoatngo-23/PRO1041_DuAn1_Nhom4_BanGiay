@@ -33,4 +33,10 @@ public interface INhanVienService {
     List<NhanVienCustomModel> getAllCustomByMaNV();
 
     boolean CheckTrungMa(String input);
+    
+    boolean CheckSDT(String input);
+    
+    boolean CheckTK(String input);
+    
+    boolean CheckMK(String input);
 }

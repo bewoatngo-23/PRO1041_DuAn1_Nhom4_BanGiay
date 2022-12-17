@@ -334,6 +334,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
 
         txt_namDT.setText(year + "");
         txt_namKH.setText(year + "");
+
     }
 
     private void loadData(List<VoucherCustomModel> lists) {
@@ -719,7 +720,8 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         }
         return false;
     }
-    //vu_ctsp
+
+//vu_ctsp
     private String click;
 
     public void loadTable(String input) {
@@ -1033,6 +1035,34 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             JOptionPane.showMessageDialog(this, "Mã bị trùng, vui lòng nhập mã khác");
             txtMaKH.requestFocus();
             txtMaKH.setText("");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean CheckSdtKH() {
+        if (khs.CheckSDT(txtSdt.getText())) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại bị trùng, vui lòng nhập sdt khác");
+            txtSdt.requestFocus();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean CheckTK() {
+        if (nhanVienServiceImpl.CheckTK(txtTaiKhoan.getText())) {
+            JOptionPane.showMessageDialog(this, "Tên tài khoản bị trùng, vui lòng nhập tài khoản khác");
+            txtMa.requestFocus();
+            txtMa.setText("");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean CheckSdtNV() {
+        if (nvs.CheckSDT(txtSdtNV.getText())) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại bị trùng, vui lòng nhập sdt khác");
+            txtSdtNV.requestFocus();
             return true;
         }
         return false;
@@ -2333,7 +2363,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
-                .addGap(0, 412, Short.MAX_VALUE)
+                .addGap(0, 381, Short.MAX_VALUE)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -3948,7 +3978,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDoiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -5409,7 +5439,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1474, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1474, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5485,7 +5515,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             if (txtNgaySinh.getDate() == null) {
                 JOptionPane.showMessageDialog(this, "Ngày sinh không được để trống");
             } else {
-                if (CheckDLNV() == false && CheckTrungMaNV() == false) {
+                if (CheckDLNV() == false) {
 
                     var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn cập nhật");
                     if (temp == 0) {
@@ -5599,7 +5629,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             String maCV = cbbChucVu.getSelectedItem().toString();
             ChucVu cv = (ChucVu) chucVuService.getOne(maCV);
 
-            if (CheckDLNV() == false && CheckTrungMaNV() == false) {
+            if (CheckDLNV() == false && CheckTrungMaNV() == false && CheckSdtNV() == false && CheckTK() == false) {
 
                 var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thêm mới");
                 if (temp == 0) {
@@ -5647,7 +5677,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String ngaySinh = sdf.format(txtNgaySinhKH.getDate());
 
-            if (CheckDLKH() == false && CheckTrungMaKH() == false) {
+            if (CheckDLKH() == false && CheckTrungMaKH() == false && CheckSdtKH() == false) {
                 var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thêm mới");
                 if (temp == 0) {
                     KhachHang kh = new KhachHang(ma, ten, sdt, Date.valueOf(ngaySinh));
@@ -6185,6 +6215,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void cbbDSPBHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbDSPBHMouseClicked
+
         cbbDSPBH.removeAllItems();
         listDSP = dongSPService.getAllCustom();
         listDSP.forEach((dsp) -> {
@@ -6193,6 +6224,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }//GEN-LAST:event_cbbDSPBHMouseClicked
 
     private void cbbDSPBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbDSPBHActionPerformed
+
         if (cbbDSPBH.getSelectedIndex() < 0) {
         } else {
             List<SanPhamViewModel> listNew = bhs.SearchSPBH(cbbDSPBH.getSelectedItem().toString());
@@ -6454,9 +6486,12 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 lblTienThua.setText("0");
 
             } catch (DocumentException ex) {
-                Logger.getLogger(ViewBanHang.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ViewBanHang.class
+                        .getName()).log(Level.SEVERE, null, ex);
+
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(HomeNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HomeNhanVien.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -6665,7 +6700,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                 String ghiChu = txtGhiChuVoucher.getText();
 
                 if (CheckDLVC() == false && CheckTrungMaVC() == false) {
-                    
+
                     var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thêm mới");
                     if (temp == 0) {
                         Voucher v = new Voucher(ma, ten, mucGiam, Date.valueOf(ngayBD), Date.valueOf(ngayHH), ghiChu, trangThai);

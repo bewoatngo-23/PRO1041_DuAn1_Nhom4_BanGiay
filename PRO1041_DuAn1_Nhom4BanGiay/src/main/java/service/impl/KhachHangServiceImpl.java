@@ -73,4 +73,14 @@ public class KhachHangServiceImpl implements IKhachHangService {
         return false;
     }
 
+    @Override
+    public boolean CheckSDT(String input) {
+        for (KhachHangCustomModel x : khr.getAllCustom()) {
+            if (x.getSdt().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
