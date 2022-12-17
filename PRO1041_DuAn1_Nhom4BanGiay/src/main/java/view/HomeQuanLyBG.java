@@ -217,7 +217,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         listChucVus = chucVuService.getAllCustom();
         listChucVus.forEach(chucVu -> cbbChucVu.addItem(chucVu.getMa()));
         showDataNV(listNhanVienCustom);
-        txt_ngayNhapHang.setText(java.time.LocalDate.now() + "");
+        date_CTSP.setDate(new java.util.Date());
         txt_giaBan.requestFocus();
         String headersss[] = {"Mã hóa đơn", "Mã nhân viên", "Tên nhân viên", "Mã khách hàng", "Tên khách hàng", "Tổng tiền", "Tổng sản phẩm", "Trạng Thái"};
         tblModelHoaDonBH.setColumnIdentifiers(headersss);
@@ -724,6 +724,29 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
 //vu_ctsp
     private String click;
 
+    public void loadTableByCbb(String input) {
+        DefaultTableModel mol = (DefaultTableModel) tbl_CTSanPham.getModel();
+        mol.setRowCount(0);
+        int stt = 1;
+        for (var x : chiTietSanPhamService.getCustomModelByCBB(input)) {
+            mol.addRow(new Object[]{
+                stt++,
+                x.getMaSP(),
+                x.getTenSP(),
+                x.getTenMauSac(),
+                x.getTenDeGiay(),
+                x.getTenDongSP(),
+                x.getNgayNhapHang(),
+                x.getDonGia(),
+                x.getSoLuong(),
+                x.getKichCo(),
+                x.getXuatXu(),
+                x.getTrangThai() == 0 ? "Đang Bán" : "Dừng Bán"
+
+            });
+        }
+    }
+
     public void loadTable(String input) {
         DefaultTableModel mol = (DefaultTableModel) tbl_CTSanPham.getModel();
         mol.setRowCount(0);
@@ -878,12 +901,15 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     }
 
     public ChiTietSanPhamHiber getForm() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String ngay = sdf.format(date_CTSP.getDate());
+
         return new ChiTietSanPhamHiber(null,
                 sanPhamHiberService.getByIndex(cbo_sanPham.getSelectedIndex()),
                 dongSPHiberService.getByIndex(cbo_dongSanPham.getSelectedIndex()),
                 deGiayService.getDeGiayHiberbyIndex(cbo_deGiay.getSelectedIndex()),
                 mauSacHiberService.getByIndex(cbo_mauSac.getSelectedIndex()),
-                txt_ngayNhapHang.getText(),
+                ngay,
                 Double.parseDouble(txt_giaBan.getText()),
                 Integer.parseInt(txt_soLuong.getText()),
                 txt_xuatXu.getText(),
@@ -958,13 +984,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
             return true;
         }
 
-        // check ngày nhập hàng
-        if (uti.CheckNgayThang(txt_ngayNhapHang.getText())) {
-            JOptionPane.showMessageDialog(this, "Ngày nhập hàng không đúng kiểu dữ liệu");
-            txt_ngayNhapHang.requestFocus();
-            txt_ngayNhapHang.setText("");
-            return true;
-        }
+//        // check ngày nhập hàng
+//        if (uti.CheckNgayThang(txt_ngayNhapHang.getText())) {
+//            JOptionPane.showMessageDialog(this, "Ngày nhập hàng không đúng kiểu dữ liệu");
+//            txt_ngayNhapHang.requestFocus();
+//            txt_ngayNhapHang.setText("");
+//            return true;
+//        }
 
         // check kích cỡ
         if (uti.CheckRong(txt_kichCo.getText())) {
@@ -2022,7 +2048,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         cbo_trangThai = new javax.swing.JComboBox<>();
         lbl_deGiay = new javax.swing.JLabel();
         cbo_deGiay = new javax.swing.JComboBox<>();
-        txt_ngayNhapHang = new javax.swing.JTextField();
         btn_themSP = new javax.swing.JButton();
         cbo_dongSanPham = new javax.swing.JComboBox<>();
         btn_themMS = new javax.swing.JButton();
@@ -2033,7 +2058,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         lbl_dongSP = new javax.swing.JLabel();
         cbo_locMauSac = new javax.swing.JComboBox<>();
         jLabel22 = new javax.swing.JLabel();
-        btnReloadCTSP = new javax.swing.JButton();
+        btn_ReloadSP = new javax.swing.JButton();
+        btn_ReloadMauSac = new javax.swing.JButton();
+        btn_ReloadDeGiay = new javax.swing.JButton();
+        btn_ReloadDSP = new javax.swing.JButton();
+        date_CTSP = new com.toedter.calendar.JDateChooser();
         pnlHoaDon = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -4710,15 +4739,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         lbl_deGiay.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lbl_deGiay.setText("Đế giày");
 
-        txt_ngayNhapHang.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_ngayNhapHangFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_ngayNhapHangFocusLost(evt);
-            }
-        });
-
         btn_themSP.setBackground(new java.awt.Color(204, 0, 0));
         btn_themSP.setForeground(new java.awt.Color(255, 255, 255));
         btn_themSP.setText("+");
@@ -4770,15 +4790,47 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel22.setText("Sản phẩm chi tiết");
 
-        btnReloadCTSP.setBackground(new java.awt.Color(255, 204, 0));
-        btnReloadCTSP.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnReloadCTSP.setForeground(new java.awt.Color(255, 255, 255));
-        btnReloadCTSP.setText("Reload");
-        btnReloadCTSP.addActionListener(new java.awt.event.ActionListener() {
+        btn_ReloadSP.setBackground(new java.awt.Color(255, 204, 0));
+        btn_ReloadSP.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_ReloadSP.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ReloadSP.setText("Reload");
+        btn_ReloadSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadCTSPActionPerformed(evt);
+                btn_ReloadSPActionPerformed(evt);
             }
         });
+
+        btn_ReloadMauSac.setBackground(new java.awt.Color(255, 204, 0));
+        btn_ReloadMauSac.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_ReloadMauSac.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ReloadMauSac.setText("Reload");
+        btn_ReloadMauSac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ReloadMauSacActionPerformed(evt);
+            }
+        });
+
+        btn_ReloadDeGiay.setBackground(new java.awt.Color(255, 204, 0));
+        btn_ReloadDeGiay.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_ReloadDeGiay.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ReloadDeGiay.setText("Reload");
+        btn_ReloadDeGiay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ReloadDeGiayActionPerformed(evt);
+            }
+        });
+
+        btn_ReloadDSP.setBackground(new java.awt.Color(255, 204, 0));
+        btn_ReloadDSP.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_ReloadDSP.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ReloadDSP.setText("Reload");
+        btn_ReloadDSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ReloadDSPActionPerformed(evt);
+            }
+        });
+
+        date_CTSP.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout pnlSanPhamChiTietLayout = new javax.swing.GroupLayout(pnlSanPhamChiTiet);
         pnlSanPhamChiTiet.setLayout(pnlSanPhamChiTietLayout);
@@ -4807,7 +4859,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                             .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                                 .addComponent(cbo_sanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_themSP))
+                                .addComponent(btn_themSP)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_ReloadSP))
                             .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                                 .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txt_xuatXu)
@@ -4816,8 +4870,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                                     .addComponent(cbo_mauSac, 0, 205, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_themMS)
-                                    .addComponent(btnReloadCTSP)
+                                    .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
+                                        .addComponent(btn_themMS)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_ReloadMauSac))
                                     .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -4831,14 +4887,19 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                             .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                                 .addComponent(cbo_dongSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btn_themDSP1))
-                            .addComponent(txt_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_kichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_themDSP1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_ReloadDSP))
                             .addComponent(cbo_trangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                                 .addComponent(cbo_deGiay, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btn_themDG1)))
+                                .addComponent(btn_themDG1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_ReloadDeGiay))
+                            .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(date_CTSP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_kichCo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
                         .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4896,7 +4957,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     .addComponent(lbl_deGiay, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbo_deGiay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_themSP)
-                    .addComponent(btn_themDG1))
+                    .addComponent(btn_themDG1)
+                    .addComponent(btn_ReloadSP)
+                    .addComponent(btn_ReloadDeGiay))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbo_dongSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4904,22 +4967,26 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
                     .addComponent(lbl_mauSac, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_dongSP, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_themMS)
-                    .addComponent(btn_themDSP1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_giaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_giaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReloadCTSP))
+                    .addComponent(btn_themDSP1)
+                    .addComponent(btn_ReloadMauSac)
+                    .addComponent(btn_ReloadDSP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbl_soLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_soLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_kichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbl_kichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
+                        .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_giaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_giaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_ngayNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_soLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_soLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlSanPhamChiTietLayout.createSequentialGroup()
+                        .addComponent(date_CTSP, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_kichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_kichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlSanPhamChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbo_trangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5730,12 +5797,12 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
 
     private void cbo_locDeGiayItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_locDeGiayItemStateChanged
         // TODO add your handling code here:
-        loadTable((String) cbo_locDeGiay.getSelectedItem());
+        loadTableByCbb((String) cbo_locDeGiay.getSelectedItem());
     }//GEN-LAST:event_cbo_locDeGiayItemStateChanged
 
     private void cbo_locDongSPItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_locDongSPItemStateChanged
         // TODO add your handling code here:
-        loadTable((String) cbo_locDongSP.getSelectedItem());
+        loadTableByCbb((String) cbo_locDongSP.getSelectedItem());
     }//GEN-LAST:event_cbo_locDongSPItemStateChanged
 
     private void cbo_locGiaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_locGiaItemStateChanged
@@ -5779,12 +5846,19 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         cbo_mauSac.setSelectedItem(temp.getTenMauSac());
         cbo_deGiay.setSelectedItem(temp.getTenDeGiay());
         cbo_dongSanPham.setSelectedItem(temp.getTenDongSP());
-        txt_ngayNhapHang.setText(temp.getNgayNhapHang());
+        try {
+             java.util.Date date =  new SimpleDateFormat("yyyy-MM-dd").parse(temp.getNgayNhapHang());
+             date_CTSP.setDate(date);
+        } catch (Exception e) {
+        }
+            
+
         txt_giaBan.setText(String.valueOf(temp.getDonGia()));
         txt_soLuong.setText(String.valueOf(temp.getSoLuong()));
         txt_kichCo.setText(temp.getKichCo());
         txt_xuatXu.setText(temp.getXuatXu());
         cbo_trangThai.setSelectedIndex(temp.getTrangThai());
+        
     }//GEN-LAST:event_tbl_CTSanPhamMouseClicked
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
@@ -5805,12 +5879,14 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         cbo_mauSac.setSelectedIndex(0);
         cbo_deGiay.setSelectedIndex(0);
         cbo_dongSanPham.setSelectedIndex(0);
-        txt_ngayNhapHang.setText(null);
+        date_CTSP.setDate(new java.util.Date());
         txt_giaBan.setText(null);
         txt_soLuong.setText(null);
         txt_kichCo.setText(null);
         txt_xuatXu.setText(null);
         cbo_trangThai.setSelectedIndex(0);
+        txt_timKiem.setText("Tìm Kiếm...");
+        loadTable(null);
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void txt_timKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timKiemCaretUpdate
@@ -5828,19 +5904,9 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
 
     private void txt_timKiemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_timKiemFocusLost
         // TODO add your handling code here:
-        txt_timKiem.setText("Tìm Kiếm...");
-        loadTable(null);
+//        txt_timKiem.setText("Tìm Kiếm...");
+//        loadTable(null);
     }//GEN-LAST:event_txt_timKiemFocusLost
-
-    private void txt_ngayNhapHangFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ngayNhapHangFocusGained
-        // TODO add your handling code here:
-        txt_ngayNhapHang.setText("");
-    }//GEN-LAST:event_txt_ngayNhapHangFocusGained
-
-    private void txt_ngayNhapHangFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ngayNhapHangFocusLost
-        // TODO add your handling code here:
-        txt_ngayNhapHang.setText(java.time.LocalDate.now() + "");
-    }//GEN-LAST:event_txt_ngayNhapHangFocusLost
 
     private void btn_themSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themSPActionPerformed
         // TODO add your handling code here:
@@ -5864,12 +5930,17 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
 
     private void cbo_locMauSacItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_locMauSacItemStateChanged
         // TODO add your handling code here:
-        loadTable((String) cbo_locMauSac.getSelectedItem());
+        loadTableByCbb((String) cbo_locMauSac.getSelectedItem());
     }//GEN-LAST:event_cbo_locMauSacItemStateChanged
 
-    private void btnReloadCTSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadCTSPActionPerformed
-        loadCBB();
-    }//GEN-LAST:event_btnReloadCTSPActionPerformed
+    private void btn_ReloadSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReloadSPActionPerformed
+        cbo_sanPham.removeAllItems();
+        for (var x : sanPhamService.getAll()) {
+            cbo_sanPham.addItem(x.getTen());
+        }
+        AutoCompleteDecorator.decorate(cbo_sanPham);
+
+    }//GEN-LAST:event_btn_ReloadSPActionPerformed
 
     private void btnKetThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKetThucActionPerformed
         var temp = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắc chắn muốn thoát");
@@ -7137,6 +7208,36 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
         cbbChucVu.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_cbbChucVuMouseEntered
 
+    private void btn_ReloadMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReloadMauSacActionPerformed
+        // TODO add your handling code here:
+        cbo_mauSac.removeAllItems();
+        for (var x : mauSacService.getAll()) {
+            cbo_mauSac.addItem(x.getTen());
+        }
+        AutoCompleteDecorator.decorate(cbo_mauSac);
+
+    }//GEN-LAST:event_btn_ReloadMauSacActionPerformed
+
+    private void btn_ReloadDeGiayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReloadDeGiayActionPerformed
+        // TODO add your handling code here:
+        cbo_deGiay.removeAllItems();
+        for (DeGiayCustomModel x : deGiayService.getAll(null)) {
+            cbo_deGiay.addItem(x.getTen());
+        }
+        AutoCompleteDecorator.decorate(cbo_deGiay);
+
+    }//GEN-LAST:event_btn_ReloadDeGiayActionPerformed
+
+    private void btn_ReloadDSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReloadDSPActionPerformed
+        // TODO add your handling code here:
+        cbo_dongSanPham.removeAllItems();
+        for (var x : dongSPService.getAll()) {
+            cbo_dongSanPham.addItem(x.getTen());
+        }
+        AutoCompleteDecorator.decorate(cbo_dongSanPham);
+
+    }//GEN-LAST:event_btn_ReloadDSPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -7211,7 +7312,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnNhanVien;
     private javax.swing.JButton btnReloadBH;
-    private javax.swing.JButton btnReloadCTSP;
     private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnSuaVoucher;
     private javax.swing.JButton btnTaoHoaDon;
@@ -7225,6 +7325,10 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JButton btnUpdateNV;
     private javax.swing.JButton btnVoucher;
     private javax.swing.JButton btnXoaSanPham;
+    private javax.swing.JButton btn_ReloadDSP;
+    private javax.swing.JButton btn_ReloadDeGiay;
+    private javax.swing.JButton btn_ReloadMauSac;
+    private javax.swing.JButton btn_ReloadSP;
     private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
@@ -7258,6 +7362,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JComboBox<String> cbo_mauSac;
     private javax.swing.JComboBox<String> cbo_sanPham;
     private javax.swing.JComboBox<String> cbo_trangThai;
+    private com.toedter.calendar.JDateChooser date_CTSP;
     private com.toedter.calendar.JDateChooser date_batDau;
     private com.toedter.calendar.JDateChooser date_doiTraBD;
     private com.toedter.calendar.JDateChooser date_doiTraKT;
@@ -7492,7 +7597,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JTextField txt_kichCo;
     private javax.swing.JTextField txt_namDT;
     private javax.swing.JTextField txt_namKH;
-    private javax.swing.JTextField txt_ngayNhapHang;
     private javax.swing.JTextField txt_soLuong;
     private javax.swing.JTextField txt_timKiem;
     private javax.swing.JTextField txt_xuatXu;

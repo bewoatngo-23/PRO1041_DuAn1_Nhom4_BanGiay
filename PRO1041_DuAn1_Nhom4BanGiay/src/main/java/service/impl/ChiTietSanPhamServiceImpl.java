@@ -100,4 +100,19 @@ public class ChiTietSanPhamServiceImpl implements IChiTietSanPhamService {
         // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public List<ChiTietSPCustomModel> getCustomModelByCBB(String input) {
+        List<ChiTietSPCustomModel> list_chiCustomModels = new ArrayList<>();
+        if (input == null) {
+            return ChiTietSanPham.getAllCustomModels();
+        }
+        for (ChiTietSPCustomModel x : ChiTietSanPham.getAllCustomModels()) {
+            if (x.getTenDongSP().equals(input) || x.getTenDeGiay().equals(input) || x.getTenMauSac().equals(input) ) {
+                list_chiCustomModels.add(x);
+            }
+        }
+        return list_chiCustomModels;
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
