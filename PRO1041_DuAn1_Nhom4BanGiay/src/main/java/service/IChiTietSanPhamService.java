@@ -17,6 +17,8 @@ public interface IChiTietSanPhamService {
     
     List<ChiTietSPCustomModel> getAllCustomModel(String input);
     
+    List<ChiTietSPCustomModel> getCustomModelByCBB(String input);
+    
     ChiTietSPCustomModel getById(String input);
     
     List<ChiTietSPCustomModel> getAllBetWeen(String batDau, String ketThuc);
