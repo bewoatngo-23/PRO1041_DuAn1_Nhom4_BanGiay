@@ -89,7 +89,7 @@ public class Utility {
     // Lấy tháng trong chuỗi ngày tháng
     public String getThang(String input) {
         if (input == null) {
-            return 0+"";
+            return 0 + "";
         }
         String[] arrThang = input.trim().split("-");
         String ChuoiThang = arrThang[1];
@@ -99,13 +99,13 @@ public class Utility {
     // Lấy năm trong chuỗi ngày tháng
     public String getNam(String input) {
         if (input == null) {
-            return 0+"";
+            return 0 + "";
         }
         String[] arrNam = input.trim().split("-");
         String Nam = arrNam[0];
         return Nam;
     }
-    
+
     // chữ in hoa
     public String inHoa(String input) {
         return input.toUpperCase();
@@ -127,16 +127,16 @@ public class Utility {
         }
         return false;
     }
-    
+
     // Check số thập phân
-    public boolean CheckSoThapPhan(String input){
-        String p_soThapPhan ="[+-]?([0-9]*[.])?[0-9]+";
+    public boolean CheckSoThapPhan(String input) {
+        String p_soThapPhan = "[+-]?([0-9]*[.])?[0-9]+";
         if (!input.matches(p_soThapPhan)) {
             return true;
         }
         return false;
     }
-    
+
     // check dữ liệu số
     public boolean CheckSo(String input) {
         String p_so = "[0-9]+";
@@ -154,8 +154,9 @@ public class Utility {
         }
         return false;
     }
+
     //check ngày tháng yyyy-mm-dd
-    public boolean CheckNgayThang(String input){
+    public boolean CheckNgayThang(String input) {
         String p_day = "^([0-9]{4}[-/]?((0[13-9]|1[012])[-/]?(0[1-9]|[12][0-9]|30)|(0[13578]|1[02])[-/]?31|02[-/]?(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00)[-/]?02[-/]?29)$";
         if (!input.matches(p_day)) {
             return true;
@@ -168,12 +169,11 @@ public class Utility {
         String[] arrPass = input.trim().split("");
         int count = 0;
         for (int i = 0; i < arrPass.length; i++) {
-             count++;
+            count++;
         }
         return count;
     }
-    
-  
+
     // Random số ngẫu nhiên
     public static int ranDom() {
         double randomDouble = Math.random();
@@ -181,6 +181,15 @@ public class Utility {
         int randomInt = (int) randomDouble;
         return randomInt;
 
+    }
+
+    //check số âm
+    public boolean CheckSoAm(int input) {
+
+        if (input < 0) {
+            return true;
+        }
+        return false;
     }
 
     private static String unAccent(String s) {//Convert từ tiếng việt có dấu về tiếng việt 0 dấu

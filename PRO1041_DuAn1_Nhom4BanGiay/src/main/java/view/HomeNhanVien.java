@@ -15,6 +15,7 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -555,6 +556,8 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
         lblTenVoucher = new javax.swing.JLabel();
         btnLoadVoucher = new javax.swing.JButton();
         pnlWebcam = new javax.swing.JPanel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1088,7 +1091,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDoiTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1360,7 +1363,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
 
         jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(11, 42, 61));
-        jLabel27.setText("Hóa đơn chờ");
+        jLabel27.setText("Quét mã sản phẩm");
 
         jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(11, 42, 61));
@@ -1903,52 +1906,69 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
 
         pnlWebcam.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel42.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(11, 42, 61));
+        jLabel42.setText("Hóa đơn chờ");
+
+        jLabel57.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel57.setForeground(new java.awt.Color(11, 42, 61));
+        jLabel57.setText("Đơn hàng");
+
         javax.swing.GroupLayout pnlBanHangLayout = new javax.swing.GroupLayout(pnlBanHang);
         pnlBanHang.setLayout(pnlBanHangLayout);
         pnlBanHangLayout.setHorizontalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBanHangLayout.createSequentialGroup()
-                .addGap(511, 511, 511)
-                .addComponent(pnlWebcam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(696, Short.MAX_VALUE))
+                .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlBanHangLayout.createSequentialGroup()
+                        .addGap(511, 511, 511)
+                        .addComponent(pnlWebcam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlBanHangLayout.createSequentialGroup()
+                        .addGap(496, 496, 496)
+                        .addComponent(jLabel27)
+                        .addGap(99, 99, 99)
+                        .addComponent(jLabel57)))
+                .addContainerGap(323, Short.MAX_VALUE))
             .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBanHangLayout.createSequentialGroup()
                     .addGap(37, 37, 37)
                     .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnlBanHangLayout.createSequentialGroup()
-                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(421, 421, 421))
+                            .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnlBanHangLayout.createSequentialGroup()
+                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(243, 243, 243)))
+                            .addGap(5, 5, 5))
                         .addGroup(pnlBanHangLayout.createSequentialGroup()
                             .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel29)
                                 .addGroup(pnlBanHangLayout.createSequentialGroup()
-                                    .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(pnlBanHangLayout.createSequentialGroup()
-                                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(243, 243, 243)))
-                                    .addGap(5, 5, 5))
-                                .addGroup(pnlBanHangLayout.createSequentialGroup()
-                                    .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel29)
-                                        .addGroup(pnlBanHangLayout.createSequentialGroup()
-                                            .addGap(9, 9, 9)
-                                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(82, 82, 82)))))
+                                    .addGap(9, 9, 9)
+                                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(82, 82, 82)))
+            .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBanHangLayout.createSequentialGroup()
+                    .addGap(47, 47, 47)
+                    .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1015, Short.MAX_VALUE)))
         );
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBanHangLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(12, 12, 12)
+                .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel57)
+                    .addComponent(jLabel27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlWebcam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(736, Short.MAX_VALUE))
             .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBanHangLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel27)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGap(49, 49, 49)
                     .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnlBanHangLayout.createSequentialGroup()
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1962,6 +1982,11 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBanHangLayout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addComponent(jLabel42)
+                    .addContainerGap(732, Short.MAX_VALUE)))
         );
 
         pnlcards.add(pnlBanHang, "cardBH");
@@ -2744,79 +2769,80 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
 
             try {
                 PdfWriter pw = PdfWriter.getInstance(doc, new FileOutputStream(path + "\\" + maHD + ".pdf"));
-                    doc.open();
-                    doc.add(new Paragraph("                                                              SHOP GIÀY 6G SNEAKER\n"));
-                    doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
-                    doc.add(new Paragraph("Ngày thanh toán:          " + ngayThanhToan.toString()));
-                    doc.add(new Paragraph("Tên nhân viên:              " + tenNV));
-                    doc.add(new Paragraph("Tên khách hàng:           " + tenKH));
-                    doc.add(new Paragraph("So dien thoai:               " + sdtKH));
-                    doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
-                    PdfPTable tbl = new PdfPTable(5);
-                    tbl.setWidthPercentage(100);
-                    tbl.setSpacingBefore(11f);
-                    tbl.setSpacingAfter(11f);
 
-                    float[] col = {2f, 2f, 2f, 2f, 2f};
-                    tbl.setWidths(col);
+                doc.open();
+                doc.add(new Paragraph("                                                              SHOP GIÀY 6G SNEAKER\n"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Ngày thanh toán:          " + ngayThanhToan.toString()));
+                doc.add(new Paragraph("Tên nhân viên:              " + tenNV));
+                doc.add(new Paragraph("Tên khách hàng:           " + tenKH));
+                doc.add(new Paragraph("So dien thoai:               " + sdtKH));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                PdfPTable tbl = new PdfPTable(5);
+                tbl.setWidthPercentage(100);
+                tbl.setSpacingBefore(11f);
+                tbl.setSpacingAfter(11f);
 
-                    tbl.addCell("Ma San Pham");
-                    tbl.addCell("Ten San Pham");
-                    tbl.addCell("So Luong");
-                    tbl.addCell("Don Gia");
-                    tbl.addCell("Tong Tien");
+                float[] col = {2f, 2f, 2f, 2f, 2f};
+                tbl.setWidths(col);
 
-                    for (int i = 0; i < tblGioHang.getRowCount(); i++) {
-                        String ma = tblGioHang.getValueAt(i, 0).toString();
-                        String ten = tblGioHang.getValueAt(i, 1).toString();
-                        String sl = tblGioHang.getValueAt(i, 2).toString();
-                        String dg = tblGioHang.getValueAt(i, 3).toString();
-                        Double tt = Double.valueOf(dg) * Integer.valueOf(sl);
+                tbl.addCell("Ma San Pham");
+                tbl.addCell("Ten San Pham");
+                tbl.addCell("So Luong");
+                tbl.addCell("Don Gia");
+                tbl.addCell("Tong Tien");
 
-                        tbl.addCell(ma);
-                        tbl.addCell(ten);
-                        tbl.addCell(sl);
-                        tbl.addCell(fomat.format(Double.valueOf((dg))) + " VND");
-                        tbl.addCell(fomat.format(Double.valueOf((tt))) + " VND");
-                    }
-                    doc.add(tbl);
-                    doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
-                    doc.add(new Paragraph("Thanh tien: " + "                                                                                                           " + (thanhTien) + " VND"));
-                    doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
-                    doc.add(new Paragraph("Giam gia: " + "                                                                                                             " + (giamGia)));
-                    doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
-                    doc.add(new Paragraph("Thanh toán: " + "                                                                                                          " + (thanhToan) + " VND"));
-                    doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
-                    doc.add(new Paragraph("Tien khach dua: " + "                                                                                                    " + fomat.format(Double.valueOf(tienKhachDua)) + " VND"));
-                    doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
-                    doc.add(new Paragraph("Tien thua: " + "                                                                                                              " + (tienThua) + " VND"));
-                    doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
-                    doc.add(new Paragraph("****************************************************************************************************************"));
-                    doc.add(new Paragraph("                                                           THANK YOU COME AGAIN"));
-                    doc.add(new Paragraph("****************************************************************************************************************"));
-                    doc.add(new Paragraph("                                                           SOFTWARE BY NHOM4_IT17320"));
-                    doc.add(new Paragraph("                                                           CONTACT: g6sneaker@it17320.com"));
-                    doc.close();
-                    pw.close();
-                    listGioHangS = bhs.getGioHang(maHD);
-                    showDataGioHang(listGioHangS);
-                    lblMaHD.setText("Tạo");
-                    lblThanhTien.setText("0");
+                for (int i = 0; i < tblGioHang.getRowCount(); i++) {
+                    String ma = tblGioHang.getValueAt(i, 0).toString();
+                    String ten = tblGioHang.getValueAt(i, 1).toString();
+                    String sl = tblGioHang.getValueAt(i, 2).toString();
+                    String dg = tblGioHang.getValueAt(i, 3).toString();
+                    Double tt = Double.valueOf(dg) * Integer.valueOf(sl);
 
-                    lblThanhToan.setText("0");
-                    txtTienKhachDua.setText("0");
-                    lblTienThua.setText("0");
-
-                } catch (DocumentException ex) {
-                    Logger.getLogger(ViewBanHang.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(HomeNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    tbl.addCell(ma);
+                    tbl.addCell(ten);
+                    tbl.addCell(sl);
+                    tbl.addCell(fomat.format(Double.valueOf((dg))) + " VND");
+                    tbl.addCell(fomat.format(Double.valueOf((tt))) + " VND");
                 }
+                doc.add(tbl);
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Thanh tien: " + "                                                                                                           " + (thanhTien) + " VND"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Giam gia: " + "                                                                                                             " + (giamGia)));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Thanh toán: " + "                                                                                                          " + (thanhToan) + " VND"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Tien khach dua: " + "                                                                                                    " + fomat.format(Double.valueOf(tienKhachDua)) + " VND"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("Tien thua: " + "                                                                                                              " + (tienThua) + " VND"));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+                doc.add(new Paragraph("****************************************************************************************************************"));
+                doc.add(new Paragraph("                                                           THANK YOU COME AGAIN"));
+                doc.add(new Paragraph("****************************************************************************************************************"));
+                doc.add(new Paragraph("                                                           SOFTWARE BY NHOM4_IT17320"));
+                doc.add(new Paragraph("                                                           CONTACT: g6sneaker@it17320.com"));
+                doc.close();
+                pw.close();
+                listGioHangS = bhs.getGioHang(maHD);
+                showDataGioHang(listGioHangS);
+                lblMaHD.setText("Tạo");
+                lblThanhTien.setText("0");
 
+                lblThanhToan.setText("0");
+                txtTienKhachDua.setText("0");
+                lblTienThua.setText("0");
+
+            } catch (DocumentException ex) {
+                Logger.getLogger(ViewBanHang.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(HomeNhanVien.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (demTrangThai() < 5) {
-                btnTaoHoaDon.setEnabled(true);
-            }
+
+        }
+        if (demTrangThai() < 5) {
+            btnTaoHoaDon.setEnabled(true);
+        }
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonActionPerformed
@@ -2834,7 +2860,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
         String maHD = "HD" + x + i;
         HoaDonViewModel hd = new HoaDonViewModel();
         hd.setKh("E5967694-CF90-4C64-900A-7214F307AB75");
-        hd.setNv("1629D824-D841-4BFD-9A6A-263CCCF68FD8");
+        hd.setNv("d9d9343c-9e7c-4f3e-8d0a-78e3682feaab");
         hd.setMa(maHD);
         hd.setNgayTao(new Date(millis));
         hd.setTrangThai(1);
@@ -3006,6 +3032,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
@@ -3020,6 +3047,7 @@ public class HomeNhanVien extends javax.swing.JFrame implements Runnable, Thread
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
